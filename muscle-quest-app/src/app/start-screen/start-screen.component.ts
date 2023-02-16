@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StartScreenService } from './start-screen.service';
+
 
 @Component({
   selector: 'app-start-screen',
@@ -7,7 +7,5 @@ import { StartScreenService } from './start-screen.service';
   styleUrls: ['./start-screen.component.scss']
 })
 export class StartScreenComponent {
-  characterIMG;
-  let service = new StartScreenService();
-  this.characterIMG = service.getCharacterIMG();
+
 }
