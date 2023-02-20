@@ -1,2 +1,8 @@
 <h1>{{ title }}</h1>
+
+<button (click)="playSound()">Play Sound</button>
+<audio #myAudio>
+  <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
+</audio>
+
 <button type="button" (click)="goBack()">Go Back</button>
