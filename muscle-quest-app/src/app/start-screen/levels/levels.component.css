@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+.container img {
+  height: 850px;
+  width: 100%;
+}
+.container .Sloane {
+  position: absolute;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  top: 35%;
+  left: 40%;
+}
+.container .Sloane:hover {
+  background-color: purple;
+}
+.container .backButton {
+  top: 2%;
+  left: 2%;
+  position: absolute;
+  float: left;
+}/*# sourceMappingURL=levels.component.css.map */

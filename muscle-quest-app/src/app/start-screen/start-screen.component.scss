@@ -1,37 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-body {
-    margin: 0px;
-    padding: 0px;
-}
 .GymBackground {
-    margin: 0px;
-    padding: 0px;
+    width:100%;
+    height: 850px;
     & img {
-        border: 0px;
-        display: block;
-        margin: 0px;
-        padding: 0px;
+        height: 98%;
         width: 100%;
-        height: 100%;
     }
 }
 
 .dumbell {
+    max-width:100%;
+    max-height:100%;
     position: relative;
-    padding: 10px;
-    text-align: center;
+    padding: 65px;
     font-size: 40px;
     color: white;
+    background: url(../../assets/StartScreen/Dumbell.png) no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    text-align: center;
+    
 
-    & img {
-        width: 100%;
-        height: 100%;
-    }
 }
 
-.dumbell:hover {
 
+.dumbell:hover{
+    max-width:100%;
+    max-height:100%;
+    position: relative;
+    padding: 65px;
+    font-size: 40px;
+    color: black;
+    background: url(../../assets/StartScreen/DumbellHover.png) no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    text-align: center;
 }
 
 .buttonBox {
@@ -43,12 +46,4 @@ body {
     padding: 20px;
     width: 500px;
     height: 700px;
-    opacity: 0.6;
-    & img {
-        opacity: 1;
-    }
-}
-
-.buttonBox:hover {
-    opacity: 0.9;
 }
