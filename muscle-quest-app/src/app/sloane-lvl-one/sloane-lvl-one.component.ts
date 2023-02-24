@@ -13,6 +13,7 @@ export class SloaneLvlOneComponent {
 
   title = 'The Revenge of Time';
   showRules = true;
+  options = ['Pushups', 'Situps', 'Jumprope', 'Burpees'];
 
   toggleRules() {
     this.showRules ? (this.showRules = false) : (this.showRules = true);

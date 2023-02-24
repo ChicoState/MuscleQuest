@@ -14,12 +14,7 @@
     <button type="button" (click)="goBack()">Go Back</button>
     <h1>{{ title }}</h1>
 
-    <button (click)="playSound()">Play Sound</button>
-    <audio #myAudio>
-      <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
-    </audio>
-
-    <div class="instructions" *ngIf="showRules; else elseBlock">
+    <div class="intro-container">
       <p>
         Prepare to win the battle against one of life's greatest foes: time
         itself!
@@ -28,11 +23,32 @@
         Here you will be presented with various tasks which you must perform for
         a given amount of time.
       </p>
+      <p>
+        <strong
+          >For the best experience, please have your sound turned on!
+        </strong>
+      </p>
+    </div>
+
+    <button (click)="playSound()">Play Sound</button>
+    <audio #myAudio>
+      <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
+    </audio>
+
+    <div class="instructions" *ngIf="showRules; else elseBlock">
       <h4>Tips:</h4>
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>
+          Choose an exercise, and hit the "start" button to begin the countdown.
+        </li>
+        <li>
+          When the timer approaches zero, you will hear a woman counting down
+          from ten. This is your chance to get in one or two perfect reps!
+        </li>
+        <li>
+          Favor quality over quantity: it's better to do a few good reps than a
+          lot of bad ones.
+        </li>
       </ul>
 
       <button (click)="toggleRules()">Hide Rules</button>
@@ -40,5 +56,12 @@
     <ng-template #elseBlock>
       <button (click)="toggleRules()">Show Rules</button>
     </ng-template>
+
+    <label for="workout-options">
+      Please choose an exercise from the list:
+    </label>
+    <select name="workout-options" id="workout-options">
+      <option *ngFor="let option of options">{{ option }}</option>
+    </select>
   </body>
 </html>
