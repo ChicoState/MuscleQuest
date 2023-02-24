@@ -12,6 +12,11 @@ export class SloaneLvlOneComponent {
   }
 
   title = 'The Revenge of Time';
+  showRules = true;
+
+  toggleRules() {
+    this.showRules ? (this.showRules = false) : (this.showRules = true);
+  }
 
   @ViewChild('myAudio', { static: true }) audio: ElementRef<HTMLAudioElement>;
 

@@ -1,8 +1,44 @@
-<h1>{{ title }}</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button type="button" (click)="goBack()">Go Back</button>
+    <h1>{{ title }}</h1>
 
-<button (click)="playSound()">Play Sound</button>
-<audio #myAudio>
-  <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
-</audio>
+    <button (click)="playSound()">Play Sound</button>
+    <audio #myAudio>
+      <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
+    </audio>
 
-<button type="button" (click)="goBack()">Go Back</button>
+    <div class="instructions" *ngIf="showRules; else elseBlock">
+      <p>
+        Prepare to win the battle against one of life's greatest foes: time
+        itself!
+      </p>
+      <p>
+        Here you will be presented with various tasks which you must perform for
+        a given amount of time.
+      </p>
+      <h4>Tips:</h4>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <button (click)="toggleRules()">Hide Rules</button>
+    </div>
+    <ng-template #elseBlock>
+      <button (click)="toggleRules()">Show Rules</button>
+    </ng-template>
+  </body>
+</html>
