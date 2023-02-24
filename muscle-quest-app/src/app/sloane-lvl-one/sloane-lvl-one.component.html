@@ -30,8 +30,8 @@
       </p>
     </div>
 
-    <button (click)="playSound()">Play Sound</button>
-    <audio #myAudio>
+    <button (click)="countDown()">Start Timer</button>
+    <audio #countDownAudio>
       <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
     </audio>
 
@@ -60,7 +60,11 @@
     <label for="workout-options">
       Please choose an exercise from the list:
     </label>
-    <select name="workout-options" id="workout-options">
+    <select
+      name="workout-options"
+      id="workout-options"
+      (change)="onWorkoutSelected($event)"
+    >
       <option *ngFor="let option of options">{{ option }}</option>
     </select>
   </body>

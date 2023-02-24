@@ -14,12 +14,36 @@ export class SloaneLvlOneComponent {
   title = 'The Revenge of Time';
   showRules = true;
   options = ['Pushups', 'Situps', 'Jumprope', 'Burpees'];
+  selected = this.options[0];
+  count = 15;
+  audioPlayed = false;
+  timer: any;
 
   toggleRules() {
     this.showRules ? (this.showRules = false) : (this.showRules = true);
   }
 
-  @ViewChild('myAudio', { static: true }) audio: ElementRef<HTMLAudioElement>;
+  onWorkoutSelected(event: any) {
+    this.selected = event.target.value;
+    console.log(this.selected);
+  }
+
+  @ViewChild('countDownAudio', { static: true })
+  audio: ElementRef<HTMLAudioElement>;
+
+  countDown() {
+    this.timer = setInterval(() => {
+      this.count--;
+      if (this.count === 10 && !this.audioPlayed) {
+        this.audio.nativeElement.play();
+        this.audioPlayed = true;
+      }
+    }, 1000);
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+  }
 
   playSound() {
     this.audio.nativeElement.play();
