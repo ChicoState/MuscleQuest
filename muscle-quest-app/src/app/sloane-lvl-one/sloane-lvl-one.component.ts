@@ -13,12 +13,15 @@ export class SloaneLvlOneComponent {
 
   title = 'The Revenge of Time';
   showRules = true;
-  options = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
-  selected = this.options[0].toLowerCase();
-  showExample = true;
-  count = 15;
+  showExample = false;
+  exerciseOptions = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
+  timeOptions = [5, 30, 60, 90, 120, 180];
+  exerciseSelected = this.exerciseOptions[0].toLowerCase();
+  timeSelected = this.timeOptions[0];
+  count = this.timeSelected;
   audioPlayed = false;
   timer: any;
+  score = 0;
 
   // Reusing code for simplicity of understanding
   toggleRules() {
@@ -29,9 +32,14 @@ export class SloaneLvlOneComponent {
     this.showExample ? (this.showExample = false) : (this.showExample = true);
   }
 
-  onWorkoutSelected(event: any) {
-    this.selected = event.target.value.toLowerCase();
-    console.log(this.selected);
+  onExerciseSelected(event: any) {
+    this.exerciseSelected = event.target.value.toLowerCase();
+    console.log(this.exerciseSelected);
+  }
+
+  onTimeSelected(event: any) {
+    this.timeSelected = event.target.value;
+    this.count = this.timeSelected;
   }
 
   @ViewChild('countDownAudio', { static: true })
@@ -46,7 +54,14 @@ export class SloaneLvlOneComponent {
       }
       if (this.count === -1) {
         this.stopTimer();
-        this.count = 15;
+        this.count = this.timeSelected;
+        this.audioPlayed = false;
+
+        let whistle = new Audio();
+        whistle.src = '../../assets/sounds/whistle.wav';
+        whistle.load();
+        whistle.play();
+        this.score += this.timeSelected;
       }
     }, 1000);
   }

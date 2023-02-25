@@ -33,18 +33,18 @@
     <hr />
 
     <div class="instructions" *ngIf="showRules; else hideRules">
-      <h4>Tips:</h4>
+      <h4>Rules and Tips:</h4>
       <ul>
         <li>
           Choose an exercise, and hit the "start" button to begin the countdown.
         </li>
         <li>
-          When the timer approaches zero, you will hear a woman counting down
+          When the timer approaches zero, you will hear a voice counting down
           from ten. This is your chance to get in one or two perfect reps!
         </li>
         <li>
-          Favor quality over quantity: it's better to do a few good reps than a
-          lot of bad ones.
+          For best results, favor quality over quantity: take your time doing
+          exercises correctly, with a full range of motion.
         </li>
       </ul>
 
@@ -62,14 +62,16 @@
     <select
       name="workout-options"
       id="workout-options"
-      (change)="onWorkoutSelected($event)"
+      (change)="onExerciseSelected($event)"
     >
-      <option *ngFor="let option of options">
+      <option *ngFor="let option of exerciseOptions">
         {{ option }}
       </option>
     </select>
 
-    <div [ngSwitch]="selected" *ngIf="showExample; else hideExample">
+    <div [ngSwitch]="exerciseSelected" *ngIf="showExample; else hideExample">
+      <button (click)="toggleExample()">Hide Example</button>
+
       <img
         *ngSwitchCase="'pushups'"
         src="../../assets/gifs/pushups.gif"
@@ -95,7 +97,6 @@
         src="../../assets/gifs/default.gif"
         alt="Man exercising"
       />
-      <button (click)="toggleExample()">Hide Example</button>
     </div>
 
     <ng-template #hideExample>
@@ -104,10 +105,25 @@
 
     <hr />
 
+    <label for="time-options"> Please choose a length of time: </label>
+    <select
+      name="time-options"
+      id="time-options"
+      (change)="onTimeSelected($event)"
+    >
+      <option *ngFor="let option of timeOptions">
+        {{ option }}
+      </option>
+    </select>
+
     <button (click)="countDown()">Start Timer</button>
     <audio #countDownAudio>
       <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
     </audio>
     <div>{{ count }}</div>
+
+    <hr />
+
+    <div class="score">Score: {{ score }}</div>
   </body>
 </html>
