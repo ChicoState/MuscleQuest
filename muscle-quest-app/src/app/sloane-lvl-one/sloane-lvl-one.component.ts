@@ -15,13 +15,14 @@ export class SloaneLvlOneComponent {
   showRules = true;
   showExample = false;
   exerciseOptions = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
-  timeOptions = [5, 30, 60, 90, 120, 180];
+  timeOptions = [30, 60, 90, 120, 180, 300];
   exerciseSelected = this.exerciseOptions[0].toLowerCase();
   timeSelected = this.timeOptions[0];
   count = this.timeSelected;
   audioPlayed = false;
   timer: any;
   score = 0;
+  music = new Audio();
 
   // Reusing code for simplicity of understanding
   toggleRules() {
@@ -46,15 +47,18 @@ export class SloaneLvlOneComponent {
   audio: ElementRef<HTMLAudioElement>;
 
   countDown() {
+    this.music.src = '../../assets/sounds/mambo.wav';
+    this.music.load();
+    this.music.play();
     this.timer = setInterval(() => {
       this.count--;
       if (this.count === 11 && !this.audioPlayed) {
+        this.stopMusic();
         this.audio.nativeElement.play();
         this.audioPlayed = true;
       }
       if (this.count === -1) {
         this.stopTimer();
-        this.count = this.timeSelected;
         this.audioPlayed = false;
 
         let whistle = new Audio();
@@ -68,10 +72,17 @@ export class SloaneLvlOneComponent {
 
   stopTimer() {
     clearInterval(this.timer);
+    this.count = this.timeSelected;
+    this.stopMusic();
   }
 
   playSound() {
     this.audio.nativeElement.play();
+  }
+
+  stopMusic() {
+    this.music.pause();
+    this.music.currentTime = 0;
   }
 
   goBack(): void {
