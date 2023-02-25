@@ -13,18 +13,24 @@ export class SloaneLvlOneComponent {
 
   title = 'The Revenge of Time';
   showRules = true;
-  options = ['Pushups', 'Situps', 'Jumprope', 'Burpees'];
-  selected = this.options[0];
+  options = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
+  selected = this.options[0].toLowerCase();
+  showExample = true;
   count = 15;
   audioPlayed = false;
   timer: any;
 
+  // Reusing code for simplicity of understanding
   toggleRules() {
     this.showRules ? (this.showRules = false) : (this.showRules = true);
   }
 
+  toggleExample() {
+    this.showExample ? (this.showExample = false) : (this.showExample = true);
+  }
+
   onWorkoutSelected(event: any) {
-    this.selected = event.target.value;
+    this.selected = event.target.value.toLowerCase();
     console.log(this.selected);
   }
 
@@ -34,9 +40,13 @@ export class SloaneLvlOneComponent {
   countDown() {
     this.timer = setInterval(() => {
       this.count--;
-      if (this.count === 10 && !this.audioPlayed) {
+      if (this.count === 11 && !this.audioPlayed) {
         this.audio.nativeElement.play();
         this.audioPlayed = true;
+      }
+      if (this.count === -1) {
+        this.stopTimer();
+        this.count = 15;
       }
     }, 1000);
   }

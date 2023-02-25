@@ -25,17 +25,14 @@
       </p>
       <p>
         <strong
-          >For the best experience, please have your sound turned on!
+          >For the best experience, please have your sound turned on.
         </strong>
       </p>
     </div>
 
-    <button (click)="countDown()">Start Timer</button>
-    <audio #countDownAudio>
-      <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
-    </audio>
+    <hr />
 
-    <div class="instructions" *ngIf="showRules; else elseBlock">
+    <div class="instructions" *ngIf="showRules; else hideRules">
       <h4>Tips:</h4>
       <ul>
         <li>
@@ -53,9 +50,11 @@
 
       <button (click)="toggleRules()">Hide Rules</button>
     </div>
-    <ng-template #elseBlock>
+    <ng-template #hideRules>
       <button (click)="toggleRules()">Show Rules</button>
     </ng-template>
+
+    <hr />
 
     <label for="workout-options">
       Please choose an exercise from the list:
@@ -65,7 +64,50 @@
       id="workout-options"
       (change)="onWorkoutSelected($event)"
     >
-      <option *ngFor="let option of options">{{ option }}</option>
+      <option *ngFor="let option of options">
+        {{ option }}
+      </option>
     </select>
+
+    <div [ngSwitch]="selected" *ngIf="showExample; else hideExample">
+      <img
+        *ngSwitchCase="'pushups'"
+        src="../../assets/gifs/pushups.gif"
+        alt="pushups"
+      />
+      <img
+        *ngSwitchCase="'crunches'"
+        src="../../assets/gifs/crunches.gif"
+        alt="crunches"
+      />
+      <img
+        *ngSwitchCase="'jumprope'"
+        src="../../assets/gifs/jumprope.gif"
+        alt="jumprope"
+      />
+      <img
+        *ngSwitchCase="'burpees'"
+        src="../../assets/gifs/burpees.gif"
+        alt="burpees"
+      />
+      <img
+        *ngSwitchDefault
+        src="../../assets/gifs/default.gif"
+        alt="Man exercising"
+      />
+      <button (click)="toggleExample()">Hide Example</button>
+    </div>
+
+    <ng-template #hideExample>
+      <button (click)="toggleExample()">Show Example</button>
+    </ng-template>
+
+    <hr />
+
+    <button (click)="countDown()">Start Timer</button>
+    <audio #countDownAudio>
+      <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
+    </audio>
+    <div>{{ count }}</div>
   </body>
 </html>
