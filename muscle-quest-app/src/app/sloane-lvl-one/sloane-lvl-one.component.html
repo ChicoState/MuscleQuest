@@ -11,126 +11,118 @@
     />
   </head>
   <body>
-    <button type="button" (click)="goBack()">Go Back</button>
-    <h1>{{ title }}</h1>
-
-    <div class="intro-container">
-      <p>
-        Prepare to win the battle against one of life's greatest foes: time
-        itself!
-      </p>
-      <p>
-        Here you will be presented with various tasks which you must perform for
-        a given amount of time.
-      </p>
-      <p>
-        <strong
-          >For the best experience, please have your sound turned on.
-        </strong>
-      </p>
+    <div class="main-container">
+      <button type="button" (click)="goBack()">Go Back</button>
+      <h1>{{ title }}</h1>
+      <div class="intro-container">
+        <p>
+          Prepare to win the battle against one of life's greatest foes: time
+          itself!
+        </p>
+        <p>
+          Here you will be presented with various tasks which you must perform
+          for a given amount of time.
+        </p>
+        <p>
+          <strong
+            >For the best experience, please have your sound turned on.
+          </strong>
+        </p>
+      </div>
+      <hr />
+      <div class="instructions" *ngIf="showRules; else hideRules">
+        <h4>Rules and Tips:</h4>
+        <ul>
+          <li>
+            Choose an exercise, and hit the "start" button to begin the
+            countdown.
+          </li>
+          <li>
+            When the timer approaches zero, you will hear a voice counting down
+            from ten. This is your chance to get in one or two perfect reps!
+          </li>
+          <li>
+            If you make it through until your time is up, you will gain points
+            according to the length of your workout.
+          </li>
+          <li>
+            For best results, favor quality over quantity: take your time doing
+            exercises correctly, with a full range of motion.
+          </li>
+        </ul>
+        <button (click)="toggleRules()">Hide Rules</button>
+      </div>
+      <ng-template #hideRules>
+        <button (click)="toggleRules()">Show Rules</button>
+      </ng-template>
+      <hr />
+      <label for="workout-options">
+        Please choose an exercise from the list:
+      </label>
+      <select
+        name="workout-options"
+        id="workout-options"
+        (change)="onExerciseSelected($event)"
+      >
+        <option *ngFor="let option of exerciseOptions">
+          {{ option }}
+        </option>
+      </select>
+      <div [ngSwitch]="exerciseSelected" *ngIf="showExample; else hideExample">
+        <button (click)="toggleExample()">Hide Example</button>
+        <img
+          *ngSwitchCase="'pushups'"
+          src="../../assets/sloane/gifs/pushups.gif"
+          alt="pushups"
+        />
+        <img
+          *ngSwitchCase="'crunches'"
+          src="../../assets/sloane/gifs/crunches.gif"
+          alt="crunches"
+        />
+        <img
+          *ngSwitchCase="'jumprope'"
+          src="../../assets/sloane/gifs/jumprope.gif"
+          alt="jumprope"
+        />
+        <img
+          *ngSwitchCase="'burpees'"
+          src="../../assets/sloane/gifs/burpees.gif"
+          alt="burpees"
+        />
+        <img
+          *ngSwitchDefault
+          src="../../assets/sloane/gifs/default.gif"
+          alt="Man exercising"
+        />
+      </div>
+      <ng-template #hideExample>
+        <button (click)="toggleExample()">Show Example</button>
+      </ng-template>
+      <hr />
+      <label for="time-options">
+        Please choose a length of time (seconds):
+      </label>
+      <select
+        name="time-options"
+        id="time-options"
+        (change)="onTimeSelected($event)"
+      >
+        <option *ngFor="let option of timeOptions">
+          {{ option }}
+        </option>
+      </select>
+      <button (click)="countDown()">Start Timer</button>
+      <button (click)="stopTimer()">Stop Timer</button>
+      <audio #countDownAudio>
+        <source
+          src="../../assets/sloane/sounds/countdown1.wav"
+          type="audio/mpeg"
+        />
+      </audio>
+      <div>{{ count }}</div>
+      <hr />
+      <div class="score">Score: {{ score }}</div>
     </div>
-
-    <hr />
-
-    <div class="instructions" *ngIf="showRules; else hideRules">
-      <h4>Rules and Tips:</h4>
-      <ul>
-        <li>
-          Choose an exercise, and hit the "start" button to begin the countdown.
-        </li>
-        <li>
-          When the timer approaches zero, you will hear a voice counting down
-          from ten. This is your chance to get in one or two perfect reps!
-        </li>
-        <li>
-          If you make it through until your time is up, you will gain points
-          according to the length of your workout.
-        </li>
-        <li>
-          For best results, favor quality over quantity: take your time doing
-          exercises correctly, with a full range of motion.
-        </li>
-      </ul>
-
-      <button (click)="toggleRules()">Hide Rules</button>
-    </div>
-    <ng-template #hideRules>
-      <button (click)="toggleRules()">Show Rules</button>
-    </ng-template>
-
-    <hr />
-
-    <label for="workout-options">
-      Please choose an exercise from the list:
-    </label>
-    <select
-      name="workout-options"
-      id="workout-options"
-      (change)="onExerciseSelected($event)"
-    >
-      <option *ngFor="let option of exerciseOptions">
-        {{ option }}
-      </option>
-    </select>
-
-    <div [ngSwitch]="exerciseSelected" *ngIf="showExample; else hideExample">
-      <button (click)="toggleExample()">Hide Example</button>
-
-      <img
-        *ngSwitchCase="'pushups'"
-        src="../../assets/gifs/pushups.gif"
-        alt="pushups"
-      />
-      <img
-        *ngSwitchCase="'crunches'"
-        src="../../assets/gifs/crunches.gif"
-        alt="crunches"
-      />
-      <img
-        *ngSwitchCase="'jumprope'"
-        src="../../assets/gifs/jumprope.gif"
-        alt="jumprope"
-      />
-      <img
-        *ngSwitchCase="'burpees'"
-        src="../../assets/gifs/burpees.gif"
-        alt="burpees"
-      />
-      <img
-        *ngSwitchDefault
-        src="../../assets/gifs/default.gif"
-        alt="Man exercising"
-      />
-    </div>
-
-    <ng-template #hideExample>
-      <button (click)="toggleExample()">Show Example</button>
-    </ng-template>
-
-    <hr />
-
-    <label for="time-options">
-      Please choose a length of time (seconds):
-    </label>
-    <select
-      name="time-options"
-      id="time-options"
-      (change)="onTimeSelected($event)"
-    >
-      <option *ngFor="let option of timeOptions">
-        {{ option }}
-      </option>
-    </select>
-
-    <button (click)="countDown()">Start Timer</button>
-    <button (click)="stopTimer()">Stop Timer</button>
-    <audio #countDownAudio>
-      <source src="../../assets/sounds/countdown1.wav" type="audio/mpeg" />
-    </audio>
-    <div>{{ count }}</div>
-
-    <hr />
-
-    <div class="score">Score: {{ score }}</div>
   </body>
 </html>

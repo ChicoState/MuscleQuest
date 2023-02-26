@@ -47,7 +47,7 @@ export class SloaneLvlOneComponent {
   audio: ElementRef<HTMLAudioElement>;
 
   countDown() {
-    this.music.src = '../../assets/sounds/mambo.wav';
+    this.music.src = '../../assets/sloane/sounds/mambo.wav';
     this.music.load();
     this.music.play();
     this.timer = setInterval(() => {
@@ -62,7 +62,7 @@ export class SloaneLvlOneComponent {
         this.audioPlayed = false;
 
         let whistle = new Audio();
-        whistle.src = '../../assets/sounds/whistle.wav';
+        whistle.src = '../../assets/sloane/sounds/whistle.wav';
         whistle.load();
         whistle.play();
         this.score += this.timeSelected;
