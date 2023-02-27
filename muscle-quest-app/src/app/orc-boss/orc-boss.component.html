@@ -1,0 +1,50 @@
+<mat-card class="monster-card">
+    <mat-card-header>
+        <mat-card-title>{{title}}</mat-card-title>
+        <mat-card-subtitle>Big boss {{getOrcName()}}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <img 
+            class="monster-image"
+            mat-card-image
+            src="/assets/orc-boss/orc_boss.png"
+            alt="Photo of the boss orc"
+            >
+        <mat-card class="hp-info">
+            <h3 class="hp-info">{{getHPString()}}</h3>
+            <mat-progress-bar
+                mode="determinate"
+                color="warn"
+                [value]="getHP()">
+            </mat-progress-bar>
+            <mat-progress-bar
+                mode="determinate"
+                color="warn"
+                [value]="getHP()">
+            </mat-progress-bar>
+        </mat-card>
+        <mat-card class="workouts">
+
+            <mat-form-field appearance="outline" ng-model>
+                <mat-label>Pushups</mat-label>
+                <input matInput [(ngModel)]="pushups">
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Miles run</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Squats</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Situps</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-card-actions>
+                <button mat-button>INFO</button>
+            </mat-card-actions> -->
+        </mat-card>
+    </mat-card-content>
+</mat-card>

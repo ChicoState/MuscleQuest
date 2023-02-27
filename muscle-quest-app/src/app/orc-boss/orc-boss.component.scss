@@ -1,0 +1,23 @@
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+.monster-card {
+    width: 600px;
+    background-color: #01350e;
+    color:white;
+}
+
+.monster-image {
+    width: 100%;
+}
+
+.hp-info {
+    padding: 2px;
+    align-items: center;
+    background-color: #014d14;
+    color: rgb(255, 77, 77);
+    font-weight: bold;
+}
+
+.workouts {
+    padding: 2px;
+}
