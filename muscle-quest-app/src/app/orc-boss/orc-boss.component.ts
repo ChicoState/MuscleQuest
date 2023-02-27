@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { OrcBossInfoComponent } from 'src/app/orc-boss-info/orc-boss-info.component';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-// import { MatProgressBar } from '@angular/material/progress-bar';
-// import { MatFormField } from '@angular/material/form-field';
-// import { localStorage } from ''
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-orc-boss',
@@ -15,14 +12,71 @@ export class OrcBossComponent {
   constructor(private location: Location, public dialog: MatDialog) {}
 
   title = 'Orc Boss Fight';
-  orc_name = 'Grog';
   max_hp=500;
-  pushups=0;
-  miles_run=0;
-  squats=0;
-  situps=0;
-  situps_done=true;
 
+  // Getters and Setters for workout stats
+  public get pushups(): number {
+    let localPushups = localStorage.getItem('orc-boss-pushups');
+    if (localPushups) {
+      // Unary operator to parse the string
+      return +localPushups;
+    } else {
+      this.pushups = 0;
+      return 0;
+    }
+  }
+
+  public set pushups(amount: number) {
+    localStorage.setItem('orc-boss-pushups', String(amount));
+  }
+
+  public get situps(): number {
+    let localPushups = localStorage.getItem('orc-boss-situps');
+    if (localPushups) {
+      // Unary operator to parse the string
+      return +localPushups;
+    } else {
+      this.situps = 0;
+      return 0;
+    }
+  }
+
+  public set situps(amount: number) {
+    localStorage.setItem('orc-boss-situps', String(amount));
+  }
+  
+  public get squats(): number {
+    let localPushups = localStorage.getItem('orc-boss-squats');
+    if (localPushups) {
+      // Unary operator to parse the string
+      return +localPushups;
+    } else {
+      this.squats = 0;
+      return 0;
+    }
+  }
+
+  public set squats(amount: number) {
+    localStorage.setItem('orc-boss-squats', String(amount));
+  }
+
+  public get miles_run(): number {
+    let localPushups = localStorage.getItem('orc-boss-miles_run');
+    if (localPushups) {
+      // Unary operator to parse the string
+      return +localPushups;
+    } else {
+      this.miles_run = 0;
+      return 0;
+    }
+  }
+
+  public set miles_run(amount: number) {
+    localStorage.setItem('orc-boss-miles_run', String(amount));
+  }
+
+
+  // HP Information
   getHPProgress(): number {
     let hp=this.getHP();
     return (hp/this.max_hp)*100;
@@ -37,6 +91,7 @@ export class OrcBossComponent {
     return String('HP : ' + this.getHP() + '/' + this.max_hp)
   }
 
+  // Orc Name generation
   getOrcName(): string {
     let boss_name = localStorage.getItem('orc-boss-name');
     if (boss_name) {
@@ -111,6 +166,7 @@ export class OrcBossComponent {
     }
   }
 
+  // Plus one to a workout buttons
   plus_one_pushup(): void {
     this.pushups+=1;
   }
@@ -124,10 +180,12 @@ export class OrcBossComponent {
     this.situps+=1;
   }
 
+  // Show stats from orc-boss-info
   showStats(): void {
     const dialogRef = this.dialog.open(OrcBossInfoComponent);
   }
 
+  // Generate new boss
   newBoss(): void {
     this.squats=0;
     this.miles_run=0;

@@ -7,14 +7,16 @@ import { SloaneLvlOneComponent } from './sloane-lvl-one/sloane-lvl-one.component
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import { OrcBossComponent } from './orc-boss/orc-boss.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
+
+// Material Components
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
@@ -29,11 +31,13 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    
+    // Material Components
     MatCardModule,
     MatProgressBarModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
