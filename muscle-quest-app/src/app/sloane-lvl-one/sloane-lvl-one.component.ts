@@ -23,6 +23,7 @@ export class SloaneLvlOneComponent {
   timer: any;
   score = 0;
   music = new Audio();
+  timerGoing = false;
 
   // Reusing code for simplicity of understanding
   toggleRules() {
@@ -47,33 +48,40 @@ export class SloaneLvlOneComponent {
   audio: ElementRef<HTMLAudioElement>;
 
   countDown() {
+    if (this.timerGoing) return;
+    this.timerGoing = true;
     this.music.src = '../../assets/sloane/sounds/mambo.mp3';
     this.music.load();
     this.music.play();
-    this.timer = setInterval(() => {
-      this.count--;
-      if (this.count === 11 && !this.audioPlayed) {
-        this.stopMusic();
-        this.audio.nativeElement.play();
-        this.audioPlayed = true;
-      }
-      if (this.count === -1) {
-        this.stopTimer();
-        this.audioPlayed = false;
+    this.timer = setInterval(
+      () => {
+        this.count--;
+        if (this.count === 11 && !this.audioPlayed) {
+          this.stopMusic();
+          this.audio.nativeElement.play();
+          this.audioPlayed = true;
+        }
+        if (this.count === -1) {
+          this.stopTimer();
+          this.audioPlayed = false;
 
-        let whistle = new Audio();
-        whistle.src = '../../assets/sloane/sounds/whistle.wav';
-        whistle.load();
-        whistle.play();
-        this.score += this.timeSelected;
-      }
-    }, 1000);
+          let whistle = new Audio();
+          whistle.src = '../../assets/sloane/sounds/whistle.wav';
+          whistle.load();
+          whistle.play();
+          this.score += this.timeSelected;
+        }
+      },
+      1000,
+      false
+    );
   }
 
   stopTimer() {
     clearInterval(this.timer);
     this.count = this.timeSelected;
     this.stopMusic();
+    this.timerGoing = false;
   }
 
   playSound() {
