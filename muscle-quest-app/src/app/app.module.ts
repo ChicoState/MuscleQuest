@@ -11,13 +11,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartScreenComponent,
     SloaneLvlOneComponent,
-    OrcBossComponent
+    OrcBossComponent,
+    OrcBossInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +33,10 @@ import { MatInputModule } from '@angular/material/input';
     MatProgressBarModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

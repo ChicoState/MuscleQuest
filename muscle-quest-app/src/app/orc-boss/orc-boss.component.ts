@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { OrcBossInfoComponent } from 'src/app/orc-boss-info/orc-boss-info.component';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 // import { MatProgressBar } from '@angular/material/progress-bar';
 // import { MatFormField } from '@angular/material/form-field';
 // import { localStorage } from ''
@@ -10,23 +12,25 @@ import { Location } from '@angular/common';
   styleUrls: ['./orc-boss.component.scss']
 })
 export class OrcBossComponent {
-  constructor(private location: Location) {}
+  constructor(private location: Location, public dialog: MatDialog) {}
 
   title = 'Orc Boss Fight';
   orc_name = 'Grog';
-  // hp:number = 450;
   max_hp=500;
   pushups=0;
-  hp=500;
+  miles_run=0;
+  squats=0;
   situps=0;
+  situps_done=true;
 
   getHPProgress(): number {
     let hp=this.getHP();
-    return (hp*100)/this.max_hp;
+    return (hp/this.max_hp)*100;
+
   }
 
   getHP(): number {
-    return this.max_hp-5*this.pushups;
+    return this.max_hp-5*this.pushups-50*this.miles_run-2*this.situps-this.squats;
   }
 
   getHPString(): string {
@@ -102,8 +106,35 @@ export class OrcBossComponent {
           name += ' the Warrior';
           break;
       }
+      localStorage.setItem('orc-boss-name', name);
       return name;
     }
+  }
+
+  plus_one_pushup(): void {
+    this.pushups+=1;
+  }
+  plus_one_mile_run(): void {
+    this.miles_run+=1;
+  }
+  plus_one_squat(): void {
+    this.squats+=1;
+  }
+  plus_one_situp(): void {
+    this.situps+=1;
+  }
+
+  showStats(): void {
+    const dialogRef = this.dialog.open(OrcBossInfoComponent);
+  }
+
+  newBoss(): void {
+    this.squats=0;
+    this.miles_run=0;
+    this.situps=0;
+    this.pushups=0;
+    localStorage.removeItem('orc-boss-name');
+    this.getOrcName();
   }
 
   goBack(): void {

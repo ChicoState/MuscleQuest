@@ -19,5 +19,27 @@
 }
 
 .workouts {
-    padding: 2px;
+    padding: 10px;
 }
+
+.workout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+mat-form-field {
+    width: 90%;
+}
+
+mat-card-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+// .button-continue {
+//     // width: 20%;
+// }
