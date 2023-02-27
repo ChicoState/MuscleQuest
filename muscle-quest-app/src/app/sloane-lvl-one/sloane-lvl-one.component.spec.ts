@@ -8,9 +8,8 @@ describe('SloaneLvlOneComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SloaneLvlOneComponent ]
-    })
-    .compileComponents();
+      declarations: [SloaneLvlOneComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SloaneLvlOneComponent);
     component = fixture.componentInstance;

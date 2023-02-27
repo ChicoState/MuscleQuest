@@ -1,3 +1,26 @@
+html,
+body,
 * {
-  background-color: purple;
+  font-family: "Luxurious Roman", cursive;
+  color: white;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../assets/sloane/images/clock.jpg");
+  background-position: center;
+  background-size: cover;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.intro-container {
+  width: 80%;
+}
+
+button,
+select,
+option {
+  color: black;
 }
