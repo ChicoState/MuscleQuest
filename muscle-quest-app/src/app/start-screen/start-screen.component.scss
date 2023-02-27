@@ -1,49 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .GymBackground {
-    width:100%;
-    height: 850px;
-    & img {
-        height: 98%;
-        width: 100%;
+    position:relative;
+    height: 100vh;
+    width: 100vw;
+    background: url(../../assets/StartScreen/GymBackground.jpeg) no-repeat;
+    background-size:100vw 100vh;
+    & .guy {
+        position:absolute;
+        top: 150px;
+        left: 200px;
+        height: 600px;
+        width: 250px;
+    }
+    &  .Levels {
+        top: 100px;
+        left: 850px;
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
+        border: 0px;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    & .Levels:hover {
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    &  .Character {
+        top: 200px;
+        left: 850px;
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Text-Character.png) no-repeat;
+        border: 0px;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    & .Character:hover {
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Text-Character-Clicked.png) no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    &  .Levels {
+        top: 100px;
+        left: 850px;
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
+        border: 0px;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    & .Levels:hover {
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    &  .Levels {
+        top: 100px;
+        left: 850px;
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
+        border: 0px;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    & .Levels:hover {
+        width: 500px;
+        height: 250px;
+        background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+
+}
+
+.fancyText{
+    & .text-muscle {
+        left: 440px;
+        top: 140px;
+        position:absolute;
+        width: 350px;
+        height: 100px;
+       
+    }
+
+    & .text-quest {
+        position:absolute;
+        left: 450px;
+        top: 230px;
+        width: 350px;
+        height: 100px;
     }
 }
 
-.dumbell {
-    max-width:100%;
-    max-height:100%;
-    position: relative;
-    padding: 65px;
-    font-size: 40px;
-    color: white;
-    background: url(../../assets/StartScreen/Dumbell.png) no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    text-align: center;
-    
 
-}
-
-
-.dumbell:hover{
-    max-width:100%;
-    max-height:100%;
-    position: relative;
-    padding: 65px;
-    font-size: 40px;
-    color: black;
-    background: url(../../assets/StartScreen/DumbellHover.png) no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    text-align: center;
-}
-
-.buttonBox {
-    right: 70px;
-    top: 40px;
-    position: absolute;
-    border-radius: 25px;
-    background: green;
-    padding: 20px;
-    width: 500px;
-    height: 700px;
-}

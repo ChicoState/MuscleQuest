@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <div class="GymBackground"> 
-    <img src="assets/StartScreen/GymBackground.jpeg" alt="Gym">
-</div>
-<div class="buttonBox">
-    <div class="dumbell">
-        <a routerLink="/levels">Levels</a>
+    <div class="fancyText">
+        <img src="assets/StartScreen/Text-Muscle.png" alt="muscletext" class="text-muscle">
+        <img src="assets/StartScreen/Text-Quest.png" alt="questtext" class="text-quest">
     </div>
-    <div class="dumbell">
-        <div>Leaderboard</div>
-    </div>
-    <div class="dumbell">
-        <div>Character</div>
-    </div>
-    <div class="dumbell">
-        <div>Settings</div>
+    <img src="assets/StartScreen/MuscleGuy.png" alt="GymGuy" class="guy">
+    <div class="logo">
+        <button class="Levels" [routerLink]="['/levels']" id="Levels"></button><br>
+        <button class="Character" [routerLink]="['/levels']" id="Character"></button><br>
+        <button class="Leaderboard" [routerLink]="['/levels']" id="Leaderboard"></button><br>
+        <button class="Settings" [routerLink]="['/levels']" id="Settings"></button><br>
     </div>
 </div>
+
+
 
 
 
