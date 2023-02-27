@@ -47,7 +47,7 @@ export class SloaneLvlOneComponent {
   audio: ElementRef<HTMLAudioElement>;
 
   countDown() {
-    this.music.src = '../../assets/sloane/sounds/mambo.wav';
+    this.music.src = '../../assets/sloane/sounds/mambo.mp3';
     this.music.load();
     this.music.play();
     this.timer = setInterval(() => {
