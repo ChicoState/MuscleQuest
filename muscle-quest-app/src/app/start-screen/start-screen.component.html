@@ -6,11 +6,21 @@
     </div>
     <img src="assets/StartScreen/MuscleGuy.png" alt="GymGuy" class="guy">
     <div class="logo">
-        <button class="Levels" [routerLink]="['/levels']" id="Levels"></button><br>
+        <script>
+            let levelsButton = document.getElementById('Levels');
+            let sloaneLevelButton = document.getElementById('SloaneLevel');
+            levelsButton.onclick = function(){
+                levelsButton.style.display = "none";
+                sloaneLevelButton.style.display = "block";
+            }
+        </script>
+        <button class="Levels" [routerLink]="['/levels']"  id="Levels"></button><br>
         <button class="Character" [routerLink]="['/levels']" id="Character"></button><br>
         <button class="Leaderboard" [routerLink]="['/levels']" id="Leaderboard"></button><br>
         <button class="Settings" [routerLink]="['/levels']" id="Settings"></button><br>
+        
     </div>
+    
 </div>
 
 

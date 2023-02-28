@@ -5,6 +5,7 @@
     width: 100vw;
     background: url(../../assets/StartScreen/GymBackground.jpeg) no-repeat;
     background-size:100vw 100vh;
+    
     & .guy {
         position:absolute;
         top: 150px;
@@ -30,11 +31,11 @@
         position: absolute;
     }
     &  .Character {
-        top: 200px;
+        top: 250px;
         left: 850px;
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Text-Character.png) no-repeat;
+        background: url(../../assets/StartScreen/Character-Logo.png) no-repeat;
         border: 0px;
         background-size: 100% 100%;
         position: absolute;
@@ -42,41 +43,41 @@
     & .Character:hover {
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Text-Character-Clicked.png) no-repeat;
+        background: url(../../assets/StartScreen/Character-Logo-Clicked.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
     }
-    &  .Levels {
-        top: 100px;
+    &  .Settings {
+        top: 550px;
         left: 850px;
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
+        background: url(../../assets/StartScreen/Settings-Logo.png) no-repeat;
         border: 0px;
         background-size: 100% 100%;
         position: absolute;
     }
-    & .Levels:hover {
+    & .Settings:hover {
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
+        background: url(../../assets/StartScreen/Settings-Logo-Clicked.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
     }
-    &  .Levels {
-        top: 100px;
+    &  .Leaderboard {
+        top: 400px;
         left: 850px;
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
+        background: url(../../assets/StartScreen/Leaderboard-Logo.png) no-repeat;
         border: 0px;
         background-size: 100% 100%;
         position: absolute;
     }
-    & .Levels:hover {
+    & .Leaderboard:hover {
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
+        background: url(../../assets/StartScreen/Leaderboard-Logo-Clicked.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
     }
