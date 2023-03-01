@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SloaneLvlOneComponent } from './sloane-lvl-one/sloane-lvl-one.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartScreenComponent,
-    SloaneLvlOneComponent
+    SloaneLvlOneComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
