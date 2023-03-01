@@ -8,7 +8,7 @@ export type Registry<Type> = {
     [key: string]: Type
 }
 
-enum EquiptmentType {
+enum EquipmentType {
     HEAD,
     BODY,
     FEET,
@@ -16,7 +16,7 @@ enum EquiptmentType {
 
 export type Item = {
     name: string,
-    equiptment_type?: EquiptmentType
+    equipment_type?: EquipmentType
 }
 
 export let item_registry: Registry<Item> = {
@@ -25,11 +25,11 @@ export let item_registry: Registry<Item> = {
     },
     top_hat: {
         name: "Top Hat",
-        equiptment_type: EquiptmentType.HEAD
+        equipment_type: EquipmentType.HEAD
     },
     golden_boots: {
         name: "Golden Boots",
-        equiptment_type: EquiptmentType.FEET
+        equipment_type: EquipmentType.FEET
     },
 }
 
