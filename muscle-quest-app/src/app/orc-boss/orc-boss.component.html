@@ -1,0 +1,74 @@
+<!-- <div layout="column" layout-align="center center"> -->
+    <mat-card class="monster-card">
+        <mat-card-header>
+            <mat-card-title>{{title}}</mat-card-title>
+            <mat-card-subtitle>Big boss {{getOrcName()}}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <img 
+                class="monster-image"
+                mat-card-image
+                src="/assets/orc-boss/orc_boss.png"
+                alt="Photo of the boss orc"
+                >
+            <mat-card class="hp-info">
+                <h3 class="hp-info">{{getHPString()}}</h3>
+                <mat-progress-bar
+                    mode="determinate"
+                    color="warn"
+                    [value]="getHPProgress()">
+                </mat-progress-bar>
+                <mat-progress-bar
+                    mode="determinate"
+                    color="warn"
+                    [value]="getHPProgress()">
+                </mat-progress-bar>
+            </mat-card>
+            <mat-card class="workouts">
+                <div class="workout">
+                    <mat-form-field appearance="outline" ng-model>
+                        <mat-label>Pushups</mat-label>
+                        <input matInput [(ngModel)]="pushups">
+                    </mat-form-field>
+                    <button mat-mini-fab color="accent" (click)="plus_one_pushup()">
+                        <mat-icon>plus_one</mat-icon>
+                    </button>
+                </div>
+                <div class="workout">
+                    <mat-form-field appearance="outline" ng-model>
+                        <mat-label>Miles Run</mat-label>
+                        <input matInput [(ngModel)]="miles_run">
+                        
+                    </mat-form-field>
+                    <button mat-mini-fab color="accent" (click)="plus_one_mile_run()">
+                        <mat-icon>plus_one</mat-icon>
+                    </button>
+                </div>
+                <div class="workout">
+                    <mat-form-field appearance="outline" ng-model>
+                        <mat-label>Squats</mat-label>
+                        <input matInput [(ngModel)]="squats">
+                        
+                    </mat-form-field>
+                    <button mat-mini-fab color="accent" (click)="plus_one_squat()">
+                        <mat-icon>plus_one</mat-icon>
+                    </button>
+                </div>
+                <div class="workout">
+                    <mat-form-field appearance="outline" ng-model>
+                        <mat-label>Situps</mat-label>
+                        <input matInput [(ngModel)]="situps">
+                    </mat-form-field>
+                    <button mat-mini-fab color="accent" (click)="plus_one_situp()">
+                        <mat-icon>plus_one</mat-icon>
+                    </button>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="showStats()">INFO</button>
+                    <button class="button-continue" *ngIf="getHP()<=0" mat-raised-button color="accent" (click)="newBoss()">New Boss!</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+<!-- </div> -->
