@@ -25,12 +25,8 @@ export class InventoryComponent {
     return getItemName(item)
   }
 
-  getItems() {
-    return UserData.get().items
-  }
-
-  getGold() {
-    return UserData.get().gold
+  getUserData() {
+    return UserData.get()
   }
 
   incrementGold() {

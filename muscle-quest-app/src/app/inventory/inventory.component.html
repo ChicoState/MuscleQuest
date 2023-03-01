@@ -1,8 +1,8 @@
 <h1>{{ title }}</h1>
 <button (click)="toggleDebug()">Debug mode: {{getDebug() ? 'On' : 'Off'}}</button>
-<strong>Gold: {{ getGold() }}</strong>
+<strong>Gold: {{ getUserData().gold }}</strong>
 <ul>
-    <li *ngFor="let item of getItems()">
+    <li *ngFor="let item of getUserData().items">
         {{ getName(item) }}<span *ngIf="getDebug()"> [{{item.id}}]</span>
     </li>
 </ul>
