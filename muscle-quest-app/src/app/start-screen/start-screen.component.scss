@@ -1,106 +1,152 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-.GymBackground {
-    position:relative;
-    height: 100vh;
+
+.background {
+    top: 50%;
+    left: 50%;
     width: 100vw;
-    background: url(../../assets/StartScreen/GymBackground.jpeg) no-repeat;
-    background-size:100vw 100vh;
+    height: 100vh;
+    background-color: black;
+    box-shadow:
+        inset 0px 0px 50px white;
+}
+
+// @keyframes slideFromLeft{
+//     from {
+//         transform: translateX(-500px);
+//     }
+
+//     to {
+//         transform: translateX(0px);
+//         opacity: 1;
+//     }
+// }
+
+// @keyframes hoverZoom {
+//     from{
+//         transform: scale(1);
+//     }
+
+//     to {
+//         transform: scale(1.1, 1.1);
+//     }
+// }
+
+// .Levels {
+//     top: 140px;
+//     left: 760px;
+//     width: 500px;
+//     height: 250px;
+//     opacity:0;
+//     border: 0px;
+//     animation: slideFromLeft 0.5s ease-out both;
+//     background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
+//     background-size: 100% 100%;
+//     position:absolute;
+
+// }
+// .Levels:hover{
+//     background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .Character {
+//     opacity:0;
+//     animation: slideFromLeft 0.5s 0.05s ease-out forwards;
+//     top: 260px;
+//     left: 800px;
+//     width: 500px;
+//     height: 250px;
+//     background: url(../../assets/StartScreen/Character-Logo.png) no-repeat;
+//     border: 0px;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .Character:hover {
+//     width: 500px;
+//     height: 250px;
+//     background: url(../../assets/StartScreen/Character-Logo-Clicked.png) no-repeat;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .Shop {
+//     opacity:0;
+//     animation: slideFromLeft 0.5s 0.1s ease-out forwards;
+//     top: 380px;
+//     left: 840px;
+//     width: 500px;
+//     height: 250px;
+//     background: url(../../assets/StartScreen/Shop-Logo.png) no-repeat;
+//     border: 0px;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .Shop:hover {
+//     width: 500px;
+//     height: 250px;
+//     background: url(../../assets/StartScreen/Shop-Logo-Clicked.png) no-repeat;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .Settings {
+//     opacity:0;
+//     animation: slideFromLeft 0.5s .15s ease-out forwards;
+//     top: 500px;
+//     left: 880px;
+//     width: 500px;
+//     height: 250px;
+//     background: url(../../assets/StartScreen/Settings-Logo.png) no-repeat;
+//     border: 0px;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .Settings:hover {
+//     width: 500px;
+//     height: 250px;
+//     background: url(../../assets/StartScreen/Settings-Logo-Clicked.png) no-repeat;
+//     background-size: 100% 100%;
+//     position: absolute;
+// }
+// .grow{
+// }
+// .grow:hover{
+//     animation: hoverZoom .2s ease-in-out forwards;
+// }
+
+// .GymBackground {
+//     position:relative;
+//     height: 100vh;
+//     width: 100vw;
+//     background: url(../../assets/StartScreen/GymBackground.jpeg) no-repeat;
+//     background-size:100vw 100vh;
+//     & .guy {
+//         position:absolute;
+//         top: 150px;
+//         left: 200px;
+//         height: 600px;
+//         width: 250px;
+//     }
     
-    & .guy {
-        position:absolute;
-        top: 150px;
-        left: 200px;
-        height: 600px;
-        width: 250px;
-    }
-    &  .Levels {
-        top: 100px;
-        left: 850px;
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    & .Levels:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    &  .Character {
-        top: 250px;
-        left: 850px;
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Character-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    & .Character:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Character-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    &  .Settings {
-        top: 550px;
-        left: 850px;
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Settings-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    & .Settings:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Settings-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    &  .Shop {
-        top: 400px;
-        left: 850px;
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Shop-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    & .Shop:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../assets/StartScreen/Shop-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
-    }
+   
 
-}
+// }
 
-.fancyText{
-    & .text-muscle {
-        left: 440px;
-        top: 140px;
-        position:absolute;
-        width: 350px;
-        height: 100px;
+// .fancyText{
+//     & .text-muscle {
+//         left: 440px;
+//         top: 140px;
+//         position:absolute;
+//         width: 350px;
+//         height: 100px;
        
-    }
+//     }
 
-    & .text-quest {
-        position:absolute;
-        left: 450px;
-        top: 230px;
-        width: 350px;
-        height: 100px;
-    }
-}
+//     & .text-quest {
+//         position:absolute;
+//         left: 450px;
+//         top: 230px;
+//         width: 350px;
+//         height: 100px;
+//     }
+// }
 
 
