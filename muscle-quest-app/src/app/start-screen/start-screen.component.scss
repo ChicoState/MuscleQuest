@@ -64,20 +64,20 @@
         background-size: 100% 100%;
         position: absolute;
     }
-    &  .Leaderboard {
+    &  .Shop {
         top: 400px;
         left: 850px;
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Leaderboard-Logo.png) no-repeat;
+        background: url(../../assets/StartScreen/Shop-Logo.png) no-repeat;
         border: 0px;
         background-size: 100% 100%;
         position: absolute;
     }
-    & .Leaderboard:hover {
+    & .Shop:hover {
         width: 500px;
         height: 250px;
-        background: url(../../assets/StartScreen/Leaderboard-Logo-Clicked.png) no-repeat;
+        background: url(../../assets/StartScreen/Shop-Logo-Clicked.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
     }

@@ -8,22 +8,6 @@
         height: 850px;
         width: 100%;
     }
-    // & .Sloane {
-    //     position: absolute;
-    //     background-color: #4CAF50; /* Green */
-    //     border: none;
-    //     color: white;
-    //     padding: 15px 32px;
-    //     text-align: center;
-    //     text-decoration: none;
-    //     display: inline-block;
-    //     font-size: 16px;
-    //     top: 35%;
-    //     left: 40%;
-    // }
-    // & .Sloane:hover {
-    //     background-color: purple
-    // }
     & .backButton {
         top: 2%;
         left: 2%;
@@ -31,7 +15,7 @@
         float:left;
     }
     & .SloaneLevel {
-        top: 30%;
+        top: 20%;
         left: 30%;
         width: 500px;
         height: 250px;
@@ -45,6 +29,24 @@
         width: 500px;
         height: 250px;
         background: url(../../../assets/StartScreen/SloaneLevel-Logo-Clicked.png) no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+    & .OrcBoss {
+        top: 40%;
+        left: 30%;
+        width: 500px;
+        height: 250px;
+        background: url(../../../assets/StartScreen/OrcBoss-Logo.png) no-repeat;
+        border: 0px;
+        background-size: 100% 100%;
+        position: absolute;
+    }
+
+    & .OrcBoss:hover {
+        width: 500px;
+        height: 250px;
+        background: url(../../../assets/StartScreen/OrcBoss-Logo-Clicked.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
     }
