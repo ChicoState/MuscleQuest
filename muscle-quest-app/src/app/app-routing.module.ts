@@ -5,6 +5,10 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 import { SloaneLvlOneComponent } from './sloane-lvl-one/sloane-lvl-one.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { OrcBossComponent } from './orc-boss/orc-boss.component';
+import { IsaLevelComponent } from './isa-level/isa-level.component';
+import { BackDayComponent } from './isa-level/back-day/back-day.component';
+import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
+import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/start', pathMatch: 'full' },
@@ -13,6 +17,10 @@ const routes: Routes = [
   { path:'levels', component: LevelsComponent},
   { path: 'inventory', component: InventoryComponent },
   { path: 'orc-boss', component: OrcBossComponent },
+  { path: 'isa-level', component: IsaLevelComponent},
+  { path: 'back-day', component: BackDayComponent},
+  { path: 'chest-day', component: ChestDayComponent},
+  { path: 'leg-day', component: LegDayComponent}
 ];
 
 @NgModule({

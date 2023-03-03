@@ -20,6 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { IsaLevelComponent } from './isa-level/isa-level.component';
+import { BackDayComponent } from './isa-level/back-day/back-day.component';
+import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
+import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { MatIconModule } from '@angular/material/icon';
     LevelsComponent,
     InventoryComponent,
     OrcBossComponent,
-    OrcBossInfoComponent
+    OrcBossInfoComponent,
+    IsaLevelComponent,
+    BackDayComponent,
+    ChestDayComponent,
+    LegDayComponent
   ],
   imports: [
     BrowserModule,
