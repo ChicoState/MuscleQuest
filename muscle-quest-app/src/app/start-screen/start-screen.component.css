@@ -1,98 +1,102 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-.GymBackground {
-  position: relative;
-  height: 100vh;
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-500px);
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+.background {
+  top: 50%;
+  left: 50%;
   width: 100vw;
-  background: url(../../assets/StartScreen/GymBackground.jpeg) no-repeat;
-  background-size: 100vw 100vh;
+  height: 100vh;
+  background-color: black;
 }
-.GymBackground .guy {
-  position: absolute;
-  top: 150px;
-  left: 200px;
-  height: 600px;
-  width: 250px;
-}
-.GymBackground .Levels {
-  top: 100px;
-  left: 850px;
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
-  border: 0px;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Levels:hover {
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Character {
-  top: 200px;
-  left: 850px;
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Text-Character.png) no-repeat;
-  border: 0px;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Character:hover {
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Text-Character-Clicked.png) no-repeat;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Levels {
-  top: 100px;
-  left: 850px;
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
-  border: 0px;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Levels:hover {
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Levels {
-  top: 100px;
-  left: 850px;
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
-  border: 0px;
-  background-size: 100% 100%;
-  position: absolute;
-}
-.GymBackground .Levels:hover {
-  width: 500px;
-  height: 250px;
-  background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
-  background-size: 100% 100%;
+
+.logoContainer {
+  border: 5px solid white;
+  width: 400px;
+  height: 300px;
+  left: 10%;
+  top: 10%;
   position: absolute;
 }
 
-.fancyText .text-muscle {
-  left: 440px;
-  top: 140px;
-  position: absolute;
-  width: 350px;
-  height: 100px;
+.logo {
+  color: white;
+  position: relative;
+  margin: 10px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: bold;
+  font-size: 65px;
+  text-align: center;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
-.fancyText .text-quest {
+
+.optionContainer {
+  height: 600px;
+  width: 500px;
   position: absolute;
-  left: 450px;
-  top: 230px;
-  width: 350px;
-  height: 100px;
+  left: 50%;
+  top: calc(50% - 250px);
+}
+
+.text {
+  color: white;
+  position: relative;
+  margin: 10px;
+  left: 20px;
+  top: calc(50% - 10px);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: bold;
+  font-size: 65px;
+  text-align: center;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
+
+.red {
+  animation: slideFromLeft 0.8s ease-in forwards;
+  background-color: rgb(234, 7, 7);
+  box-shadow: 0px 0px 20px 2px rgb(221, 143, 143), inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+.green {
+  position: relative;
+  left: 30px;
+  animation: slideFromLeft 0.8s 0.05s ease-in forwards;
+  background-color: rgb(29, 217, 108);
+  box-shadow: 0px 0px 20px 2px rgb(108, 190, 123), inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+.blue {
+  position: relative;
+  left: 60px;
+  animation: slideFromLeft 0.8s 0.1s ease-in forwards;
+  background-color: rgb(15, 84, 224);
+  box-shadow: 0px 0px 20px 2px rgb(118, 166, 232), inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+.yellow {
+  position: relative;
+  left: 80px;
+  animation: slideFromLeft 0.8s 0.15s ease-in forwards;
+  background-color: rgb(229, 236, 10);
+  box-shadow: 0px 0px 20px 2px rgb(248, 252, 1), inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+.option {
+  opacity: 0;
+  display: block;
+  height: calc((100% - 50px) / 4);
+  margin: 10px;
+  width: 450px;
+  transition: all 0.15s ease-in;
+  border-radius: 2%;
+}
+
+.option:hover {
+  width: 600px;
 }/*# sourceMappingURL=start-screen.component.css.map */
