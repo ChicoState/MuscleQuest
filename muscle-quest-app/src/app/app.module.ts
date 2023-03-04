@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SloaneLvlOneComponent } from './sloane-lvl-one/sloane-lvl-one.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
+import { InventoryComponent } from './inventory/inventory.component';
 import { OrcBossComponent } from './orc-boss/orc-boss.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     StartScreenComponent,
     SloaneLvlOneComponent,
+    InventoryComponent,
     OrcBossComponent,
     OrcBossInfoComponent
   ],

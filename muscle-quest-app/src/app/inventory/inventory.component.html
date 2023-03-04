@@ -1,0 +1,10 @@
+<h1>{{ title }}</h1>
+<button (click)="toggleDebug()">Debug mode: {{getDebug() ? 'On' : 'Off'}}</button>
+<strong>Gold: {{ getUserData().gold }}</strong>
+<ul>
+    <li *ngFor="let item of getUserData().items">
+        {{ getName(item) }}<span *ngIf="getDebug()"> [{{item.id}}]</span>
+    </li>
+</ul>
+<button (click)="incrementGold()">Increment gold</button>
+<button (click)="decrementGold()">Decrement gold</button>
