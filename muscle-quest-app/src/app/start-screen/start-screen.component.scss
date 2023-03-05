@@ -11,6 +11,128 @@
     }
 }
 
+@keyframes slideToRight {
+    from {
+
+    }
+
+    to {
+        transform: translateX(300px);
+        opacity: 0;
+    }
+}
+@keyframes apear {
+    from {
+        display: none;
+    }
+
+    to {
+        display: block;
+    }
+}
+@keyframes disapear {
+    from {
+        display: block;
+    }
+
+    to {
+        display: none;
+    }
+}
+
+@keyframes slideFromTop {
+    from{
+        transform: translateY(-300px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity:0;
+    }
+
+    to {
+        opacity:1;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity:1;
+    }
+
+    to {
+        opacity:0;
+    }
+}
+
+html {
+    overflow:hidden;
+}
+
+.disapear {
+    animation: disapear 0s 0.8s forwards;
+}
+.apear {
+    animation: apear 0.1s 0.8s forwards;
+}
+
+.back {
+    position:relative;
+    //border: solid white;
+    height: 100px;
+    width: 200px;
+    text-align: center;
+    opacity:0;
+    margin:20px;
+    background-color: rgb(3, 158, 29);
+    box-shadow: 
+        0px 0px 20px 2px rgb(9, 246, 9),
+        inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+.fadeIn{
+    animation: fadeIn 0.8s 0.8s ease-in forwards;
+}
+.fadeOut{
+    animation: fadeOut 0.8s 0.5s ease-out forwards;
+}
+.slideFromLeft {
+    animation: slideFromLeft 0.8s ease-in forwards;
+}
+.slideFromLeft-2 {
+    animation: slideFromLeft 0.8s 0.05s ease-in forwards;
+}
+.slideFromLeft-3 {
+    animation: slideFromLeft 0.8s 0.1s ease-in forwards;
+}
+.slideFromLeft-4 {
+    animation: slideFromLeft 0.8s 0.15s ease-in forwards;
+}
+.slideToRight {
+    animation: slideToRight 0.8s ease-out forwards;
+}
+.slideToRight-2 {
+    animation: slideToRight 0.8s 0.1s ease-out forwards;
+}
+.slideToRight-3 {
+    animation: slideToRight 0.8s 0.15s ease-out forwards;
+}
+.slideToRight-4 {
+    animation: slideToRight 0.8s 0.2s ease-out forwards;
+}
+.slideFromTop {
+    animation: slideFromTop 0.8s 0.8s ease-in forwards;
+}
+.slideFromTop-2 {
+    animation: slideFromTop 0.8s 1s ease-in forwards;
+}
+.slideFromTop-3 {
+    animation: slideFromTop 0.8s 1.2s ease-in forwards;
+}
 
 .background {
     top: 50%;
@@ -20,23 +142,30 @@
     background-color: black;
 }
 
+// logo
+
 .logoContainer {
-    border: 5px solid white;
+    //border: 5px solid white;
     width: 400px;
     height: 300px;
     left: 10%;
     top: 10%;
     position: absolute;
+    opacity: 0;
 }
 
 .logo {
     color: white;
     position: relative;
+    top: 60px;
+    left: 80px;
     margin:10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bold;
-    font-size: 65px;
+    font-size: 100px;
+    
     text-align: center;
+    line-height: 1.4em;
     text-shadow: 
         -1px -1px 0 black,
         1px -1px 0 black,
@@ -44,6 +173,70 @@
         1px 1px 0 black;
 }
 
+
+//levels
+
+.levelContainer {
+    display:none;
+    //border: 5px solid white;
+    height: 600px;
+    width: 500px;
+    position: absolute;
+    left: calc(50%);
+    top: calc(50% - 250px);
+}
+
+.level {
+    position: relative;
+    //border: 5px solid green;
+    height: calc((100% - 80px)/4);
+    width: 450px;
+    margin: 20px;
+    text-align: center;
+    opacity: 0;
+    border-radius: 2%;
+}
+
+.levelText{
+    display: inline-block;
+    color: white;
+    position: relative;
+    top: 10px;
+    margin:10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    text-align:center;
+    line-height: 1.4em;
+    text-shadow: 
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+}
+
+.levelPurple {
+    background-color: rgb(195, 19, 195);
+    box-shadow: 
+        0px 0px 20px 2px rgb(239, 170, 243),
+        inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+.levelOrange {
+    background-color: rgb(225, 152, 6);
+    box-shadow: 
+        0px 0px 20px 2px rgb(233, 210, 104),
+        inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+.levelCyan {
+    background-color: rgb(7, 243, 223);
+    box-shadow: 
+        0px 0px 20px 2px rgb(161, 198, 215),
+        inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+
+
+// options
 .optionContainer{
     //border: 5px solid white;
     height: 600px;
@@ -52,7 +245,7 @@
     left: calc(50%);
     top: calc(50% - 250px);
 }
-.text {
+.optionText {
     //border: 5px solid white;
     color: white;
     position: relative;
@@ -63,57 +256,56 @@
     font-weight: bold;
     font-size: 65px;
     text-align: center;
+    pointer-events: none;
     text-shadow: 
         -1px -1px 0 black,
         1px -1px 0 black,
         -1px 1px 0 black,
         1px 1px 0 black;
 }
-.red {
-    animation: slideFromLeft 0.8s ease-in forwards;
-    background-color: rgb(234, 7, 7);
-    box-shadow: 
-        0px 0px 20px 2px rgb(221, 143, 143),
-        inset 0px 0px 10px 1px rgb(255, 255, 255);
-} 
-.green {
-    position: relative;
-    left: 30px;
-    animation: slideFromLeft 0.8s 0.05s ease-in forwards;
-    background-color: rgb(29, 217, 108);
-    box-shadow: 
-        0px 0px 20px 2px rgb(108, 190, 123),
-        inset 0px 0px 10px 1px rgb(255, 255, 255)
-}
-.blue {
-    position: relative;
-    left: 60px;
-    animation: slideFromLeft 0.8s 0.1s ease-in forwards;
-    background-color: rgb(15, 84, 224);
-    box-shadow: 
-        0px 0px 20px 2px rgb(118, 166, 232),
-        inset 0px 0px 10px 1px rgb(255, 255, 255)}
-.yellow {
-    position: relative;
-    left: 80px;
-    animation: slideFromLeft 0.8s 0.15s ease-in forwards;
-    background-color: rgb(229, 236, 10);
-    box-shadow: 
-        0px 0px 20px 2px rgb(248, 252, 1),
-        inset 0px 0px 10px 1px rgb(255, 255, 255)}
+
 .option {
+    //border: 5px solid white;
     opacity: 0;
-    display: block;
     height: calc((100% - 50px)/4);
     margin: 10px;
     width: 450px;
-    transition:all 0.15s ease-in;
     border-radius: 2%;
 }
 .option:hover {
     width: 600px;
 }
 
+
+.optionRed {
+    background-color: rgb(234, 7, 7);
+    box-shadow: 
+        0px 0px 20px 2px rgb(221, 143, 143),
+        inset 0px 0px 10px 1px rgb(255, 255, 255);
+} 
+.optionGreen {
+    position: relative;
+    left: 30px;
+    background-color: rgb(29, 217, 108);
+    box-shadow: 
+        0px 0px 20px 2px rgb(108, 190, 123),
+        inset 0px 0px 10px 1px rgb(255, 255, 255)
+}
+.optionBlue {
+    position: relative;
+    left: 60px;
+    background-color: rgb(15, 84, 224);
+    box-shadow: 
+        0px 0px 20px 2px rgb(118, 166, 232),
+        inset 0px 0px 10px 1px rgb(255, 255, 255)}
+.optionYellow {
+    position: relative;
+    left: 80px;
+    background-color: rgb(229, 236, 10);
+    box-shadow: 
+        0px 0px 20px 2px rgb(248, 252, 1),
+        inset 0px 0px 10px 1px rgb(255, 255, 255)
+}
 // .dumbell {
 //     position:absolute;
 //     top:50%;
