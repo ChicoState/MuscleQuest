@@ -83,6 +83,10 @@ html {
   animation: slideToRight 0.8s ease-out forwards;
 }
 
+.wait1s {
+  animation: disapear 1s forwards;
+}
+
 .background {
   top: 50%;
   left: 50%;
@@ -123,7 +127,12 @@ html {
   top: calc(50% - 250px);
 }
 
-.level {
+.level[open] {
+  animation-name: slideFromLeft;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  display: block;
   position: relative;
   height: calc((100% - 80px) / 4);
   width: 450px;
@@ -131,6 +140,13 @@ html {
   text-align: center;
   opacity: 0;
   border-radius: 2%;
+}
+
+.level[closed] {
+  animation-name: slidetoRight;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 .levelText {
@@ -199,17 +215,29 @@ html {
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 
-.option {
-  opacity: 0;
+.option[open] {
+  animation-name: slideFromLeft;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  display: block;
   height: calc((100% - 50px) / 4);
   margin: 10px;
   width: 450px;
   border-radius: 2%;
-  transition: width 0.3s;
+  transition: width 0.3s display 0.8s;
 }
 
 .option:hover {
   width: 600px;
+}
+
+.option[closed] {
+  animation-name: slideToRight;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  transition: display 0.8s;
 }
 
 .optionRed {

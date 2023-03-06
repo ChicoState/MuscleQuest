@@ -28,51 +28,20 @@ window.onload = function() {
 
   let elementList = [levelsOption, characterOption, shopOption, settingsOption, sloaneLevel, peterLevel, isaLevel, backButton, levelContainer, logoDiv];
 
-
-  for(let i = 0; i < 4; i++){
-    elementList[i].classList.toggle("slideFromLeft");
-    elementList[i].addEventListener("animationend", () => {
-      elementList[i].style.opacity = "1";
-      elementList[i].style.display = "block";
-    }, {once: true})
-  }
-  elementList[9].classList.toggle("fadeIn");
-  elementList[0].addEventListener("click", () =>{
-    elementList[8].style.display = "block";
+  elementList[0].addEventListener("click", () => {
     for(let i = 0; i < 4; i++){
-      elementList[i].classList.replace("slideFromLeft", "slideToRight");
+      elementList[i].setAttribute('closed', "");
       elementList[i].addEventListener("animationend", () => {
-        elementList[i].style.opacity = "0";
         elementList[i].style.display = "none";
-      }, {once: true})
+      })
     }
     for(let i = 4; i < 8; i++){
-      elementList[i].classList.toggle("slideFromLeft");
+      elementList[i].setAttribute('open', "");
       elementList[i].addEventListener("animationend", () => {
-        elementList[i].style.opacity = "1";
         elementList[i].style.display = "block";
-      }, {once: true})
+      })
     }
   })
-  elementList[7].addEventListener("click", () => {
-    for(let i = 4; i < 8; i++){
-      elementList[i].classList.replace("slideFromLeft", "slideToRight");
-      elementList[i].addEventListener("animationend", () => {
-        elementList[i].style.opacity = "0";
-        elementList[i].style.display = "none";
-      }, {once: true})
-    }
-    for(let i = 0; i < 4; i++){
-      elementList[i].classList.replace("slideToRight", "slideFromLeft");
-      elementList[i].addEventListener("animationend", () => {
-        elementList[i].style.opacity = "1";
-        elementList[i].style.display = "block";
-      }, {once: true})
-    }
-    elementList[8].classList.toggle('wait1s');
-    elementList[8].addEventListener("animationend", () => {
-      elementList[8].style.display = "none";
-    })
-  })
+  
 }
 
