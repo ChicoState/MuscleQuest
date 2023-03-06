@@ -67,17 +67,6 @@ html {
   animation: apear 0.1s 0.8s forwards;
 }
 
-.back {
-  position: relative;
-  height: 100px;
-  width: 200px;
-  text-align: center;
-  opacity: 0;
-  margin: 20px;
-  background-color: rgb(3, 158, 29);
-  box-shadow: 0px 0px 20px 2px rgb(9, 246, 9), inset 0px 0px 10px 1px rgb(255, 255, 255);
-}
-
 .fadeIn {
   animation: fadeIn 0.8s 0.8s ease-in forwards;
 }
@@ -90,44 +79,8 @@ html {
   animation: slideFromLeft 0.8s ease-in forwards;
 }
 
-.slideFromLeft-2 {
-  animation: slideFromLeft 0.8s 0.05s ease-in forwards;
-}
-
-.slideFromLeft-3 {
-  animation: slideFromLeft 0.8s 0.1s ease-in forwards;
-}
-
-.slideFromLeft-4 {
-  animation: slideFromLeft 0.8s 0.15s ease-in forwards;
-}
-
 .slideToRight {
   animation: slideToRight 0.8s ease-out forwards;
-}
-
-.slideToRight-2 {
-  animation: slideToRight 0.8s 0.1s ease-out forwards;
-}
-
-.slideToRight-3 {
-  animation: slideToRight 0.8s 0.15s ease-out forwards;
-}
-
-.slideToRight-4 {
-  animation: slideToRight 0.8s 0.2s ease-out forwards;
-}
-
-.slideFromTop {
-  animation: slideFromTop 0.8s 0.8s ease-in forwards;
-}
-
-.slideFromTop-2 {
-  animation: slideFromTop 0.8s 1s ease-in forwards;
-}
-
-.slideFromTop-3 {
-  animation: slideFromTop 0.8s 1.2s ease-in forwards;
 }
 
 .background {
@@ -195,18 +148,33 @@ html {
 }
 
 .levelPurple {
+  animation-delay: 0s;
   background-color: rgb(195, 19, 195);
   box-shadow: 0px 0px 20px 2px rgb(239, 170, 243), inset 0px 0px 10px 1px rgb(255, 255, 255);
 }
 
 .levelOrange {
+  animation-delay: 0.05s;
   background-color: rgb(225, 152, 6);
   box-shadow: 0px 0px 20px 2px rgb(233, 210, 104), inset 0px 0px 10px 1px rgb(255, 255, 255);
 }
 
 .levelCyan {
+  animation-delay: 0.1s;
   background-color: rgb(7, 243, 223);
   box-shadow: 0px 0px 20px 2px rgb(161, 198, 215), inset 0px 0px 10px 1px rgb(255, 255, 255);
+}
+
+.levelBack {
+  animation-delay: 0.15s;
+  position: relative;
+  height: 100px;
+  width: 200px;
+  text-align: center;
+  opacity: 0;
+  margin: 20px;
+  background-color: rgb(3, 158, 29);
+  box-shadow: 0px 0px 20px 2px rgb(9, 246, 9), inset 0px 0px 10px 1px rgb(255, 255, 255);
 }
 
 .optionContainer {
@@ -237,6 +205,7 @@ html {
   margin: 10px;
   width: 450px;
   border-radius: 2%;
+  transition: width 0.3s;
 }
 
 .option:hover {
@@ -244,11 +213,13 @@ html {
 }
 
 .optionRed {
+  animation-delay: 0s;
   background-color: rgb(234, 7, 7);
   box-shadow: 0px 0px 20px 2px rgb(221, 143, 143), inset 0px 0px 10px 1px rgb(255, 255, 255);
 }
 
 .optionGreen {
+  animation-delay: 0.05s;
   position: relative;
   left: 30px;
   background-color: rgb(29, 217, 108);
@@ -256,6 +227,7 @@ html {
 }
 
 .optionBlue {
+  animation-delay: 0.1s;
   position: relative;
   left: 60px;
   background-color: rgb(15, 84, 224);
@@ -263,6 +235,7 @@ html {
 }
 
 .optionYellow {
+  animation-delay: 0.15s;
   position: relative;
   left: 80px;
   background-color: rgb(229, 236, 10);
