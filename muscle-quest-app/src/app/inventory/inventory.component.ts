@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { getItemName } from 'src/lib/registry'
-import { ItemState, UserData } from 'src/lib/user'
+import { getItemName } from 'lib/registry';
+import { ItemState, UserData } from 'lib/user';
 
 @Component({
   selector: 'app-inventory',
