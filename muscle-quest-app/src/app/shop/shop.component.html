@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>{{ title }}</h1>
+    
+    <button (click)="Debug.toggle()">Debug mode: {{Debug.get() ? 'On' : 'Off'}}</button>
+    
+    <ul>
+       <li *ngFor="let item of items_available">
+        <div class="icon">
+            <img src="{{ getIcon(item) }}" />
+        </div>
+        <span class="name">{{ getName(item) }}</span>
+        <pre *ngIf="Debug.get()" class="data">{{ getData(item) }}</pre>
+        <span class="cost">Cost: <span class="price">{{ item.shop_data ? item.shop_data.cost : 'null' }} gold</span></span>
+       </li>
+    </ul>
+</div>

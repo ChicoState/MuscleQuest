@@ -1,3 +1,19 @@
+export enum Element {
+    FIRE,
+    ICE,
+    LIGHTNING,
+}
+
+export enum Material {
+    IRON,
+    STEEL,
+    DIAMOND,
+}
+
+export type ShopData = {
+    cost: number
+}
+
 /*
     Type definition of a state or instance of an individual item.
 */
@@ -5,9 +21,23 @@ export type ItemState = {
     // the item id referring to an item type in the item registry.
     id: string,
 
-    // [optional] data object that can store state-specific data, such as a damage value,
-    // enchantment, unique stats, etc.
-    data?: object
+    // amount that having this item equipped will increase the player's strength
+    strength: number,
+    // amount that having this item equipped will increase the player's dexterity
+    dexterity: number,
+
+    // [optional] the element an item is strong with
+    element?: Element,
+    // [optional] the material an item is made of
+    material?: Material
+
+    // [optional] override for item name, use the item type's name if missing
+    display_name?: string,
+    // [optional] override for item icon, use the item type's icon if missing
+    display_icon?: string,
+
+    // [optional] marks if the item was bought from the shop, and includes details about the purchase
+    shop_data?: ShopData
 }
 
 /* 
@@ -18,7 +48,19 @@ type DataObject = {
     items: Array<ItemState>,
 
     // the amount of gold that the user has.
-    gold: number
+    gold: number,
+    // the amount of wood that the user has.
+    wood: number,
+    // the amount of iron that the user has.
+    iron: number,
+
+    equipped: {
+        'head'?: ItemState,
+        'chest'?: ItemState,
+        'hands'?: ItemState,
+        'feet'?: ItemState,
+        'weapon'?: ItemState
+    }
 }
 
 /*
@@ -28,13 +70,26 @@ type DataObject = {
 const DEFAULT_USER_DATA: DataObject = {
     items: [
         {
-            id: 'iron_sword'
+            id: 'sword',
+            strength: 2,
+            dexterity: 0,
+            material: Material.IRON,
+            element: Element.LIGHTNING,
+            display_name: 'Iron Sword of Lightning',
+            display_icon: '/assets/item/iron_sword.png'
         },
         {
-            id: 'top_hat'
+            id: 'helmet',
+            strength: 0,
+            dexterity: 0,
+            display_name: 'Top Hat',
+            display_icon: '/assets/item/top_hat.png'
         },
     ],
     gold: 0,
+    wood: 0,
+    iron: 0,
+    equipped: { }
 }
 
 /*
