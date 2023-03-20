@@ -14,9 +14,10 @@ export class ShopComponent {
   title = "Item Shop"
 
   items_available = this.getItems()
-  
+
   getName = getItemName
   getIcon = getItemIcon
+  getUserData = UserData.get
 
   Debug = Debug
 
@@ -42,5 +43,12 @@ export class ShopComponent {
 
   getData(item: ItemState) {
     return JSON.stringify(item ?? {}, null, 2)
+  }
+
+  giveItem(item: ItemState) {
+    UserData.mutate(data => {
+      data.items.push(item);
+      return data;
+    })
   }
 }

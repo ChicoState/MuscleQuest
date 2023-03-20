@@ -3,14 +3,31 @@
     
     <button (click)="Debug.toggle()">Debug mode: {{Debug.get() ? 'On' : 'Off'}}</button>
     
-    <ul>
+    <ul class="shop">
        <li *ngFor="let item of items_available">
-        <div class="icon">
+        <div class="item-icon">
             <img src="{{ getIcon(item) }}" />
         </div>
-        <span class="name">{{ getName(item) }}</span>
+        <span class="item-name">{{ getName(item) }}</span>
         <pre *ngIf="Debug.get()" class="data">{{ getData(item) }}</pre>
         <span class="cost">Cost: <span class="price">{{ item.shop_data ? item.shop_data.cost : 'null' }} gold</span></span>
+        <button (click)="giveItem(item)">Get {{ getName(item) }}</button>
        </li>
+    </ul>
+
+    <h2>Inventory</h2>
+    <ul class="resources">
+        <li>Wood: {{ getUserData().wood}}</li>
+        <li>Iron: {{ getUserData().iron }}</li>
+        <li>Gold: {{ getUserData().gold }}</li>
+    </ul>
+    <ul class="inventory {{ Debug.get() ? 'debug' : '' }}">
+        <li *ngFor="let item of getUserData().items">
+            <div class="item-icon">
+                <img src="{{ getIcon(item) }}" />
+            </div>
+            <span class="item-name">{{ getName(item) }}</span>
+            <pre *ngIf="Debug.get()" class="data">{{ getData(item) }}</pre>
+        </li>
     </ul>
 </div>
