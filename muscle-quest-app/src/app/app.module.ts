@@ -10,6 +10,7 @@ import { OrcBossComponent } from './orc-boss/orc-boss.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
+import { ShopComponent } from './shop/shop.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -27,7 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     SloaneLvlOneComponent,
     InventoryComponent,
     OrcBossComponent,
-    OrcBossInfoComponent
+    OrcBossInfoComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

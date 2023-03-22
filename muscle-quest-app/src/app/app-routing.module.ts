@@ -4,6 +4,7 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
 import { SloaneLvlOneComponent } from './sloane-lvl-one/sloane-lvl-one.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { OrcBossComponent } from './orc-boss/orc-boss.component';
+import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/start', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'sloane-lvl-one', component: SloaneLvlOneComponent },
   { path: 'inventory', component: InventoryComponent },
   { path: 'orc-boss', component: OrcBossComponent },
+  { path: 'shop', component: ShopComponent },
 ];
 
 @NgModule({
