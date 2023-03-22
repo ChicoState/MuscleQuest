@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { getItemName } from 'lib/registry';
-import { ItemState, UserData } from 'lib/user';
+import { getItemName } from 'lib/registry'
+import { UserData } from 'lib/user'
+import { Debug } from 'lib/global_data'
 
 @Component({
   selector: 'app-inventory',
@@ -10,24 +11,14 @@ import { ItemState, UserData } from 'lib/user';
 
 export class InventoryComponent {
   constructor() {
-    if (localStorage.getItem('mq:debug') === null) {
-      localStorage.setItem('mq:debug', String(false))
-    }
   }
 
   title = "Inventory"
 
-  getDebug() {
-    return localStorage.getItem('mq:debug') == 'true'
-  }
+  Debug = Debug
 
-  getName(item: ItemState) {
-    return getItemName(item)
-  }
-
-  getUserData() {
-    return UserData.get()
-  }
+  getName = getItemName
+  getUserData = UserData.get
 
   incrementGold() {
     return UserData.mutate((data) => {
@@ -41,9 +32,5 @@ export class InventoryComponent {
       data.gold--
       return data
     })
-  }
-
-  toggleDebug() {
-    localStorage.setItem('mq:debug', String(!this.getDebug()))
   }
 }

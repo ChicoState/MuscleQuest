@@ -18,10 +18,12 @@ export type Registry<Type> = {
     
     For example, a helmet may use the HEAD equipment type.
 */
-enum EquipmentType {
+export enum EquipmentSlot {
     HEAD,
-    BODY,
+    CHEST,
+    HANDS,
     FEET,
+    WEAPON,
 }
 
 /* 
@@ -29,12 +31,15 @@ enum EquipmentType {
 
     Item objects are statically created in the item registry where their id is the key in the registry.
 */
-export type Item = {
+export type ItemType = {
     // human-readable English name of the item to be displayed to the user.
     name: string,
     
     // [optional] if present, the item must be in a (currently unimplemented) equipment slot to be used.
-    equipment_type?: EquipmentType
+    equipment_slot?: EquipmentSlot
+    
+    // path to an image file used for the item type
+    icon: string,
 }
 
 /*
@@ -42,17 +47,31 @@ export type Item = {
     possible item types to exist. These are specifically *not* instances or states of items, just
     the definitions of the items.
 */
-export let item_registry: Registry<Item> = {
-    iron_sword: {
-        name: "Iron Sword",
+export let item_registry: Registry<ItemType> = {
+    sword: {
+        name: "Sword",
+        icon: "/assets/item/default_sword.png",
+        equipment_slot: EquipmentSlot.WEAPON
     },
-    top_hat: {
-        name: "Top Hat",
-        equipment_type: EquipmentType.HEAD
+    helmet: {
+        name: "Helmet",
+        icon: "/assets/item/default_helmet.png",
+        equipment_slot: EquipmentSlot.HEAD
     },
-    golden_boots: {
-        name: "Golden Boots",
-        equipment_type: EquipmentType.FEET
+    chestplate: {
+        name: "Chestplate",
+        icon: "/assets/item/default_chestplate.png",
+        equipment_slot: EquipmentSlot.CHEST
+    },
+    gloves: {
+        name: "Gloves",
+        icon: "/assets/item/default_gloves.png",
+        equipment_slot: EquipmentSlot.HANDS
+    },
+    boots: {
+        name: "Boots",
+        icon: "/assets/item/default_boots.png",
+        equipment_slot: EquipmentSlot.FEET
     },
 }
 
@@ -66,4 +85,19 @@ export function getItemName(state: ItemState) {
         return item.name
     }
     return "ItemState"+JSON.stringify(state)
+}
+
+/* 
+    Gets the item id of an ItemState, and looks up the Item in the registry.
+    Returns the item's icon if it exists.
+*/
+export function getItemIcon(state: ItemState) {
+    if (state.display_icon) {
+        return state.display_icon
+    }
+    let item = item_registry[state.id]
+    if (item) {
+        return item.icon
+    }
+    return "/assets/item/unknown.png"
 }

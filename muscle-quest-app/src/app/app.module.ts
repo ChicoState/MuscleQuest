@@ -11,6 +11,7 @@ import { OrcBossComponent } from './orc-boss/orc-boss.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
+import { ShopComponent } from './shop/shop.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -37,7 +38,8 @@ import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
     IsaLevelComponent,
     BackDayComponent,
     ChestDayComponent,
-    LegDayComponent
+    LegDayComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
