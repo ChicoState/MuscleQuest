@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
+import { ItemState, UserData, Material, Element } from 'src/lib/user';
 
 @Component({
   selector: 'app-sloane-lvl-one',
@@ -9,6 +10,25 @@ import { Location } from '@angular/common';
 export class SloaneLvlOneComponent {
   constructor(private location: Location) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
+  }
+
+  item: ItemState = {
+    id: 'helmet',
+    strength: 1,
+    dexterity: 2,
+    shop_data: {
+      cost: 100,
+    },
+    element: Element.FIRE,
+    material: Material.STEEL,
+    display_name: 'Iron Helmet of Wings',
+  };
+
+  addItem(item: ItemState) {
+    UserData.mutate((data) => {
+      data.items.push(item);
+      return data;
+    });
   }
 
   title = 'The Revenge of Time';
@@ -82,6 +102,7 @@ export class SloaneLvlOneComponent {
     this.count = this.timeSelected;
     this.stopMusic();
     this.timerGoing = false;
+    this.addItem(this.item);
   }
 
   playSound() {
