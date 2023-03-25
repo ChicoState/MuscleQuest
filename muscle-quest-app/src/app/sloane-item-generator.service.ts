@@ -66,6 +66,9 @@ export class SloaneItemGeneratorService {
     if (display_name !== undefined) {
       newItem.display_name = display_name;
     }
+
+    // This functionality should take place in the shop and inventory, if I'm not mistaken
+
     if (display_icon !== undefined) {
       newItem.display_icon = display_icon;
     }
@@ -137,4 +140,49 @@ function randomID(): string {
   const randomIndex = Math.floor(Math.random() * ids.length);
 
   return ids[randomIndex];
+}
+
+// Given rank, item id, material and element, generate a sweet name
+function nameGenerator(
+  rank: number,
+  id: string,
+  material: Material,
+  element?: Element
+) {
+  const adjectives: { [key: number]: string[] } = {
+    0: ['Paltry', 'Pathetic', 'Piteous', 'Flaccid', 'Feeble', 'Miserable'],
+    1: ['Respectable', 'Adequate', 'Decent', 'Worthy', 'Good'],
+    2: [
+      'Superb',
+      'Formidable',
+      'Prime',
+      'Sensational',
+      'Dreadnaught',
+      'Powerful',
+    ],
+    3: [
+      'Sovereign',
+      'Mythical',
+      'Absolute',
+      'Divine',
+      'Profound',
+      'Transcendent',
+    ],
+  };
+
+  let possibleAdjectives = adjectives[rank];
+  const adjIndex = Math.floor(Math.random() * possibleAdjectives.length);
+  const adjective = possibleAdjectives[adjIndex];
+
+  const materialString = material.toString();
+
+  let name = `${adjective} ${materialString} ${id}`;
+
+  let elementString;
+  if (element !== undefined) {
+    elementString = 'of ' + element.toString();
+    name += elementString;
+  }
+
+  return name;
 }
