@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 
 @Component({
   selector: 'app-sloane-lvl-one',
@@ -8,21 +9,19 @@ import { ItemState, UserData, Material, Element } from 'src/lib/user';
   styleUrls: ['./sloane-lvl-one.component.css'],
 })
 export class SloaneLvlOneComponent {
-  constructor(private location: Location) {
+  item: ItemState = { id: '', strength: 0, dexterity: 0 };
+  constructor(
+    private location: Location,
+    private itemService: SloaneItemGeneratorService
+  ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
   }
 
-  item: ItemState = {
-    id: 'helmet',
-    strength: 1,
-    dexterity: 2,
-    shop_data: {
-      cost: 100,
-    },
-    element: Element.FIRE,
-    material: Material.STEEL,
-    display_name: 'Iron Helmet of Wings',
-  };
+  generateItem(): void {
+    const rank = 0;
+    this.item = this.itemService.createNewItem(rank);
+    console.log(this.item);
+  }
 
   addItem(item: ItemState) {
     UserData.mutate((data) => {
@@ -102,7 +101,7 @@ export class SloaneLvlOneComponent {
     this.count = this.timeSelected;
     this.stopMusic();
     this.timerGoing = false;
-    this.addItem(this.item);
+    this.generateItem();
   }
 
   playSound() {

@@ -65,6 +65,13 @@ export class SloaneItemGeneratorService {
     }
     if (display_name !== undefined) {
       newItem.display_name = display_name;
+    } else {
+      newItem.display_name = nameGenerator(
+        rank,
+        newItem.id,
+        newItem.material,
+        newItem.element
+      );
     }
 
     // This functionality should take place in the shop and inventory, if I'm not mistaken
@@ -174,14 +181,16 @@ function nameGenerator(
   const adjIndex = Math.floor(Math.random() * possibleAdjectives.length);
   const adjective = possibleAdjectives[adjIndex];
 
-  const materialString = material.toString();
+  const materialString = Material[material].toString();
+  console.log(materialString);
 
   let name = `${adjective} ${materialString} ${id}`;
 
   let elementString;
   if (element !== undefined) {
-    elementString = 'of ' + element.toString();
+    elementString = ' of ' + Element[element].toString();
     name += elementString;
+    return name;
   }
 
   return name;
