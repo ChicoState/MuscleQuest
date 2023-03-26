@@ -103,6 +103,7 @@ export class SloaneLvlOneComponent {
     this.timerGoing = false;
     this.generateItem();
     let data = this.itemService.giveItem(this.item);
+    this.itemService.createLootBundle(2);
     console.log(data);
   }
 

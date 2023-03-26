@@ -83,13 +83,45 @@ export class SloaneItemGeneratorService {
 
   // Returns an array containing a randomly generated assortment of gold, wood and iron
   createLootBundle(rank: number): Array<any> {
-    return [];
+    const multiplier = rank * (rank + 1);
+    const gold = rng(multiplier * 100);
+    const wood = rng(multiplier * 100);
+    const iron = rng(multiplier * 100);
+    console.log([gold, wood, iron]);
+    return [gold, wood, iron];
   }
 
-  // Borrowed from McKeever's shop component code
+  // Allows a randomly generated loot bundle to be easily given to user
+  giveLootBundle(bundle: number[]) {
+    return UserData.mutate((data) => {
+      data.gold += bundle[0];
+      data.wood += bundle[1];
+      data.iron += bundle[2];
+      return data;
+    });
+  }
+
+  // Borrowed from McKeever's shop and inventory component code
   giveItem(item: ItemState) {
     UserData.mutate((data) => {
       data.items.push(item);
+      return data;
+    });
+  }
+
+  // Provide specific resources as such:
+  // giveSpecificResources(wood: 100);
+  giveSpecificResources(gold?: number, wood?: number, iron?: number) {
+    return UserData.mutate((data) => {
+      if (gold !== undefined) {
+        data.gold += gold;
+      }
+      if (wood !== undefined) {
+        data.wood += wood;
+      }
+      if (iron !== undefined) {
+        data.iron += iron;
+      }
       return data;
     });
   }
@@ -263,4 +295,8 @@ function fixCapitalization(word: string) {
 
 function coinToss() {
   return Math.random() < 0.5;
+}
+
+function rng(n: number) {
+  return Math.floor(Math.random() * n);
 }
