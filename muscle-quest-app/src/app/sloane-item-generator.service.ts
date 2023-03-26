@@ -23,17 +23,12 @@ export class SloaneItemGeneratorService {
     shop_data?: ShopData
   ): ItemState {
     const stats = statTotal(rank);
-    const elements = Object.values(Element);
-    const elementIndex = Math.floor(Math.random() * elements.length);
+
+    // initialize a variable of type ItemState
     const newItem: ItemState = {
-      id: 'Sword',
-      strength: stats[0],
-      dexterity: stats[1],
-      material: Material.IRON,
-      display_name: 'Iron Sword of Fire',
-      shop_data: {
-        cost: 100,
-      },
+      id: '',
+      strength: 0,
+      dexterity: 0,
     };
 
     if (id !== undefined) {
@@ -85,10 +80,24 @@ export class SloaneItemGeneratorService {
 
     return newItem;
   }
+
+  // Returns an array containing a randomly generated assortment of gold, wood and iron
+  createLootBundle(rank: number): Array<any> {
+    return [];
+  }
+
+  // Borrowed from McKeever's shop component code
+  giveItem(item: ItemState) {
+    UserData.mutate((data) => {
+      data.items.push(item);
+      return data;
+    });
+  }
 }
 
 // Given a rank, generate an array containing two numbers:
 // array[0] = strength; array[1] = dex;
+// Stats add up to a certain value depending on the item's rank
 function statTotal(rank: number) {
   const totals = [2, 4, 7, 12];
   const total = totals[rank];
@@ -142,7 +151,7 @@ function materialChooser(rank: number): Material {
 }
 
 function randomID(): string {
-  const ids = ['Sword', 'Helmet', 'Chestplate', 'Gloves', 'Boots'];
+  const ids = ['sword', 'helmet', 'chestplate', 'gloves', 'boots'];
 
   const randomIndex = Math.floor(Math.random() * ids.length);
 
@@ -173,6 +182,7 @@ function nameGenerator(
       'Trifling',
       'Insignificant',
       'Meaningless',
+      'Shameful',
     ],
     1: [
       'Respectable',
@@ -189,6 +199,7 @@ function nameGenerator(
       'Middling',
       'Mediocre',
       'Mundane',
+      'Boring',
     ],
     2: [
       'Superb',
@@ -204,6 +215,7 @@ function nameGenerator(
       'Significant',
       'Remarkable',
       'Impressive',
+      'Triumphant',
     ],
     3: [
       'Sovereign',
@@ -214,10 +226,12 @@ function nameGenerator(
       'Transcendent',
       'Magnificent',
       'Stellar',
-      'Brilliant',
+      'Miraculous',
       'Overwhelming',
       'Phenomenal',
       'Unreal',
+      'Ultimate',
+      'Supreme',
     ],
   };
 
@@ -228,7 +242,9 @@ function nameGenerator(
   let materialString = Material[material].toString();
   materialString = fixCapitalization(materialString);
 
-  let name = `${adjective} ${materialString} ${id}`;
+  let itemId = fixCapitalization(id);
+
+  let name = `${adjective} ${materialString} ${itemId}`;
 
   let elementString;
   if (element !== undefined) {

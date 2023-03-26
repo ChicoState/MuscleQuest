@@ -102,6 +102,8 @@ export class SloaneLvlOneComponent {
     this.stopMusic();
     this.timerGoing = false;
     this.generateItem();
+    let data = this.itemService.giveItem(this.item);
+    console.log(data);
   }
 
   playSound() {
