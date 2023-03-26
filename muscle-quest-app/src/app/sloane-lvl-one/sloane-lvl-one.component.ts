@@ -18,7 +18,7 @@ export class SloaneLvlOneComponent {
   }
 
   generateItem(): void {
-    const rank = 0;
+    const rank = 1;
     this.item = this.itemService.createNewItem(rank);
     console.log(this.item);
   }

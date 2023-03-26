@@ -54,8 +54,8 @@ export class SloaneItemGeneratorService {
     if (element !== undefined) {
       newItem.element = element;
     }
-    // Beginner level items will not have any elements assigned automatically
-    else if (rank > 0) {
+    // Low level items will not have any elements assigned automatically
+    else if (rank > 0 && coinToss()) {
       newItem.element = randomElement();
     }
     if (material !== undefined) {
@@ -157,8 +157,39 @@ function nameGenerator(
   element?: Element
 ) {
   const adjectives: { [key: number]: string[] } = {
-    0: ['Paltry', 'Pathetic', 'Piteous', 'Flaccid', 'Feeble', 'Miserable'],
-    1: ['Respectable', 'Adequate', 'Decent', 'Worthy', 'Good'],
+    0: [
+      'Paltry',
+      'Pathetic',
+      'Piteous',
+      'Flaccid',
+      'Feeble',
+      'Miserable',
+      'Tragic',
+      'Sad',
+      'Wretched',
+      'Forlorn',
+      'Beggarly',
+      'Hopeless',
+      'Trifling',
+      'Insignificant',
+      'Meaningless',
+    ],
+    1: [
+      'Respectable',
+      'Adequate',
+      'Decent',
+      'Worthy',
+      'Good',
+      'Passable',
+      'Humdrum',
+      'Plain',
+      'Fair',
+      'Unremarkable',
+      'Acceptable',
+      'Middling',
+      'Mediocre',
+      'Mundane',
+    ],
     2: [
       'Superb',
       'Formidable',
@@ -166,6 +197,13 @@ function nameGenerator(
       'Sensational',
       'Dreadnaught',
       'Powerful',
+      'Astonishing',
+      'Momentous',
+      'Historic',
+      'Important',
+      'Significant',
+      'Remarkable',
+      'Impressive',
     ],
     3: [
       'Sovereign',
@@ -174,6 +212,12 @@ function nameGenerator(
       'Divine',
       'Profound',
       'Transcendent',
+      'Magnificent',
+      'Stellar',
+      'Brilliant',
+      'Overwhelming',
+      'Phenomenal',
+      'Unreal',
     ],
   };
 
@@ -181,17 +225,26 @@ function nameGenerator(
   const adjIndex = Math.floor(Math.random() * possibleAdjectives.length);
   const adjective = possibleAdjectives[adjIndex];
 
-  const materialString = Material[material].toString();
-  console.log(materialString);
+  let materialString = Material[material].toString();
+  materialString = fixCapitalization(materialString);
 
   let name = `${adjective} ${materialString} ${id}`;
 
   let elementString;
   if (element !== undefined) {
-    elementString = ' of ' + Element[element].toString();
+    elementString = ' of ' + fixCapitalization(Element[element].toString());
     name += elementString;
     return name;
   }
 
   return name;
+}
+
+function fixCapitalization(word: string) {
+  let string = word.toLowerCase();
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function coinToss() {
+  return Math.random() < 0.5;
 }
