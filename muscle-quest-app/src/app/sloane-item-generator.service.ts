@@ -140,7 +140,7 @@ function statTotal(rank: number) {
 
 function randomElement(): Element {
   const elements = Object.values(Element);
-  const elementIndex = Math.floor(Math.random() * elements.length);
+  const elementIndex = rng(elements.length);
   const elementString = elements[elementIndex];
   let selected: Element;
 
@@ -185,7 +185,7 @@ function materialChooser(rank: number): Material {
 function randomID(): string {
   const ids = ['sword', 'helmet', 'chestplate', 'gloves', 'boots'];
 
-  const randomIndex = Math.floor(Math.random() * ids.length);
+  const randomIndex = rng(ids.length);
 
   return ids[randomIndex];
 }
@@ -268,7 +268,7 @@ function nameGenerator(
   };
 
   let possibleAdjectives = adjectives[rank];
-  const adjIndex = Math.floor(Math.random() * possibleAdjectives.length);
+  const adjIndex = rng(possibleAdjectives.length);
   const adjective = possibleAdjectives[adjIndex];
 
   let materialString = Material[material].toString();

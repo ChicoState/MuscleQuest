@@ -23,13 +23,6 @@ export class SloaneLvlOneComponent {
     console.log(this.item);
   }
 
-  addItem(item: ItemState) {
-    UserData.mutate((data) => {
-      data.items.push(item);
-      return data;
-    });
-  }
-
   title = 'The Revenge of Time';
   showRules = true;
   showExample = false;
@@ -103,8 +96,14 @@ export class SloaneLvlOneComponent {
     this.timerGoing = false;
     this.generateItem();
     let data = this.itemService.giveItem(this.item);
-    this.itemService.createLootBundle(2);
+    const newBundle = this.itemService.createLootBundle(2);
+    this.itemService.giveLootBundle(newBundle);
     console.log(data);
+
+    this.itemService.giveSpecificResources(undefined, 100);
+
+    const newItem = this.itemService.createNewItem(1);
+    this.itemService.giveItem(newItem);
   }
 
   playSound() {
