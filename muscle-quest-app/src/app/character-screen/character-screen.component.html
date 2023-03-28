@@ -1,0 +1,47 @@
+<html>
+    <body>
+        <div class="character"></div>
+        <div class="equipped">
+            <div class="helmet">
+             <img class="helmet"/>
+            </div>
+            <div class="chestplate">
+
+            </div>
+            <div class="leggings">
+
+            </div>
+            <div class="boots">
+
+            </div>
+            <div class="item">
+
+            </div>
+        </div>
+        <div class="resourceContainer">
+            <div class="resource">
+                <div class="text">{{getUserData().gold}}</div>
+                <img class="icon" src="assets/CharacterScreen/GoldIcon.png"/>
+                <img class="resourceBG" src="assets/CharacterScreen/ResourceBar.png"/>
+            </div>
+            <div class="resource">
+                <div class="text">{{getUserData().wood}}</div>
+                <img class="icon" src="assets/CharacterScreen/WoodIcon.png"/>
+                <img class="resourceBG" src="assets/CharacterScreen/ResourceBar.png"/>
+            </div>
+            <div class="resource">
+                <div class="text">{{getUserData().iron}}</div>
+                <img class="icon" src="assets/CharacterScreen/IronIcon.png"/>
+                <img class="resourceBG" src="assets/CharacterScreen/ResourceBar.png"/>
+            </div>
+        </div>
+        <div class="inventory" >
+            <div class="inventorySlots" *ngFor="let item of getUserData().items">
+                <span>
+                    <img src="{{ getIcon(item) }}" /> 
+                </span>
+            </div>
+        </div>
+
+    </body>
+</html>

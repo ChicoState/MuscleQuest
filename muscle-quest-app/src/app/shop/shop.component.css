@@ -1,0 +1,97 @@
+.container {
+  min-height: 100dvh;
+  background-color: rgb(31, 31, 32);
+  color: rgb(213, 213, 213);
+  padding: 1rem;
+}
+
+h1 {
+  color: rgb(236, 236, 236);
+}
+
+ul {
+  padding: 0;
+}
+
+ul.shop {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.item-icon {
+  width: 5rem;
+  height: 5rem;
+  background: rgb(80, 80, 83);
+  border-radius: 0.75rem;
+}
+.item-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.item-name {
+  font-size: large;
+}
+
+ul.shop li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+ul.shop li .cost .price {
+  color: rgb(252, 174, 30);
+  font-weight: bold;
+}
+ul.shop li button {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+ul.resources li {
+  list-style-type: none;
+  font-weight: bold;
+}
+
+ul.inventory {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+ul.inventory li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+ul.inventory.debug {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+pre {
+  width: -moz-min-content;
+  width: min-content;
+  background: rgb(63, 63, 65);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid rgb(74, 74, 77);
+  background-color: rgb(49, 49, 51);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: scale 0.125s ease-in-out;
+}
+button:hover {
+  border-color: rgb(84, 84, 87);
+  background-color: rgb(59, 59, 62);
+}
+button:active {
+  scale: 0.98;
+  border-color: rgb(74, 74, 77);
+  background-color: rgb(39, 39, 42);
+}/*# sourceMappingURL=shop.component.css.map */
