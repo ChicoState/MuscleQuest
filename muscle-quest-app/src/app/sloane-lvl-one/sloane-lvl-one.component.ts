@@ -3,6 +3,15 @@ import { Location } from '@angular/common';
 import { ItemState, UserData, Material, Element } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 
+/**
+ * Features to add: variable background image corresponding to an element:
+ *     - Give user extra reward for exercises if they have the opposite element in the MAJORITY of their gear
+ *     - Add an explanation for how this works somewhere
+ * Add different music options based on workout chosen
+ * Add random time trial mode: announce a new exercise after an interval for a certain time
+ * Give user extra rewards for any dex points in their equipped gear
+ * */
+
 @Component({
   selector: 'app-sloane-lvl-one',
   templateUrl: './sloane-lvl-one.component.html',

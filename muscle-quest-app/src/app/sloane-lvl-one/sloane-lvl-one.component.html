@@ -13,7 +13,9 @@
   <body>
     <div class="main-container">
       <button type="button" (click)="goBack()">Go Back</button>
-      <h1>{{ title }}</h1>
+      <div class="title-container">
+        <h1>{{ title }}</h1>
+      </div>
       <div class="intro-container">
         <p>
           Prepare to win the battle against one of life's greatest foes: time
@@ -31,6 +33,7 @@
       </div>
       <hr />
       <div class="instructions" *ngIf="showRules; else hideRules">
+        <button (click)="toggleRules()">Hide Rules</button>
         <h4>Rules and Tips:</h4>
         <ul>
           <li>
@@ -50,7 +53,6 @@
             exercises correctly, with a full range of motion.
           </li>
         </ul>
-        <button (click)="toggleRules()">Hide Rules</button>
       </div>
       <ng-template #hideRules>
         <button (click)="toggleRules()">Show Rules</button>
