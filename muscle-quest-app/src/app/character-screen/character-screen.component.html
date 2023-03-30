@@ -2,20 +2,20 @@
     <body>
         <div class="character"></div>
         <div class="equipped">
-            <div class="helmet">
-             <img class="helmet"/>
+            <div class="equipment">
+                <img class="equipmentIcon" id="helmetIcon"/>
             </div>
-            <div class="chestplate">
-
+            <div class="equipment">
+                <img class="equipmentIcon" id="chestplateIcon"/>
             </div>
-            <div class="leggings">
-
+            <div class="equipment">
+                <img class="equipmentIcon" id="glovesIcon"/>
             </div>
-            <div class="boots">
-
+            <div class="equipment">
+                <img class="equipmentIcon" id="bootsIcon"/>
             </div>
-            <div class="item">
-
+            <div class="equipment">
+                <img class="equipmentIcon" id="weaponIcon"/>
             </div>
         </div>
         <div class="resourceContainer">
@@ -35,11 +35,9 @@
                 <img class="resourceBG" src="assets/CharacterScreen/ResourceBar.png"/>
             </div>
         </div>
-        <div class="inventory" >
-            <div class="inventorySlots" *ngFor="let item of getUserData().items">
-                <span>
-                    <img src="{{ getIcon(item) }}" /> 
-                </span>
+        <div class="inventory" id="inventory">
+            <div *ngFor="let item of getUserData().items; index as i" >
+                <div class="slot" id={{i}}></div>
             </div>
         </div>
 
