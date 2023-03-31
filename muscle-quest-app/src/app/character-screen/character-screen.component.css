@@ -74,6 +74,7 @@ body {
   z-index: 1;
   height: 100%;
   width: auto;
+  background-size: cover;
 }
 .slot img {
   width: 100%;
@@ -95,12 +96,17 @@ body {
   grid-auto-rows: 130px;
 }
 
-.equipment {
+.equipSlot {
   position: relative;
   margin: 5px;
   background-color: #8f6b3d;
   border: 5px solid #554023;
   border-radius: 2%;
+}
+.equipSlot img {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .equipmentIcon {
