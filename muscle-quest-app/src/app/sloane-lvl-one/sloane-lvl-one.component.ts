@@ -36,7 +36,7 @@ export class SloaneLvlOneComponent {
     private itemService: SloaneItemGeneratorService
   ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
-    this.elementChoice = rng(3);
+    this.elementChoice = rng(Object.keys(this.elements).length);
   }
 
   ngOnInit() {
@@ -76,7 +76,12 @@ export class SloaneLvlOneComponent {
     console.log('Total dex: ', dex);
     console.log('Matching items: ', itemsWithMatchingElement);
     this.elementBonus += itemsWithMatchingElement * 0.05;
+    let fixedElementBonus = parseFloat(this.elementBonus.toFixed(3));
+    this.elementBonus = fixedElementBonus;
+
     this.equipmentBonus += dex * 0.1;
+    let fixedEquipmentBonus = parseFloat(this.equipmentBonus.toFixed(3));
+    this.equipmentBonus = fixedEquipmentBonus;
   }
 
   generateItem(): void {
