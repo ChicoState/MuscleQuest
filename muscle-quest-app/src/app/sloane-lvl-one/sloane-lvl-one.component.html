@@ -11,7 +11,10 @@
     />
   </head>
   <body>
-    <div class="main-container">
+    <div
+      [ngStyle]="{ 'background-image': backgroundImageUrl }"
+      class="main-container"
+    >
       <button type="button" (click)="goBack()">Go Back</button>
       <div class="title-container">
         <h1>{{ title }}</h1>
@@ -70,7 +73,11 @@
           {{ option }}
         </option>
       </select>
-      <div [ngSwitch]="exerciseSelected" *ngIf="showExample; else hideExample">
+      <div
+        class="exercise-example"
+        [ngSwitch]="exerciseSelected"
+        *ngIf="showExample; else hideExample"
+      >
         <button (click)="toggleExample()">Hide Example</button>
         <img
           *ngSwitchCase="'pushups'"

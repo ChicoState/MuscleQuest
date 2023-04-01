@@ -19,12 +19,16 @@ import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 })
 export class SloaneLvlOneComponent {
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
+  backgroundImageUrl: string;
   constructor(
     private location: Location,
     private itemService: SloaneItemGeneratorService
   ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
+    this.backgroundImageUrl = chooseBackground();
   }
+
+  ngOnInit() {}
 
   generateItem(): void {
     const rank = 1;
@@ -127,4 +131,20 @@ export class SloaneLvlOneComponent {
   goBack(): void {
     this.location.back();
   }
+}
+
+function rng(n: number) {
+  return Math.floor(Math.random() * n);
+}
+
+function chooseBackground() {
+  const urls = [
+    'url(../assets/sloane/images/fire-background.jpg)',
+    'url(../assets/sloane/images/ice-background.jpg)',
+    'url(../assets/sloane/images/lightning-background.jpg)',
+  ];
+
+  const choice = rng(3);
+
+  return urls[choice];
 }
