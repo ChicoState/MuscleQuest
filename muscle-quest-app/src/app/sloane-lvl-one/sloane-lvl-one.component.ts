@@ -19,16 +19,34 @@ import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 })
 export class SloaneLvlOneComponent {
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
-  backgroundImageUrl: string;
+  backgroundImageUrl: string = '';
+  elementChoice: number;
+  userEquipment = UserData.get().equipped;
+  elements: { [key: number]: string } = {
+    0: 'url(../assets/sloane/images/fire-background.jpg)',
+    1: 'url(../assets/sloane/images/ice-background.jpg)',
+    2: 'url(../assets/sloane/images/lightning-background.jpg)',
+  };
   constructor(
     private location: Location,
     private itemService: SloaneItemGeneratorService
   ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
-    this.backgroundImageUrl = chooseBackground();
+    this.elementChoice = rng(3);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.chooseBackground(this.elementChoice);
+    console.log(UserData.get().items);
+    console.log(this.userEquipment);
+
+    // FOR TESTING ONLY: Equip some items to user from their inventory
+    UserData.mutate((data) => {
+      data.equipped.feet = data.items[11];
+      data.equipped.chest = data.items[7];
+      return data;
+    });
+  }
 
   generateItem(): void {
     const rank = 1;
@@ -108,15 +126,14 @@ export class SloaneLvlOneComponent {
     this.stopMusic();
     this.timerGoing = false;
     this.generateItem();
-    let data = this.itemService.giveItem(this.item);
     const newBundle = this.itemService.createLootBundle(2);
     this.itemService.giveLootBundle(newBundle);
-    console.log(data);
 
     this.itemService.giveSpecificResources(undefined, 100);
 
-    const newItem = this.itemService.createNewItem(1);
+    const newItem = this.itemService.createNewItem(3);
     this.itemService.giveItem(newItem);
+    console.log(newItem);
   }
 
   playSound() {
@@ -131,20 +148,13 @@ export class SloaneLvlOneComponent {
   goBack(): void {
     this.location.back();
   }
+
+  chooseBackground(choice: number) {
+    console.log(choice);
+    this.backgroundImageUrl = this.elements[choice];
+  }
 }
 
 function rng(n: number) {
   return Math.floor(Math.random() * n);
-}
-
-function chooseBackground() {
-  const urls = [
-    'url(../assets/sloane/images/fire-background.jpg)',
-    'url(../assets/sloane/images/ice-background.jpg)',
-    'url(../assets/sloane/images/lightning-background.jpg)',
-  ];
-
-  const choice = rng(3);
-
-  return urls[choice];
 }
