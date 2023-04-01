@@ -18,8 +18,12 @@ import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
   styleUrls: ['./sloane-lvl-one.component.css'],
 })
 export class SloaneLvlOneComponent {
-  item: ItemState = { id: '', strength: 0, dexterity: 0 };
+  // Background image determines the level's current element
   backgroundImageUrl: string = '';
+  item: ItemState = { id: '', strength: 0, dexterity: 0 };
+  // Equipment and element multipliers will apply a bonus to any loot earned
+  equipmentBonus: number = 1;
+  elementBonus: number = 1;
   elementChoice: number;
   userEquipment = UserData.get().equipped;
   elements: { [key: number]: string } = {
@@ -42,10 +46,37 @@ export class SloaneLvlOneComponent {
 
     // FOR TESTING ONLY: Equip some items to user from their inventory
     UserData.mutate((data) => {
-      data.equipped.feet = data.items[11];
-      data.equipped.chest = data.items[7];
+      data.equipped.feet = data.items[15];
+      data.equipped.chest = data.items[28];
       return data;
     });
+
+    this.setBonus();
+  }
+
+  // Calculate user's total dex;
+  // Also, determine how many of the user's equipped items match the level's current element
+  // Set a static bonus which will be applied whenever the user earns any loot
+  setBonus() {
+    type EquippedKey = 'head' | 'chest' | 'hands' | 'feet' | 'weapon';
+    let user = UserData.get();
+    let dex = 0;
+    console.log(user.equipped);
+    const currentElement = this.elementChoice;
+    let itemsWithMatchingElement = 0;
+    for (const key of Object.keys(user.equipped) as EquippedKey[]) {
+      const itemState = user.equipped[key];
+      if (itemState) {
+        dex += itemState.dexterity;
+        if (itemState.element == currentElement) {
+          itemsWithMatchingElement++;
+        }
+      }
+    }
+    console.log('Total dex: ', dex);
+    console.log('Matching items: ', itemsWithMatchingElement);
+    this.elementBonus += itemsWithMatchingElement * 0.05;
+    this.equipmentBonus += dex * 0.1;
   }
 
   generateItem(): void {
@@ -125,15 +156,6 @@ export class SloaneLvlOneComponent {
     this.count = this.timeSelected;
     this.stopMusic();
     this.timerGoing = false;
-    this.generateItem();
-    const newBundle = this.itemService.createLootBundle(2);
-    this.itemService.giveLootBundle(newBundle);
-
-    this.itemService.giveSpecificResources(undefined, 100);
-
-    const newItem = this.itemService.createNewItem(3);
-    this.itemService.giveItem(newItem);
-    console.log(newItem);
   }
 
   playSound() {
@@ -150,7 +172,6 @@ export class SloaneLvlOneComponent {
   }
 
   chooseBackground(choice: number) {
-    console.log(choice);
     this.backgroundImageUrl = this.elements[choice];
   }
 }
