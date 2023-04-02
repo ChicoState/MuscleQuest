@@ -140,12 +140,12 @@
     </div>
 
     <app-sloane-reward-display
+      *ngIf="rewardAvailable"
       [elementBonus]="elementBonus"
       [score]="score"
       [equipmentBonus]="equipmentBonus"
       (rewardAvailable)="this.rewardAvailable = $event"
-      (score)="resetScore()"
-      *ngIf="rewardAvailable"
+      (closed)="resetScore()"
     ></app-sloane-reward-display>
   </body>
 </html>
