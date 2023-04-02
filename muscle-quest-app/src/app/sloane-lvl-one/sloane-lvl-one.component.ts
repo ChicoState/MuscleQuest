@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
+import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 
 @Component({
   selector: 'app-sloane-lvl-one',
@@ -7,8 +9,18 @@ import { Location } from '@angular/common';
   styleUrls: ['./sloane-lvl-one.component.css'],
 })
 export class SloaneLvlOneComponent {
-  constructor(private location: Location) {
+  item: ItemState = { id: '', strength: 0, dexterity: 0 };
+  constructor(
+    private location: Location,
+    private itemService: SloaneItemGeneratorService
+  ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
+  }
+
+  generateItem(): void {
+    const rank = 1;
+    this.item = this.itemService.createNewItem(rank);
+    console.log(this.item);
   }
 
   title = 'The Revenge of Time';
@@ -82,6 +94,16 @@ export class SloaneLvlOneComponent {
     this.count = this.timeSelected;
     this.stopMusic();
     this.timerGoing = false;
+    this.generateItem();
+    let data = this.itemService.giveItem(this.item);
+    const newBundle = this.itemService.createLootBundle(2);
+    this.itemService.giveLootBundle(newBundle);
+    console.log(data);
+
+    this.itemService.giveSpecificResources(undefined, 100);
+
+    const newItem = this.itemService.createNewItem(1);
+    this.itemService.giveItem(newItem);
   }
 
   playSound() {
