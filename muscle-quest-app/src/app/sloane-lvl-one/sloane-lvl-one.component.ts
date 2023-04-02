@@ -20,6 +20,19 @@ import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 export class SloaneLvlOneComponent {
   // Background image determines the level's current element
   backgroundImageUrl: string = '';
+  title = 'The Revenge of Time';
+  showRules = true;
+  showExample = false;
+  exerciseOptions = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
+  timeOptions = [30, 60, 90, 120, 180, 300];
+  exerciseSelected = this.exerciseOptions[0].toLowerCase();
+  timeSelected = this.timeOptions[0];
+  count = this.timeSelected;
+  audioPlayed = false;
+  timer: any;
+  score = 0;
+  music = new Audio();
+  timerGoing = false;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
   // Equipment and element multipliers will apply a bonus to any loot earned
   equipmentBonus: number = 1;
@@ -89,20 +102,6 @@ export class SloaneLvlOneComponent {
     this.item = this.itemService.createNewItem(rank);
     console.log(this.item);
   }
-
-  title = 'The Revenge of Time';
-  showRules = true;
-  showExample = false;
-  exerciseOptions = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
-  timeOptions = [30, 60, 90, 120, 180, 300];
-  exerciseSelected = this.exerciseOptions[0].toLowerCase();
-  timeSelected = this.timeOptions[0];
-  count = this.timeSelected;
-  audioPlayed = false;
-  timer: any;
-  score = 0;
-  music = new Audio();
-  timerGoing = false;
 
   // Reusing code for simplicity of understanding
   toggleRules() {

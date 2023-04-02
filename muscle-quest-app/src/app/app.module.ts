@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatIconModule } from '@angular/material/icon';
     InventoryComponent,
     OrcBossComponent,
     OrcBossInfoComponent,
-    ShopComponent
+    ShopComponent,
+    SloaneRewardDisplayComponent
   ],
   imports: [
     BrowserModule,

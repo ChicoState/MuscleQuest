@@ -1,5 +1,5 @@
 :host {
-  --main-bg-color: rgb(48, 43, 43);
+  --main-bg-color: rgb(48, 43, 43, 0.84);
 }
 
 html,
@@ -8,6 +8,18 @@ body,
   font-family: "Luxurious Roman", cursive;
   color: white;
   font-size: 1.2rem;
+}
+
+label,
+.score-container,
+.counter {
+  background-color: var(--main-bg-color);
+  padding: 0.2rem;
+}
+
+.counter {
+  font-size: larger;
+  font-weight: bolder;
 }
 
 .main-container {
@@ -23,6 +35,10 @@ body,
 
 .title-container {
   background-color: var(--main-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
 }
 
 .intro-container,
@@ -32,9 +48,11 @@ body,
   flex-direction: column;
   align-items: center;
   background-color: var(--main-bg-color);
+  padding: 0.8rem;
 }
 
-.exercise-example {
+.exercise-example,
+.score-container {
   display: flex;
   flex-direction: column;
   align-items: center;

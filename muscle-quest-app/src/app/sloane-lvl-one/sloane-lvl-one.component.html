@@ -129,11 +129,18 @@
           type="audio/mpeg"
         />
       </audio>
-      <div>{{ count }}</div>
+      <div class="counter">{{ count }}</div>
       <hr />
-      <div class="score">Score: {{ score }}</div>
-      <div class="element-bonus">Element Bonus: {{ elementBonus }}</div>
-      <div class="equipment-bonus">Equipment Bonus: {{ equipmentBonus }}</div>
+      <div class="score-container">
+        <div class="score">Score: {{ score }}</div>
+        <div class="element-bonus">Element Bonus: {{ elementBonus }}</div>
+        <div class="equipment-bonus">Equipment Bonus: {{ equipmentBonus }}</div>
+      </div>
     </div>
+    <app-sloane-reward-display
+      [elementBonus]="elementBonus"
+      [score]="score"
+      [equipmentBonus]="equipmentBonus"
+    ></app-sloane-reward-display>
   </body>
 </html>
