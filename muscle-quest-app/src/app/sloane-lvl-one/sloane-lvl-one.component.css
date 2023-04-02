@@ -66,6 +66,10 @@ label,
   align-items: center;
 }
 
+.gif {
+  max-height: 35vh;
+}
+
 button,
 select,
 option {

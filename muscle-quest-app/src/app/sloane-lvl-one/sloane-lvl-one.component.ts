@@ -21,7 +21,15 @@ export class SloaneLvlOneComponent {
   title = 'The Revenge of Time';
   showRules = true;
   showExample = false;
-  exerciseOptions = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
+  exerciseOptions = [
+    'Pushups',
+    'Crunches',
+    'Bicycle-crunches',
+    'Jumprope',
+    'Burpees',
+    'Pull-ups',
+    'Lunges',
+  ];
   timeOptions = [3, 30, 60, 90, 120, 180, 300];
   exerciseSelected = this.exerciseOptions[0].toLowerCase();
   timeSelected = this.timeOptions[0];
