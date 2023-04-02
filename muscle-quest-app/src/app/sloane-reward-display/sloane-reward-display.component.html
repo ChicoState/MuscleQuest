@@ -5,10 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    {{ equipmentBonus }}
-    {{ elementBonus }}
-    {{ score }}
+    <div class="main-container">
+      <div class="content-container">
+        <h1>Nice Work!</h1>
+        <h2>You earned some loot.</h2>
+        <p></p>
+        <li>Score: {{ score }}</li>
+        <li>Equipment Bonus: x{{ equipmentBonus }}</li>
+        <li>Element Bonus: x{{ elementBonus }}</li>
+        <p></p>
+        <li class="score">Final Score: {{ finalScore }}</li>
+
+        <span>You Earned...</span>
+        <p></p>
+        <div class="earnings">
+          <li>Gold: {{ lootBundle[0] }}</li>
+          <li>Wood: {{ lootBundle[1] }}</li>
+          <li>Iron: {{ lootBundle[2] }}</li>
+        </div>
+        <p></p>
+        <div class="button-container">
+          <button type="button" class="fantasy-button" (click)="resetScore()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

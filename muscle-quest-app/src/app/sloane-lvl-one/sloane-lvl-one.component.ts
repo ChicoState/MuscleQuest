@@ -4,12 +4,10 @@ import { ItemState, UserData, Material, Element } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 
 /**
- * Features to add: variable background image corresponding to an element:
- *     - Give user extra reward for exercises if they have the opposite element in the MAJORITY of their gear
- *     - Add an explanation for how this works somewhere
+ * Features to add: :
+ *     - Add an explanation for how bonus points work somewhere
  * Add different music options based on workout chosen
  * Add random time trial mode: announce a new exercise after an interval for a certain time
- * Give user extra rewards for any dex points in their equipped gear
  * */
 
 @Component({
@@ -23,14 +21,24 @@ export class SloaneLvlOneComponent {
   title = 'The Revenge of Time';
   showRules = true;
   showExample = false;
-  exerciseOptions = ['Pushups', 'Crunches', 'Jumprope', 'Burpees'];
-  timeOptions = [30, 60, 90, 120, 180, 300];
+  exerciseOptions = [
+    'Pushups',
+    'Crunches',
+    'Bicycle-crunches',
+    'Jumprope',
+    'Burpees',
+    'Pull-ups',
+    'Lunges',
+  ];
+  toughOptions = ['pull-ups', 'burpees'];
+  timeOptions = [3, 30, 60, 90, 120, 180, 300];
   exerciseSelected = this.exerciseOptions[0].toLowerCase();
   timeSelected = this.timeOptions[0];
   count = this.timeSelected;
   audioPlayed = false;
   timer: any;
-  score = 0;
+  score: number = 0;
+  rewardAvailable: boolean = false;
   music = new Audio();
   timerGoing = false;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
@@ -114,12 +122,10 @@ export class SloaneLvlOneComponent {
 
   onExerciseSelected(event: any) {
     this.exerciseSelected = event.target.value.toLowerCase();
-    console.log(this.exerciseSelected);
   }
 
   onTimeSelected(event: any) {
     this.timeSelected = event.target.value;
-    this.count = this.timeSelected;
   }
 
   @ViewChild('countDownAudio', { static: true })
@@ -128,7 +134,19 @@ export class SloaneLvlOneComponent {
   countDown() {
     if (this.timerGoing) return;
     this.timerGoing = true;
-    this.music.src = '../../assets/sloane/sounds/mambo.mp3';
+    switch (rng(4)) {
+      case 0:
+        this.music.src = '../../assets/sloane/sounds/pizza-compressed.wav';
+        break;
+      case 1:
+        this.music.src = '../../assets/sloane/sounds/wasting-compressed.wav';
+        break;
+      case 2:
+        this.music.src = '../../assets/sloane/sounds/the-mall.mp3';
+        break;
+      default:
+        this.music.src = '../../assets/sloane/sounds/mambo.mp3';
+    }
     this.music.load();
     this.music.play();
     this.timer = setInterval(
@@ -148,6 +166,11 @@ export class SloaneLvlOneComponent {
           whistle.load();
           whistle.play();
           this.score += this.timeSelected;
+          // tough options are worth extra points
+          if (this.toughOptions.indexOf(this.exerciseSelected) > -1) {
+            this.score += this.timeSelected;
+          }
+          this.rewardAvailable = true;
         }
       },
       1000,
@@ -177,6 +200,10 @@ export class SloaneLvlOneComponent {
 
   chooseBackground(choice: number) {
     this.backgroundImageUrl = this.elements[choice];
+  }
+
+  resetScore() {
+    this.score = 0;
   }
 }
 

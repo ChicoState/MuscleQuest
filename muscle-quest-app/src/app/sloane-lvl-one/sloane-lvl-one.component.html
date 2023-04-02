@@ -55,6 +55,7 @@
             For best results, favor quality over quantity: take your time doing
             exercises correctly, with a full range of motion.
           </li>
+          <li>*Special tip: Pull-ups and burpees are worth double points!</li>
         </ul>
       </div>
       <ng-template #hideRules>
@@ -80,26 +81,49 @@
       >
         <button (click)="toggleExample()">Hide Example</button>
         <img
+          class="gif"
           *ngSwitchCase="'pushups'"
           src="../../assets/sloane/gifs/pushups.gif"
           alt="pushups"
         />
         <img
+          class="gif"
           *ngSwitchCase="'crunches'"
           src="../../assets/sloane/gifs/crunches.gif"
           alt="crunches"
         />
         <img
+          class="gif"
           *ngSwitchCase="'jumprope'"
           src="../../assets/sloane/gifs/jumprope.gif"
           alt="jumprope"
         />
         <img
+          class="gif"
+          *ngSwitchCase="'bicycle-crunches'"
+          src="../../assets/sloane/gifs/bicycle-crunches.gif"
+          alt="burpees"
+        />
+        <img
+          class="gif"
+          *ngSwitchCase="'pull-ups'"
+          src="../../assets/sloane/gifs/pullup.gif"
+          alt="burpees"
+        />
+        <img
+          class="gif"
+          *ngSwitchCase="'lunges'"
+          src="../../assets/sloane/gifs/lunges.gif"
+          alt="burpees"
+        />
+        <img
+          class="gif"
           *ngSwitchCase="'burpees'"
           src="../../assets/sloane/gifs/burpees.gif"
           alt="burpees"
         />
         <img
+          class="gif"
           *ngSwitchDefault
           src="../../assets/sloane/gifs/default.gif"
           alt="Man exercising"
@@ -137,10 +161,14 @@
         <div class="equipment-bonus">Equipment Bonus: {{ equipmentBonus }}</div>
       </div>
     </div>
+
     <app-sloane-reward-display
+      *ngIf="rewardAvailable"
       [elementBonus]="elementBonus"
       [score]="score"
       [equipmentBonus]="equipmentBonus"
+      (rewardAvailable)="this.rewardAvailable = $event"
+      (closed)="resetScore()"
     ></app-sloane-reward-display>
   </body>
 </html>
