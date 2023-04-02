@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sloane-reward-display',
@@ -9,11 +9,25 @@ export class SloaneRewardDisplayComponent {
   @Input() score: number = 0;
   @Input() equipmentBonus: number = 0;
   @Input() elementBonus: number = 0;
+  @Output() rewardAvailable = new EventEmitter<boolean>();
+  @Output() updatedScore = new EventEmitter<number>();
+  finalScore: number = 0;
 
   constructor() {}
 
   ngOnInit() {
-    console.log(this.equipmentBonus);
-    console.log(this.elementBonus);
+    this.calculateFinalScore();
+  }
+
+  calculateFinalScore() {
+    let finalScore = this.score * this.equipmentBonus * this.elementBonus;
+    finalScore = parseFloat(finalScore.toFixed(2));
+
+    this.finalScore = finalScore;
+  }
+
+  resetScore() {
+    this.rewardAvailable.emit(false);
+    this.updatedScore.emit(0);
   }
 }
