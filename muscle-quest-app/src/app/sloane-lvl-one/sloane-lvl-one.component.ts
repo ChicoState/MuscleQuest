@@ -30,6 +30,7 @@ export class SloaneLvlOneComponent {
     'Pull-ups',
     'Lunges',
   ];
+  toughOptions = ['pull-ups', 'burpees'];
   timeOptions = [3, 30, 60, 90, 120, 180, 300];
   exerciseSelected = this.exerciseOptions[0].toLowerCase();
   timeSelected = this.timeOptions[0];
@@ -121,12 +122,10 @@ export class SloaneLvlOneComponent {
 
   onExerciseSelected(event: any) {
     this.exerciseSelected = event.target.value.toLowerCase();
-    console.log(this.exerciseSelected);
   }
 
   onTimeSelected(event: any) {
     this.timeSelected = event.target.value;
-    this.count = this.timeSelected;
   }
 
   @ViewChild('countDownAudio', { static: true })
@@ -135,7 +134,16 @@ export class SloaneLvlOneComponent {
   countDown() {
     if (this.timerGoing) return;
     this.timerGoing = true;
-    this.music.src = '../../assets/sloane/sounds/mambo.mp3';
+    switch (rng(3)) {
+      case 0:
+        this.music.src = '../../assets/sloane/sounds/pizza-compressed.wav';
+        break;
+      case 1:
+        this.music.src = '../../assets/sloane/sounds/wasting-compressed.wav';
+        break;
+      default:
+        this.music.src = '../../assets/sloane/sounds/mambo.mp3';
+    }
     this.music.load();
     this.music.play();
     this.timer = setInterval(
@@ -155,6 +163,10 @@ export class SloaneLvlOneComponent {
           whistle.load();
           whistle.play();
           this.score += this.timeSelected;
+          // tough options are worth extra points
+          if (this.toughOptions.indexOf(this.exerciseSelected) > -1) {
+            this.score += this.timeSelected;
+          }
           this.rewardAvailable = true;
         }
       },
