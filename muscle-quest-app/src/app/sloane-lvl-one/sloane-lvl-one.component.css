@@ -46,6 +46,7 @@ label,
   flex-direction: column;
   justify-content: center;
   height: fit-content;
+  margin-top: 1rem;
 }
 
 .intro-container,
@@ -71,6 +72,7 @@ option {
   color: black;
   width: 50%;
   height: 2rem;
+  max-width: 400px;
 }
 
 .fantasy-button {

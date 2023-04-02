@@ -29,7 +29,7 @@ export class SloaneLvlOneComponent {
   audioPlayed = false;
   timer: any;
   score: number = 0;
-  rewardAvailable: boolean = true;
+  rewardAvailable: boolean = false;
   music = new Audio();
   timerGoing = false;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
