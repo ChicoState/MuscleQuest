@@ -134,12 +134,15 @@ export class SloaneLvlOneComponent {
   countDown() {
     if (this.timerGoing) return;
     this.timerGoing = true;
-    switch (rng(3)) {
+    switch (rng(4)) {
       case 0:
         this.music.src = '../../assets/sloane/sounds/pizza-compressed.wav';
         break;
       case 1:
         this.music.src = '../../assets/sloane/sounds/wasting-compressed.wav';
+        break;
+      case 2:
+        this.music.src = '../../assets/sloane/sounds/the-mall.mp3';
         break;
       default:
         this.music.src = '../../assets/sloane/sounds/mambo.mp3';
