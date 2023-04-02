@@ -10,6 +10,14 @@ body,
   font-size: 1.2rem;
 }
 
+h1 {
+  font-family: inherit;
+}
+
+body {
+  position: relative;
+}
+
 label,
 .score-container,
 .counter {
@@ -25,7 +33,6 @@ label,
 .main-container {
   display: flex;
   flex-direction: column;
-
   background-position: center;
   background-size: cover;
   min-width: 100vw;
@@ -64,4 +71,21 @@ option {
   color: black;
   width: 50%;
   height: 2rem;
+}
+
+.fantasy-button {
+  padding: 5px 10px;
+  background: linear-gradient(to bottom right, #dfa16e, #9900ff);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #000;
+  border: 7px solid #db8b14;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px #000;
+}
+
+.fantasy-button:hover {
+  background: linear-gradient(to bottom right, #000000, #ffffff);
+  border-color: #1f0f00;
 }
