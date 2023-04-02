@@ -31,7 +31,7 @@ export class SloaneLvlOneComponent {
     'Lunges',
   ];
   toughOptions = ['pull-ups', 'burpees'];
-  timeOptions = [3, 30, 60, 90, 120, 180, 300];
+  timeOptions = [30, 60, 90, 120, 180, 300];
   exerciseSelected = this.exerciseOptions[0].toLowerCase();
   timeSelected = this.timeOptions[0];
   count = this.timeSelected;
@@ -125,7 +125,9 @@ export class SloaneLvlOneComponent {
   }
 
   onTimeSelected(event: any) {
+    console.log(event.target.value);
     this.timeSelected = event.target.value;
+    this.count = event.target.value;
   }
 
   @ViewChild('countDownAudio', { static: true })
