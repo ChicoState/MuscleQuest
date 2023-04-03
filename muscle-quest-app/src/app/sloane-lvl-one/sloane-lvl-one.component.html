@@ -11,9 +11,14 @@
     />
   </head>
   <body>
-    <div class="main-container">
+    <div
+      [ngStyle]="{ 'background-image': backgroundImageUrl }"
+      class="main-container"
+    >
       <button type="button" (click)="goBack()">Go Back</button>
-      <h1>{{ title }}</h1>
+      <div class="title-container">
+        <h1>{{ title }}</h1>
+      </div>
       <div class="intro-container">
         <p>
           Prepare to win the battle against one of life's greatest foes: time
@@ -31,6 +36,7 @@
       </div>
       <hr />
       <div class="instructions" *ngIf="showRules; else hideRules">
+        <button (click)="toggleRules()">Hide Rules</button>
         <h4>Rules and Tips:</h4>
         <ul>
           <li>
@@ -49,8 +55,12 @@
             For best results, favor quality over quantity: take your time doing
             exercises correctly, with a full range of motion.
           </li>
+          <li>
+            Check your gear: look for items with high dexterity for this level.
+            Also, try to select gear with an element matching the background.
+          </li>
+          <li>*Special tip: Pull-ups and burpees are worth double points!</li>
         </ul>
-        <button (click)="toggleRules()">Hide Rules</button>
       </div>
       <ng-template #hideRules>
         <button (click)="toggleRules()">Show Rules</button>
@@ -68,29 +78,56 @@
           {{ option }}
         </option>
       </select>
-      <div [ngSwitch]="exerciseSelected" *ngIf="showExample; else hideExample">
+      <div
+        class="exercise-example"
+        [ngSwitch]="exerciseSelected"
+        *ngIf="showExample; else hideExample"
+      >
         <button (click)="toggleExample()">Hide Example</button>
         <img
+          class="gif"
           *ngSwitchCase="'pushups'"
           src="../../assets/sloane/gifs/pushups.gif"
           alt="pushups"
         />
         <img
+          class="gif"
           *ngSwitchCase="'crunches'"
           src="../../assets/sloane/gifs/crunches.gif"
           alt="crunches"
         />
         <img
+          class="gif"
           *ngSwitchCase="'jumprope'"
           src="../../assets/sloane/gifs/jumprope.gif"
           alt="jumprope"
         />
         <img
+          class="gif"
+          *ngSwitchCase="'bicycle-crunches'"
+          src="../../assets/sloane/gifs/bicycle-crunches.gif"
+          alt="burpees"
+        />
+        <img
+          class="gif"
+          *ngSwitchCase="'pull-ups'"
+          src="../../assets/sloane/gifs/pullup.gif"
+          alt="burpees"
+        />
+        <img
+          class="gif"
+          *ngSwitchCase="'lunges'"
+          src="../../assets/sloane/gifs/lunges.gif"
+          alt="burpees"
+        />
+        <img
+          class="gif"
           *ngSwitchCase="'burpees'"
           src="../../assets/sloane/gifs/burpees.gif"
           alt="burpees"
         />
         <img
+          class="gif"
           *ngSwitchDefault
           src="../../assets/sloane/gifs/default.gif"
           alt="Man exercising"
@@ -120,9 +157,22 @@
           type="audio/mpeg"
         />
       </audio>
-      <div>{{ count }}</div>
+      <div class="counter">{{ count }}</div>
       <hr />
-      <div class="score">Score: {{ score }}</div>
+      <div class="score-container">
+        <div class="score">Score: {{ score }}</div>
+        <div class="element-bonus">Element Bonus: {{ elementBonus }}</div>
+        <div class="equipment-bonus">Equipment Bonus: {{ equipmentBonus }}</div>
+      </div>
     </div>
+
+    <app-sloane-reward-display
+      *ngIf="rewardAvailable"
+      [elementBonus]="elementBonus"
+      [score]="score"
+      [equipmentBonus]="equipmentBonus"
+      (rewardAvailable)="this.rewardAvailable = $event"
+      (closed)="resetScore()"
+    ></app-sloane-reward-display>
   </body>
 </html>

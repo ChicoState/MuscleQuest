@@ -50,7 +50,9 @@ export class SloaneItemGeneratorService {
       newItem.element = element;
     }
     // Low level items will not have any elements assigned automatically
-    else if (rank > 0 && coinToss()) {
+    else if (rank == 1 && coinToss()) {
+      newItem.element = randomElement();
+    } else if (rank > 1) {
       newItem.element = randomElement();
     }
     if (material !== undefined) {
@@ -87,7 +89,6 @@ export class SloaneItemGeneratorService {
     const gold = rng(multiplier * 100);
     const wood = rng(multiplier * 100);
     const iron = rng(multiplier * 100);
-    console.log([gold, wood, iron]);
     return [gold, wood, iron];
   }
 
@@ -133,7 +134,7 @@ export class SloaneItemGeneratorService {
 function statTotal(rank: number) {
   const totals = [2, 4, 7, 12];
   const total = totals[rank];
-  const str = Math.ceil(Math.random() * total);
+  let str = rng(4);
   const dex = total - str;
   return [str, dex];
 }
