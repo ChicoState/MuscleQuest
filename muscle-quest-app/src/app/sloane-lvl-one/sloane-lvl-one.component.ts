@@ -171,10 +171,10 @@ export class SloaneLvlOneComponent {
           whistle.src = '../../assets/sloane/sounds/whistle.wav';
           whistle.load();
           whistle.play();
-          this.score += this.timeSelected;
+          this.score += Number(this.timeSelected);
           // tough options are worth extra points
           if (this.toughOptions.indexOf(this.exerciseSelected) > -1) {
-            this.score += this.timeSelected;
+            this.score += Number(this.timeSelected);
           }
           this.rewardAvailable = true;
         }

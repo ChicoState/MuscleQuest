@@ -44,6 +44,7 @@ export class SloaneRewardDisplayComponent {
     const wood = rng(score);
     const iron = rng(score);
     let bundle = [gold, wood, iron];
+    console.log(bundle);
     this.lootBundle = bundle;
   }
 }
