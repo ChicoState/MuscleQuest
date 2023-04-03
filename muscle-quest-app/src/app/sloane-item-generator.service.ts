@@ -134,23 +134,7 @@ export class SloaneItemGeneratorService {
 function statTotal(rank: number) {
   const totals = [2, 4, 7, 12];
   const total = totals[rank];
-  let str;
-  switch (rank) {
-    case 0:
-      str = rng(3);
-      break;
-    case 1:
-      str = rng(3) + 2;
-      break;
-    case 2:
-      str = rng(4) + 4;
-      break;
-    case 3:
-      str = rng(5) + 8;
-      break;
-    default:
-      str = 0;
-  }
+  let str = rng(4);
   const dex = total - str;
   return [str, dex];
 }

@@ -31,9 +31,9 @@ export class SloaneLvlOneComponent {
     'Lunges',
   ];
   toughOptions = ['pull-ups', 'burpees'];
-  timeOptions = [30, 60, 90, 120, 180, 300];
+  timeOptions = [3, 30, 60, 90, 120, 180, 300];
   exerciseSelected = this.exerciseOptions[0].toLowerCase();
-  timeSelected = this.timeOptions[0];
+  timeSelected: number = this.timeOptions[0];
   count = this.timeSelected;
   audioPlayed = false;
   timer: any;
@@ -66,9 +66,13 @@ export class SloaneLvlOneComponent {
     console.log(this.userEquipment);
 
     // FOR TESTING ONLY: Equip some items to user from their inventory
+
+    this.itemService.giveItem(this.itemService.createNewItem(3));
+    this.itemService.giveItem(this.itemService.createNewItem(3));
+
     UserData.mutate((data) => {
-      data.equipped.feet = data.items[15];
-      data.equipped.chest = data.items[28];
+      data.equipped.feet = data.items[13];
+      data.equipped.chest = data.items[14];
       return data;
     });
 
