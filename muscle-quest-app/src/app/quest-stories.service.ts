@@ -11,6 +11,9 @@ export class QuestStoriesService {
     this.itemGen = new SloaneItemGeneratorService;
   }
 
+  // Generates a random quest with a start, an end, and rewards.
+  // Also contains a state which may be used as the developer desires
+  // Random short workout is also included.
   public random_quest(): QuestStory {
     let story_number = Math.floor(Math.random() * this.starts.length);
     let exercise_number = Math.floor(Math.random() * this.workouts.length);
