@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
 import { ShopComponent } from './shop/shop.component';
 import { DailyQuestsComponent } from './daily-quests/daily-quests.component';
+import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -33,6 +34,7 @@ import { MatDividerModule } from '@angular/material/divider';
     OrcBossInfoComponent,
     ShopComponent,
     DailyQuestsComponent
+    SloaneRewardDisplayComponent
   ],
   imports: [
     BrowserModule,
