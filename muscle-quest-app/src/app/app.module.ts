@@ -33,7 +33,7 @@ import { MatDividerModule } from '@angular/material/divider';
     OrcBossComponent,
     OrcBossInfoComponent,
     ShopComponent,
-    DailyQuestsComponent
+    DailyQuestsComponent,
     SloaneRewardDisplayComponent
   ],
   imports: [
