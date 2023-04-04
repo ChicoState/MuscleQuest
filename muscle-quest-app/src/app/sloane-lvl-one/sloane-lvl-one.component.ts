@@ -1,12 +1,12 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, inject } from '@angular/core';
 import { Location } from '@angular/common';
-import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { ItemState, UserData } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 /**
  * Features to add: :
- *     - Add an explanation for how bonus points work somewhere
- * Add different music options based on workout chosen
  * Add random time trial mode: announce a new exercise after an interval for a certain time
  * */
 
@@ -16,6 +16,9 @@ import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
   styleUrls: ['./sloane-lvl-one.component.css'],
 })
 export class SloaneLvlOneComponent {
+  firestore: Firestore = inject(Firestore);
+  items$: Observable<any[]>;
+
   // Background image determines the level's current element
   backgroundImageUrl: string = '';
   title = 'The Revenge of Time';
@@ -58,6 +61,8 @@ export class SloaneLvlOneComponent {
   ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
     this.elementChoice = rng(Object.keys(this.elements).length);
+    const aCollection = collection(this.firestore, 'items');
+    this.items$ = collectionData(aCollection);
   }
 
   ngOnInit() {

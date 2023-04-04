@@ -21,9 +21,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
 
 @NgModule({
   declarations: [
@@ -34,14 +35,14 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     OrcBossComponent,
     OrcBossInfoComponent,
     ShopComponent,
-    SloaneRewardDisplayComponent
+    SloaneRewardDisplayComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    
+
     // Material Components
     MatCardModule,
     MatProgressBarModule,

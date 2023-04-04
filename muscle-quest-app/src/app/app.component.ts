@@ -9,11 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'muscle-quest-app';
-  firestore: Firestore = inject(Firestore);
-  items$: Observable<any[]>;
 
-  constructor() {
-    const aCollection = collection(this.firestore, 'items');
-    this.items$ = collectionData(aCollection);
-  }
+  constructor() {}
 }
