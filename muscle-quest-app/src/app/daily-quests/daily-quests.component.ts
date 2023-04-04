@@ -29,14 +29,22 @@ export class DailyQuestsComponent {
     this.quests.push(this.story_service.random_quest());
     this.quests.push(this.story_service.random_quest());
     this.quests.push(this.story_service.random_quest());
-    localStorage.setItem("daily-quests", JSON.stringify(this.quests));
+
+    // Save the quests with what day they were generated.
+    let info = {quests: this.quests, date: new Date().getDate()};
+    localStorage.setItem("daily-quests", JSON.stringify(info));
   }
 
   // Either generate or load quests
   public ready_quests() {
     let json = localStorage.getItem("daily-quests");
     if (json) {
-      this.quests = JSON.parse(json);
+      let info = JSON.parse(json);
+      if (info.date != new Date().getDate()) {
+        this.generate_quests();
+      } else {
+        this.quests = info.quests;
+      }
     } else {
       this.generate_quests();
     }
