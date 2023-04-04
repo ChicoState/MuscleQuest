@@ -1,0 +1,10 @@
+.daily-quest {
+    max-width: 20rem;
+    margin: .5rem;
+}
+
+.daily-quests {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

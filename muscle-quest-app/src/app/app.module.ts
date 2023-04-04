@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
 import { ShopComponent } from './shop/shop.component';
+import { DailyQuestsComponent } from './daily-quests/daily-quests.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     InventoryComponent,
     OrcBossComponent,
     OrcBossInfoComponent,
-    ShopComponent
+    ShopComponent,
+    DailyQuestsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
