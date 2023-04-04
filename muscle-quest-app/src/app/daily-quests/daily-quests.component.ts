@@ -63,6 +63,7 @@ export class DailyQuestsComponent {
 
   public update_state(index:number, state:number) {
     this.quests[index].state = state;
-    localStorage.setItem("daily-quests", JSON.stringify(this.quests));
+    let info = {quests: this.quests, date: new Date().getDate()};
+    localStorage.setItem("daily-quests", JSON.stringify(info));
   }
 }
