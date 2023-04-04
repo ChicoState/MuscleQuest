@@ -6,10 +6,22 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { OrcBossComponent } from './orc-boss/orc-boss.component';
 import { ShopComponent } from './shop/shop.component';
 import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
+import {
+  AngularFireAuthGuard,
+  redirectUnauthorizedTo,
+} from '@angular/fire/compat/auth-guard';
+
+const redirectUnauthorizedToLogin: any = () =>
+  redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   { path: '', redirectTo: '/start', pathMatch: 'full' },
-  { path: 'start', component: StartScreenComponent },
+  {
+    path: 'start',
+    component: StartScreenComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
   { path: 'sloane-lvl-one', component: SloaneLvlOneComponent },
   { path: 'inventory', component: InventoryComponent },
   { path: 'orc-boss', component: OrcBossComponent },
