@@ -6,6 +6,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { OrcBossComponent } from './orc-boss/orc-boss.component';
 import { ShopComponent } from './shop/shop.component';
 import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
+import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'orc-boss', component: OrcBossComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'login', component: UserAuthenticationComponent },
+  { path: 'demo', component: FirebaseDemoComponent },
 ];
 
 @NgModule({

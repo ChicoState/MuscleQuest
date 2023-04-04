@@ -1,9 +1,5 @@
-<section>
-  <h1>User Profiles</h1>
-  <ul>
-    <!-- The async pipe handles unsubscribing from -->
-    <li *ngFor="let user of users$ | async">
-      {{ user.username }}
-    </li>
-  </ul>
-</section>
+<ul>
+  <li *ngFor="let item of items | async">
+    {{ item.name }}
+  </li>
+</ul>

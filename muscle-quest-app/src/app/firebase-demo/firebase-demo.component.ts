@@ -1,13 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import {
-  Firestore,
-  collection,
-  collectionData,
-  addDoc,
-  CollectionReference,
-  DocumentReference,
-} from '@angular/fire/firestore';
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import { ItemState } from 'src/lib/user';
+import { onAuthStateChanged, getAuth } from '@angular/fire/auth';
+
+export interface Item {
+  name: string;
+}
 
 @Component({
   selector: 'app-firebase-demo',
@@ -15,34 +20,30 @@ import { Observable } from 'rxjs';
   styleUrls: ['./firebase-demo.component.scss'],
 })
 export class FirebaseDemoComponent {
-  private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
-  users$: Observable<UserProfile[]>;
-  usersCollection: CollectionReference;
-
-  constructor() {
-    // get a reference to the user-profile collection
-    const userProfileCollection = collection(this.firestore, 'users');
-
-    // This line is from chatGPT, not the AngularFire docs
-    // assign the collection reference to the usersCollection property
-    this.usersCollection = userProfileCollection;
-
-    // get documents (data) from the collection using collectionData
-    this.users$ = collectionData(userProfileCollection) as Observable<
-      UserProfile[]
-    >;
+  private itemsCollection: AngularFirestoreCollection<Item>;
+  items: Observable<Item[]>;
+  authState = getAuth();
+  constructor(private afs: AngularFirestore) {
+    this.itemsCollection = afs.collection<Item>('items');
+    this.items = this.itemsCollection.valueChanges();
   }
 
-  addUserProfile(username: string) {
-    if (!username) return;
-
-    addDoc(this.usersCollection, <UserProfile>{ username }).then(
-      (documentReference: DocumentReference) => {
-        // the documentReference provides access to the newly created document
+  ngOnInit(): void {
+    onAuthStateChanged(this.authState, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        console.log(user.uid);
+        console.log(user.displayName);
+        // ...
+      } else {
+        // User is signed out
+        // ...
       }
-    );
+    });
   }
-}
-export interface UserProfile {
-  username: string;
+
+  addItem(item: Item) {
+    this.itemsCollection.add(item);
+  }
 }
