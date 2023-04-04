@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
 import { ShopComponent } from './shop/shop.component';
+import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -20,11 +22,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
+
+// Firebase
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
+import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,8 @@ import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
     OrcBossInfoComponent,
     ShopComponent,
     SloaneRewardDisplayComponent,
+    FirebaseDemoComponent,
+    UserAuthenticationComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,10 +58,12 @@ import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
+
+    //Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
