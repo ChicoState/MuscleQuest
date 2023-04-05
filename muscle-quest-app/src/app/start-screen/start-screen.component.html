@@ -1,16 +1,29 @@
-<p>start-screen works!</p>
-<ul>
-    <li>
-        <a routerLink="/sloane-lvl-one">The Revenge of Time</a>
-    </li>
-    <li>
-        <a routerLink="/orc-boss">Orc Boss</a>
-    </li>
-    <li>
-        <a routerLink="/inventory">Inventory</a>
-    </li>
-    <li>
-        <a routerLink="/shop">Item Shop</a>
-    </li>
-</ul>
+<!DOCTYPE html>
+<div class="GymBackground"> 
+    <div class="fancyText">
+        <img src="assets/StartScreen/Text-Muscle.png" alt="muscletext" class="text-muscle">
+        <img src="assets/StartScreen/Text-Quest.png" alt="questtext" class="text-quest">
+    </div>
+    <img src="assets/StartScreen/MuscleGuy.png" alt="GymGuy" class="guy">
+    <div class="grow">
+        <button class="Levels" [routerLink]="['/levels']"  id="Levels"></button>
+    </div>
+    <div class="grow">
+        <button class="Character" [routerLink]="['/character-screen']" id="Character"></button>
+    </div>
+    <div class="grow">
+        <button class="Shop" [routerLink]="['/shop']" id="Shop"></button>
+    </div>
+    <div class="grow">
+        <button class="Settings" [routerLink]="['/inventory']" id="Settings"></button>
+    </div>
+    
+</div>
+
+
+
+
+
+
+
 
