@@ -85,7 +85,9 @@ export class SloaneItemGeneratorService {
 
   // Returns an array containing a randomly generated assortment of gold, wood and iron
   createLootBundle(rank: number): Array<any> {
-    const multiplier = rank * (rank + 1);
+    let multiplier = 1;
+    if (rank > 0) multiplier = rank * (rank + 1);
+
     const gold = rng(multiplier * 100);
     const wood = rng(multiplier * 100);
     const iron = rng(multiplier * 100);
