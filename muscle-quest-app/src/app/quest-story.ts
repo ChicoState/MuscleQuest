@@ -7,4 +7,5 @@ export interface QuestStory {
     exercise: string;
     reward: ItemState;
     resources: Array<number>;
+    rank: number;
 }

@@ -3,7 +3,7 @@
         <!-- three states to each quest: 0 unclaimed, 1 in progress, 2 complete, 3 reward claimed -->
         <mat-card class="daily-quest" *ngFor="let quest of quests; index as i; first as isFirst">
             <mat-card-header>
-                <mat-card-title>Quest #{{i+1}}</mat-card-title>
+                <mat-card-title>Rank {{quest.rank + 1}} Quest #{{i+1}}</mat-card-title>
             </mat-card-header>
             <mat-card-content *ngIf="quest.state==0 || quest.state==1">
                 <p>{{quest.start}}</p>

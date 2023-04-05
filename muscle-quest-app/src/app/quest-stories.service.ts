@@ -14,7 +14,7 @@ export class QuestStoriesService {
   // Generates a random quest with a start, an end, and rewards.
   // Also contains a state which may be used as the developer desires
   // Random short workout is also included.
-  public random_quest(): QuestStory {
+  public random_quest(rank: number): QuestStory {
     let story_number = Math.floor(Math.random() * this.starts.length);
     let exercise_number = Math.floor(Math.random() * this.workouts.length);
     let story: QuestStory = {
@@ -22,8 +22,9 @@ export class QuestStoriesService {
       end: this.ends[story_number],
       exercise: this.workouts[exercise_number],
       state: 0,
-      reward: this.itemGen.createNewItem(1),
-      resources: this.itemGen.createLootBundle(1)};
+      rank:rank,
+      reward: this.itemGen.createNewItem(rank),
+      resources: this.itemGen.createLootBundle(rank)};
     return story;
   }
 
