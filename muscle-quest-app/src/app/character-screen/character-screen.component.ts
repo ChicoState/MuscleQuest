@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { item_registry } from 'lib/registry'
-import { UserData } from 'lib/user';
-import { getItemName, getItemIcon } from 'lib/registry'
-import { ItemState } from 'lib/user';
-import { EquipmentSlot } from 'lib/registry';
+import { item_registry } from 'src/lib/registry'
+import { UserData } from 'src/lib/user';
+import { getItemName, getItemIcon } from 'src/lib/registry'
+import { ItemState } from 'src/lib/user';
+import { EquipmentSlot } from 'src/lib/registry';
 
 
 

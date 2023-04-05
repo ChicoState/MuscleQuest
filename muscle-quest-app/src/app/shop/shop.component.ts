@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { item_registry } from 'lib/registry'
-import { ItemState, UserData } from 'lib/user'
-import { getItemName, getItemIcon } from 'lib/registry'
-import { Debug } from 'lib/global_data'
+import { item_registry } from 'src/lib/registry'
+import { ItemState, UserData } from 'src/lib/user'
+import { getItemName, getItemIcon } from 'src/lib/registry'
+import { Debug } from 'src/lib/global_data'
 
 @Component({
   selector: 'app-shop',

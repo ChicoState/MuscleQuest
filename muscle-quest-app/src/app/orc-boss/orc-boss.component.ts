@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { OrcBossInfoComponent } from 'app/orc-boss-info/orc-boss-info.component';
+import { OrcBossInfoComponent } from 'src/app/orc-boss-info/orc-boss-info.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

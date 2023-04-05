@@ -2,7 +2,7 @@
     Global registries which are not user-dependent.
     These may be downloaded from a server in the future.
 */
-import { ItemState } from "lib/user"
+import { ItemState } from "src/lib/user"
 
 /*
     Registry type definition, basically just a map of string ids to an arbitrary type
