@@ -1,6 +1,6 @@
 <html>
     <body>
-      <div class="inventoryContainer">
+      <div class="Container">
         <div class="equipped" id="equipped">
           <div class="equipSlot" id="head">
             <img class="equipSlotImage" *ngIf="equipped.head" [src]="getIconImage(equipped.head)" />
@@ -18,7 +18,7 @@
             <img class="equipSlotImage" *ngIf="equipped.weapon" [src]="getIconImage(equipped.weapon)" />
           </div>
         </div>
-        <div class="character"></div>
+        <div class="characterContainer"></div>
 
         <div class="resourceContainer">
           <div class="resource">
@@ -37,7 +37,7 @@
             <div class="resourceText text">{{getUserData().iron}}</div>
           </div>
         </div>
-        <div class="inventory" id="inventory">
+        <div class="inventoryContainer" id="inventory">
           <div *ngFor="let item of getUserData().items; let i = index" (click)="equipItem(item)" class="slot" [attr.id]="i">
             <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
           </div>
