@@ -19,11 +19,11 @@ export type Registry<Type> = {
     For example, a helmet may use the HEAD equipment type.
 */
 export enum EquipmentSlot {
-    HEAD,
-    CHEST,
-    HANDS,
-    FEET,
-    WEAPON,
+    HEAD = 'head',
+    CHEST = 'chest',
+    HANDS = 'hands',
+    FEET = 'feet',
+    WEAPON = 'weapon',
 }
 
 /* 
