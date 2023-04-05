@@ -26,6 +26,7 @@ import { BackDayComponent } from './isa-level/back-day/back-day.component';
 import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
 import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
 import { CharacterScreenComponent } from './character-screen/character-screen.component';
+import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CharacterScreenComponent } from './character-screen/character-screen.co
     ChestDayComponent,
     LegDayComponent,
     ShopComponent,
-    CharacterScreenComponent
+    CharacterScreenComponent,
+    SloaneRewardDisplayComponent
   ],
   imports: [
     BrowserModule,
