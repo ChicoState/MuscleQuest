@@ -1,0 +1,55 @@
+
+<style>
+    h1 {text-align: center;}
+    h2 {text-align: center;}
+</style>
+    <h1>ISA'S CHALLANGE</h1>
+    <h2>Ready for your challange?!</h2>
+    <img src="https://www.theloadout.com/wp-content/sites/theloadout/2022/02/elden-ring-boss-order.jpg" alt="Level Boss"
+    width="800"
+    height="600"
+    />
+    <div style="text-align:center">
+        <label for="file">BOSS HEALTH:</label>
+        <progress id="file" value="100" max="100"> 32% </progress>
+    </div>
+<nav>
+    <a class="button"
+        routerLink="/chest-day"
+        routerLinkActive="activebutton"
+        ariaCurrentWhenActive="page">
+        Chest Day
+    </a> |
+    <a class="button"
+        routerLink="/leg-day"
+        routerLinkActive="activebutton"
+        ariaCurrentWhenActive="page">
+        Leg day
+    </a> |
+    <a class="button"
+        routerLink="/back-day"
+        routerLinkActive="activebutton"
+        ariaCurrentWhenActive="page">
+        Back day
+    </a>
+</nav>
+
+<h2>Leg Day Workout!</h2>
+
+<h4>Points:</h4>
+<p>Beginning of Workout</p>
+<div>
+    <input type="checkbox" id="workout1" name="workout1" [(ngModel)]="checkboxes">
+    <label for="workout1">Sumo Dead Lifts</label><br>
+    <input type="checkbox" id="workout2" name="workout2" value="5">
+    <label for="workout2">Conventional Dead Lifts</label><br>
+    <input type="checkbox" id="workout3" name="workout3" value="5">
+    <label for="workout3">Conventional Squats/Smith Machine Squats</label><br>
+</div>    
+<p>End of Workout</p>
+<div>
+    <input type="checkbox" id="workout4" name="workout4" value="5">
+    <label for="workout4">Globin Squats</label><br>
+    <input type="checkbox" id="workout5" name="workout5" value="5">
+    <label for="workout5">Angled Leg Press</label><br>
+</div>

@@ -1,0 +1,83 @@
+.inventoryContainer {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex start;
+  position: fixed;
+  background-color: #8f6b3d;
+  border: 5px solid #554023;
+  border-radius: 2%;
+  width: 80%;
+  height: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  font-family: "KnuckleDown", sans-serif;
+}
+
+.resourceText {
+  font-size: 1em;
+}
+
+.equipped {
+  flex: 1;
+  display: grid;
+  padding: 0.5em;
+  grid-gap: 0.5em;
+  grid-auto-flow: row;
+  grid-auto-columns: 8.5em;
+  grid-auto-rows: 8.5em;
+  border: 2px solid red;
+}
+
+.equipSlot {
+  background-color: #8f6b3d;
+  border: 5px solid #554023;
+  border-radius: 2%;
+}
+.equipSlot img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.resourceContainer {
+  flex-grow: 4;
+  border: 2px solid red;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 10em;
+  grid-gap: 1em;
+}
+
+.resource {
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
+  background-color: #42403d;
+  border: 0.2em solid #5b3d01;
+  position: relative;
+  position: relative;
+}
+.resource::before {
+  content: "";
+  width: 4em;
+  height: 2em;
+  background-color: #42403d;
+  border: 0.2em solid #5b3d01;
+  position: absolute;
+  top: 9%;
+  left: 90%;
+}
+.resource::after {
+  content: "";
+  width: 4em;
+  height: 2em;
+  background-color: #42403d;
+  position: absolute;
+  top: 15%;
+  left: 80%;
+}/*# sourceMappingURL=character-screen.component.css.map */
