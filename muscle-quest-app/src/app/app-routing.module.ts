@@ -10,11 +10,8 @@ import { BackDayComponent } from './isa-level/back-day/back-day.component';
 import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
 import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
 import { ShopComponent } from './shop/shop.component';
-<<<<<<< HEAD
 import { DailyQuestsComponent } from './daily-quests/daily-quests.component';
-=======
 import { CharacterScreenComponent } from './character-screen/character-screen.component';
->>>>>>> main
 
 const routes: Routes = [
   { path: '', redirectTo: '/start', pathMatch: 'full' },
@@ -28,11 +25,8 @@ const routes: Routes = [
   { path: 'chest-day', component: ChestDayComponent},
   { path: 'leg-day', component: LegDayComponent},
   { path: 'shop', component: ShopComponent },
-<<<<<<< HEAD
   { path: 'daily-quests', component: DailyQuestsComponent},
-=======
   {path: 'character-screen', component: CharacterScreenComponent}
->>>>>>> main
 ];
 
 @NgModule({
