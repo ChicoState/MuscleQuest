@@ -9,7 +9,6 @@ body {
 }
 
 .Container {
-    justify-content:space-evenly;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -23,10 +22,10 @@ body {
 
     display: grid;
     grid-template-areas:
-        'e e e c c c c c'
-        'e e e c c c c c'
-        'e e e c c c c c'
-        'r r r r r r r r'
+        'e . . c c c c .'
+        'e . . c c c c .'
+        'e . . c c c c .'
+        '. r r r r r r .'
         'i i i i i i i i'
         'i i i i i i i i'
         'i i i i i i i i'
@@ -36,52 +35,113 @@ body {
     grid-gap: .5em;
 }
 
-.space { 
-    grid-area: s;
-}
-
 .text {
     font-family: 'KnuckleDown', sans-serif;
 }
 
-.resourceText {}
 
 .equipped {
-    max-width: 6em;
-    height: 100%;
+    display:grid;
+    grid-template-areas: 
+    'helmet'
+    'chestplate'
+    'gloves'
+    'boots'
+    'weapon';
+    grid-template-columns: 4em;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-area: e;
+    justify-content: center;
     border: 2px solid green;
 }
 
 .equipSlot {
     width: 100%;
-    max-width: 6em;
+    height: 100%;
+    max-height: 3.5em;
+    border: 2px solid red;
     & img {
         width: 100%;
         height: 100%;
     }
 }
 
+.helmet {
+    grid-area: helmet;
+}
+
+.chestplate {
+    grid-area: chestplate;
+}
+
+.gloves{
+    grid-area: gloves;
+}
+
+.boots {
+    grid-area: boots;
+}
+
+.weapon{
+    grid-area: weapon;
+}
 
 .resourceContainer {
+    display: grid;
+    grid-template-areas: 
+        'gold iron wood';
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-area: r;
     border: 2px solid blue;
+    overflow: auto;
+    padding: .5em;
 }
 
 .resource {
+    display: grid;
+    grid-template-areas: 
+      'icon text';
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: 1fr;
     width: 100%;
-    max-width: 4em;
-    height: auto;
-    & img {
-        width: 100%;
-        height: 100%;
+    height: 100%;
+    border: 5px solid #482a03;
+    background-color: #8f6b3d;
+    
+    & .resourceText {
+        font-size: 2em;
+        display: flex;
+        grid-area: text;
+        margin: auto;
     }
+    & img {
+        display: flex;
+        grid-area: icon;
+        max-height: 3em;
+        max-width: 3em;
+        margin: auto;
+    }
+
+}
+
+.gold{
+    grid-area: gold;
+}
+
+.iron {
+    grid-area: iron;
+}
+
+.wood {
+    grid-area: wood;
 }
 
 
 .characterContainer {
     height: 100%;
-    width: 100%;
+    min-width: 10em;
+    max-width: 14em;
     grid-area: c;
     border: 2px solid lightgreen;
 }
@@ -89,15 +149,19 @@ body {
 .inventoryContainer {
     grid-area: i;
     border: 2px solid black;
+    width:100%;
+    display:grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .slot {
-    width: 100%;
-    max-width: 3em;
-    height: auto;
+    border: 2px solid red;
     & img{
-        width:100%;
-        height:100%;
+        display: flex;
+        max-height: 3em;
+        max-width: 3em;
+        margin: auto;
     }
 }
 

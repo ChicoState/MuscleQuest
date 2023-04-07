@@ -16,7 +16,22 @@ import { EquipmentSlot } from 'src/lib/registry';
 export class CharacterScreenComponent{
   getIconImage = getItemIcon;
   getUserData = UserData.get; 
+  mode = "normal";
   equipped = UserData.get().equipped;
+  changeMode(){
+    if(this.mode == "normal"){
+      this.mode = "delete";
+    }else if(this.mode == "delete"){
+      this.mode = "normal";
+    }
+    
+  }
+  deleteItem(item:ItemState){
+    UserData.mutate(data => {
+      data.items = data.items.filter((x) => x != item);
+      return data;
+    })
+  }
   equipItem(item:ItemState){
     let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
     console.log(slot);
