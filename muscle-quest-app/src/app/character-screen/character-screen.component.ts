@@ -18,6 +18,15 @@ export class CharacterScreenComponent{
   getUserData = UserData.get; 
   mode = "normal";
   equipped = UserData.get().equipped;
+  unEquip(item:ItemState){
+    let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
+    let blank:ItemState;
+    UserData.mutate(data => {
+      data.items.push(item);
+      data.equipped[slot] = blank;
+      return data;
+    })
+  }
   changeMode(){
     if(this.mode == "normal"){
       this.mode = "delete";
