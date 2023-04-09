@@ -1,0 +1,19 @@
+
+.daily-quest {
+    max-width: 20rem;
+    margin: .5rem;
+    background-color: tan;
+    height: fit-content;
+}
+
+.daily-quests {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.body {
+    
+    background-color: #481b06;
+    height: 100vh
+}
