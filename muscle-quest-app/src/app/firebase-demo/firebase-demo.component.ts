@@ -50,7 +50,7 @@ export class FirebaseDemoComponent {
               dexterity: 0,
               material: Material.IRON,
               element: Element.LIGHTNING,
-              display_name: 'Iron Sword of Lightning',
+              display_name: 'Experimental Sword of Getting Deleted Soon',
               display_icon: '/assets/item/iron_sword.png',
             },
             {
