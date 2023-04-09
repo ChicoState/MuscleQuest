@@ -12,6 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
 import { ShopComponent } from './shop/shop.component';
+import { DailyQuestsComponent } from './daily-quests/daily-quests.component';
+import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
+import { IsaLevelComponent } from './isa-level/isa-level.component';
+import { BackDayComponent } from './isa-level/back-day/back-day.component';
+import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
+import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
+import { CharacterScreenComponent } from './character-screen/character-screen.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -21,12 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { IsaLevelComponent } from './isa-level/isa-level.component';
-import { BackDayComponent } from './isa-level/back-day/back-day.component';
-import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
-import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
-import { CharacterScreenComponent } from './character-screen/character-screen.component';
-import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-rew
     ChestDayComponent,
     LegDayComponent,
     ShopComponent,
+    DailyQuestsComponent,
     CharacterScreenComponent,
     SloaneRewardDisplayComponent
   ],
@@ -59,6 +62,7 @@ import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-rew
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
