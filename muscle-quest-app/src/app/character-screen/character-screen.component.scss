@@ -25,7 +25,7 @@ body {
 
     display: grid;
     grid-template-areas:
-        'e c c c . . . .'
+        'e c c c . . . b'
         'e c c c . . . .'
         'e c c c . . . trash'
         'r r r r r r r r'
@@ -42,7 +42,28 @@ body {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.back{
+    grid-area: b;
+    max-width: 3em;
+    min-width: 1em;
+    max-height: 3em;
+    min-height: 1em;
+    text-align: center;
+    background-color: rgb(255,255,255,0.1);
+    border-radius: 10%;
+    box-shadow: 
+    inset 0px 0px 10px 2px rgb(166, 165, 165);
+}
 
+.center {
+    & .backText{
+        font-size: 1.5em;
+        display: flex;
+        margin: auto;
+    }
+    
+}
+  
 .compare{
     grid-area: com;
     border: 2px solid rgb(168, 20, 76);
@@ -174,7 +195,10 @@ body {
 }
 
 .trash{
-    border: 2px solid rgb(255, 255, 255, 0.2);
+    background-color: rgb(255,255,255,0.1);
+    border-radius: 10%;
+    box-shadow: 
+    inset 0px 0px 10px 2px rgb(166, 165, 165);
     grid-area: trash;
     max-height: 3em;
     max-width: 3em;
@@ -184,8 +208,11 @@ body {
         height:100%;
     }
 }
+.trash:hover{
+   background-color: rgb(255, 0, 0, 0.2);
+}
 .delete{
-    background-color: rgb(255, 255, 255, 0.2);
+    background-color: rgb(255, 0, 0, 0.2);
 }
 
 

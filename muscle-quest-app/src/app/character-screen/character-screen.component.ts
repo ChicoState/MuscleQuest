@@ -4,6 +4,7 @@ import { UserData } from 'src/lib/user';
 import { getItemName, getItemIcon } from 'src/lib/registry'
 import { ItemState } from 'src/lib/user';
 import { EquipmentSlot } from 'src/lib/registry';
+import { Location } from '@angular/common';
 
 
 
@@ -14,10 +15,14 @@ import { EquipmentSlot } from 'src/lib/registry';
   styleUrls: ['./character-screen.component.scss']
 })
 export class CharacterScreenComponent{
+  constructor(private location: Location) {}
   getIconImage = getItemIcon;
   getUserData = UserData.get; 
   mode = "normal";
   equipped = UserData.get().equipped;
+  goBack(): void {
+    this.location.back();
+  }
   unEquip(item:ItemState){
     let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
     let blank:ItemState;

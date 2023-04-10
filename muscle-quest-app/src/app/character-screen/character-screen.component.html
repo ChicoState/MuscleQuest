@@ -1,6 +1,9 @@
 <html>
     <body> 
-      <div class="Container">   
+      <div class="Container" (click)="goBack()">   
+        <div class="back">
+          <div class="backText text" >Back</div>
+        </div>
         <div class="trash {{mode}}" (click)="changeMode()">
           <img src="assets/CharacterScreen/trashcan.png" alt="" />
         </div>

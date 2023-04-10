@@ -25,6 +25,14 @@
   background-size: 100% 100%;
   position: absolute;
 }
+.container .DailyQuests {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: 40%;
+  left: 10%;
+  background-color: blue;
+}
 .container .SloaneLevel:hover {
   width: 500px;
   height: 250px;

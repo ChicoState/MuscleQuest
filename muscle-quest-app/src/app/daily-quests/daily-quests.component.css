@@ -1,0 +1,26 @@
+.back {
+  width: 3em;
+  height: 1.5em;
+  top: 90%;
+  position: absolute;
+  background-color: tan;
+}
+
+.daily-quest {
+  max-width: 20rem;
+  margin: 0.5rem;
+  background-color: tan;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.daily-quests {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.body {
+  background-color: #481b06;
+  height: 100vh;
+}/*# sourceMappingURL=daily-quests.component.css.map */
