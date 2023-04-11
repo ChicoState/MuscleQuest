@@ -69,7 +69,7 @@ export type DataObject = {
     The default user data object that will be saved if no data exists in the user's
     local storage.
 */
-const DEFAULT_USER_DATA: DataObject = {
+export const DEFAULT_USER_DATA: DataObject = {
   items: [
     {
       id: 'sword',
