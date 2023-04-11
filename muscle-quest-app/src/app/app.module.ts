@@ -39,6 +39,8 @@ import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
 import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
+import { SloaneUserUpdateService } from './sloane-user-updater.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +81,10 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    SloaneUserUpdateService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
