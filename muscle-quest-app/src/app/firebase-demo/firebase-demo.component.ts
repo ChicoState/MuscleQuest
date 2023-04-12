@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import { SloaneUserUpdateService } from '../sloane-user-updater.service';
-import { DataObject } from 'src/lib/user';
+import { DataObject, ItemState } from 'src/lib/user';
 
 @Component({
   selector: 'app-firebase-demo',
@@ -28,6 +28,11 @@ export class FirebaseDemoComponent {
 
   giveRandomLootBundle() {
     const newBundle = this.itemGeneratorService.createLootBundle(1);
+    console.log(this.userData.items);
     this.userService.giveLootBundle(newBundle);
+  }
+
+  removeFirstItem() {
+    this.userService.removeItem(this.itemGeneratorService.createNewItem(0));
   }
 }

@@ -75,4 +75,27 @@ export class SloaneUserUpdateService implements OnInit {
     }
     return userRef.set(this.userData, { merge: true });
   }
+
+  // Identifies user's item by several properties.
+  // If user has multiple identical items, they'll both be removed (not ideal).
+  removeItem(item: ItemState) {
+    if (this.userData) {
+      let itemToRemove: ItemState;
+      itemToRemove = this.userData.items[0];
+      let userItems = this.userData.items;
+      let filteredUserItems = userItems.filter(
+        (item) =>
+          item.display_name !== itemToRemove.display_name ||
+          item.dexterity !== itemToRemove.dexterity ||
+          item.element !== itemToRemove.element ||
+          item.strength !== itemToRemove.strength
+      );
+      this.userData.items = filteredUserItems;
+      const userRef = this.afs.collection('users').doc(this.userData?.userId);
+      return userRef.set(this.userData, { merge: true });
+    } else {
+      console.log('User data was not successfully retrieved.');
+    }
+    return;
+  }
 }
