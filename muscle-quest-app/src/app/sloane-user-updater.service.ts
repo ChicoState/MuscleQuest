@@ -8,8 +8,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { onAuthStateChanged, getAuth } from '@angular/fire/auth';
 import { Observable, throwError, of } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
-import { DataObject, Material, Element } from 'src/lib/user';
-import { DEFAULT_USER_DATA } from 'src/lib/user';
+import { DataObject, Material, Element, DEFAULT_USER_DATA } from 'src/lib/user';
 import { ItemState } from 'src/lib/user';
 
 @Injectable({
@@ -20,10 +19,14 @@ export class SloaneUserUpdateService implements OnInit {
   authState = getAuth();
   userDoc!: AngularFirestoreDocument<DataObject>; // add ! to indicate that it will be initialized in ngOnInit
   uid = '';
-  userData: DataObject = DEFAULT_USER_DATA;
+  userData: DataObject | null = DEFAULT_USER_DATA;
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     this.userCollection = afs.collection<DataObject>('users');
+    this.getCurrentUser().subscribe((user) => {
+      this.userData = user;
+      console.log(user?.items);
+    });
   }
 
   ngOnInit(): void {
@@ -43,11 +46,14 @@ export class SloaneUserUpdateService implements OnInit {
     return this.userCollection.doc(id).set(dataObject);
   }
 
-  getCurrentUser() {
+  getCurrentUser(): Observable<DataObject | null> {
     return this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
-          return this.afs.collection('users').doc(user.uid).valueChanges();
+          return this.afs
+            .collection('users')
+            .doc(user.uid)
+            .valueChanges() as Observable<DataObject>;
         } else {
           return of(null);
         }
