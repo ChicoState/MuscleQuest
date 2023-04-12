@@ -9,7 +9,6 @@ import { onAuthStateChanged, getAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
 import { DataObject, Material, Element, DEFAULT_USER_DATA } from 'src/lib/user';
-import { SloaneItemGeneratorService } from './sloane-item-generator.service';
 import { ItemState } from 'src/lib/user';
 
 @Injectable({
@@ -22,11 +21,7 @@ export class SloaneUserUpdateService implements OnInit {
   uid = '';
   userData: DataObject | null = DEFAULT_USER_DATA;
 
-  constructor(
-    private afs: AngularFirestore,
-    private afAuth: AngularFireAuth,
-    private itemService: SloaneItemGeneratorService
-  ) {
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     this.userCollection = afs.collection<DataObject>('users');
     this.getCurrentUser().subscribe((user) => {
       this.userData = user;
@@ -65,11 +60,19 @@ export class SloaneUserUpdateService implements OnInit {
     );
   }
 
-  giveItem() {
-    console.log(this.userData?.items);
+  giveItem(newItem: ItemState) {
     const userRef = this.afs.collection('users').doc(this.userData?.userId);
-    const newItem = this.itemService.createNewItem(1);
     this.userData?.items.push(newItem);
+    return userRef.set(this.userData, { merge: true });
+  }
+
+  giveLootBundle(bundle: number[]) {
+    const userRef = this.afs.collection('users').doc(this.userData?.userId);
+    if (this.userData) {
+      this.userData.gold += bundle[0];
+      this.userData.wood += bundle[1];
+      this.userData.iron += bundle[2];
+    }
     return userRef.set(this.userData, { merge: true });
   }
 }
