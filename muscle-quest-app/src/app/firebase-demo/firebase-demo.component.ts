@@ -22,10 +22,6 @@ export class FirebaseDemoComponent {
   ngOnInit(): void {}
 
   giveRandomItem() {
-    let newItem = this.itemGeneratorService.createNewItem(3);
-    let newData = this.userData;
-    newData.items.push(newItem);
-    console.log(this.userData.userId);
-    this.userService.giveItem(this.userData.userId, newData);
+    this.userService.giveItem();
   }
 }

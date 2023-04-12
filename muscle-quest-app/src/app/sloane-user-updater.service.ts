@@ -6,9 +6,10 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { onAuthStateChanged, getAuth } from '@angular/fire/auth';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
 import { DataObject, Material, Element, DEFAULT_USER_DATA } from 'src/lib/user';
+import { SloaneItemGeneratorService } from './sloane-item-generator.service';
 import { ItemState } from 'src/lib/user';
 
 @Injectable({
@@ -21,11 +22,14 @@ export class SloaneUserUpdateService implements OnInit {
   uid = '';
   userData: DataObject | null = DEFAULT_USER_DATA;
 
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
+  constructor(
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private itemService: SloaneItemGeneratorService
+  ) {
     this.userCollection = afs.collection<DataObject>('users');
     this.getCurrentUser().subscribe((user) => {
       this.userData = user;
-      console.log(user?.items);
     });
   }
 
@@ -61,9 +65,11 @@ export class SloaneUserUpdateService implements OnInit {
     );
   }
 
-  giveItem(uid: string, userData: any) {
-    console.log(uid);
-    const userRef = this.afs.collection('users').doc(uid);
-    return userRef.set(userData, { merge: true });
+  giveItem() {
+    console.log(this.userData?.items);
+    const userRef = this.afs.collection('users').doc(this.userData?.userId);
+    const newItem = this.itemService.createNewItem(1);
+    this.userData?.items.push(newItem);
+    return userRef.set(this.userData, { merge: true });
   }
 }
