@@ -30,6 +30,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 
+// SVG icons
+import { HttpClientModule } from '@angular/common/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { AngularSvgIconPreloaderModule } from 'angular-svg-icon-preloader';
+import { DecoratedButtonComponent } from './decorated-button/decorated-button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +52,8 @@ import { MatDividerModule } from '@angular/material/divider';
     ShopComponent,
     DailyQuestsComponent,
     CharacterScreenComponent,
-    SloaneRewardDisplayComponent
+    SloaneRewardDisplayComponent,
+    DecoratedButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +70,13 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDialogModule,
     MatIconModule,
     MatDividerModule,
+
+    // SVG icons
+    HttpClientModule,
+    AngularSvgIconModule.forRoot(),
+    AngularSvgIconPreloaderModule.forRoot({
+			configUrl: './assets/icon/icons.json',
+		}),
   ],
   providers: [],
   bootstrap: [AppComponent],

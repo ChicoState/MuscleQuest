@@ -1,29 +1,15 @@
-<!DOCTYPE html>
-<div class="GymBackground"> 
-    <div class="fancyText">
-        <img src="assets/StartScreen/Text-Muscle.png" alt="muscletext" class="text-muscle">
-        <img src="assets/StartScreen/Text-Quest.png" alt="questtext" class="text-quest">
+<div class="background">
+    <div class="content">
+        <div class="title">
+            <span class="title__muscle">Muscle</span>
+            <span class="title__quest">Quest</span>
+        </div>
+        <img src="assets/StartScreen/MuscleGuy.png" class="character">
+        <div class="buttons">
+            <app-decorated-button [href]="'/levels'" title="Levels"></app-decorated-button>
+            <app-decorated-button [href]="'/character-screen'" title="Inventory"></app-decorated-button>
+            <app-decorated-button [href]="'/shop'" title="Shop"></app-decorated-button>
+            <app-decorated-button [href]="'/settings'" title="Settings"></app-decorated-button>
+        </div>
     </div>
-    <img src="assets/StartScreen/MuscleGuy.png" alt="GymGuy" class="guy">
-    <div class="grow">
-        <button class="Levels" [routerLink]="['/levels']"  id="Levels"></button>
-    </div>
-    <div class="grow">
-        <button class="Character" [routerLink]="['/character-screen']" id="Character"></button>
-    </div>
-    <div class="grow">
-        <button class="Shop" [routerLink]="['/shop']" id="Shop"></button>
-    </div>
-    <div class="grow">
-        <button class="Settings" [routerLink]="['/inventory']" id="Settings"></button>
-    </div>
-    
 </div>
-
-
-
-
-
-
-
-
