@@ -81,4 +81,8 @@ export class UserAuthenticationComponent implements OnInit {
     const id = dataObject.userId;
     return this.userCollection.doc(id).set(dataObject);
   }
+
+  getUid() {
+    return this.uid;
+  }
 }
