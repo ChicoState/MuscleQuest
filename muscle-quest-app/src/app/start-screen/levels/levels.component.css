@@ -27,6 +27,9 @@
 }
 .container .DailyQuests {
   position: absolute;
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 30px;
   width: 200px;
   height: 100px;
   top: 40%;

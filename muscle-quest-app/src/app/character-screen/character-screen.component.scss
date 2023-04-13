@@ -9,7 +9,7 @@ body {
 }
 
 .Container {
-    position: fixed;
+    position: relative;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -19,22 +19,24 @@ body {
 
     padding: 1em;
     border-radius: 2%;
-    background-color: rgb(55, 55, 55);
-    box-shadow: 
-    inset 0px 0px 10px 5px rgb(166, 165, 165);
+    background-image: url(/assets/CharacterScreen/leatherTexture.jpg);
+    border: 10px rgb(57, 44, 25);
+    border-style:double;
+    // box-shadow: 
+    // inset 0px 0px 10px 5px rgb(166, 165, 165);
 
     display: grid;
     grid-template-areas:
-        'e c c c . . . b'
-        'e c c c . . . .'
-        'e c c c . . . trash'
-        'r r r r r r r r'
+        'e e e . s s s .'
+        'e e e . s s s .'
+        'e e e . s s s .'
+        'r r r r r r r .'
         'i i i i i i i i'
         'i i i i i i i i'
         'i i i i i i i i'
         'i i i i i i i i';
     grid-template-rows: repeat(8, minmax(0, 1fr));
-    grid-auto-columns: repeat(8, minmax(100px, 1fr));
+    grid-template-columns: repeat(8, 1fr);
     grid-gap: .5em;
 }
 
@@ -43,51 +45,102 @@ body {
 }
 
 .back{
-    grid-area: b;
-    max-width: 3em;
-    min-width: 1em;
-    max-height: 3em;
-    min-height: 1em;
-    text-align: center;
-    background-color: rgb(255,255,255,0.1);
-    border-radius: 10%;
-    box-shadow: 
-    inset 0px 0px 10px 2px rgb(166, 165, 165);
+    aspect-ratio: 1/1;
+    position: absolute;
+    left: -1.7em;
+    top: -1.7em;
+    height:40px;
+    max-width:40px;
+    min-width:30px;
+    color:rgb(255, 255, 255);
+    border-radius: 50%;
+    background-image: url(/assets/CharacterScreen/leatherTexture.jpg);
+    border: 6px rgb(57, 44, 25);
+    border-style:double;
 }
 
-.center {
-    & .backText{
-        font-size: 1.5em;
-        display: flex;
-        margin: auto;
+.backText{
+    font-family:'Courier New', Courier, monospace;
+    width:100%;
+    height:100%;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    text-align: center;
+    font-size: 20px;
+    grid-area:n;
+}
+.equip {
+    width: 3em;
+    height: 1.5em;
+    background-color: blue;
+    font-size: 20px;
+    grid-area:equip;
+}
+
+.compare {
+    width: 4em;
+    height: 1.5em;
+    background-color: yellow;
+    font-size: 20px;
+    grid-area:compare;
+}
+
+.stats {
+    grid-area: stat;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    & li {
+        font-size: 18px;
+        line-height: 1.2em;
     }
-    
 }
   
-.compare{
-    grid-area: com;
-    border: 2px solid rgb(168, 20, 76);
+.statsContainer {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display:grid;
+    grid-template-areas: 
+    'n n n'
+    'stat stat stat'
+    'stat stat stat'
+    '. equip compare'
+    ;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: .5fr 1fr 1fr;
+    aspect-ratio: 2/1;
+    width:100%;
+    max-width: 20em;
+    height:100%;
+    max-height: 10em;
+    border: 2px solid rgb(166, 165, 165);
+    box-shadow: 
+        inset 0px 0px 10px 5px rgb(166, 165, 165);
+    grid-area:s;
 }
 
 .equipped {
     display:grid;
     grid-template-areas: 
-    'helmet'
-    'chestplate'
-    'gloves'
-    'boots'
-    'weapon';
-    grid-template-columns: minmax(35px, 1fr);
-    grid-template-rows: repeat(5, minmax(35px, 1fr));
-    padding: .2em;
+    '. helmet . '
+    'gloves chestplate weapon'
+    ' . boots . ';
+    grid-template-columns: repeat(3, minmax(1em, 1fr));
+    grid-template-rows: repeat(3, minmax(1em, 1fr));
     grid-area: e;
-    justify-items: center;
-    background-color: #323232;
-    border: 2px solid rgb(166, 165, 165);
-    box-shadow: 
-        inset 0px 0px 10px 5px rgb(166, 165, 165);
+    justify-items:center;
+    border: 5px gold;
+    border-style:double;
     border-radius: 2%;
 }
+
+
+
+
 
 .equipSlot {
     display:flex;
@@ -96,22 +149,14 @@ body {
     min-width: 50%;
     max-height: 100%;
     max-width: 100%;
-    background: 
-        linear-gradient(to right, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 0,
-        linear-gradient(to right, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 100%,
-        linear-gradient(to left, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 0,
-        linear-gradient(to left, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 100%,
-        linear-gradient(to bottom, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 0,
-        linear-gradient(to bottom, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 0,
-        linear-gradient(to top, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 100%,
-        linear-gradient(to top, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 100%;
-
-    background-repeat: no-repeat;
-    background-size: 10px 10px;
+    margin: .3em;
+    background-color: rgb(255,255,255,0.1);
+    border-radius: 2%;
+    border: 3px solid gold;
     & img {
         display: flex;
-        max-height: 3em;
-        max-width: 3em;
+        height: 100%;
+        width: 100%;
         margin: auto;
     }
 }
@@ -153,6 +198,7 @@ body {
 }
 
 .resource {
+    position: relative;
     display: grid;
     grid-template-areas: 
       'icon text';
@@ -160,19 +206,20 @@ body {
     grid-template-rows: 1fr;
     width: 100%;
     height: 100%;
-    background-color: #323232;
     border: 2px solid rgb(166, 165, 165);
-    box-shadow: 
-        inset 0px 0px 10px 5px rgb(166, 165, 165);
     border-radius: 2%;
+    color: white;
     
     & .resourceText {
+        z-index: 3;
         font-size: 1.5em;
         display: flex;
         grid-area: text;
         margin: auto;
+        margin-left: 0;
     }
     & img {
+        z-index: 3;
         display: flex;
         grid-area: icon;
         max-height: 3em;
@@ -180,6 +227,36 @@ body {
         margin: auto;
     }
 
+}
+
+.resource::after{
+    content: "";
+    z-index: 2;
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    top:0;
+    left:11%;
+    right:0;
+    background-color: rgb(45, 26, 9);
+    border: 5px solid gold;
+    width:4em;
+    height:4em;
+}
+.resource::before{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left:0;
+    right:0;
+    background-color: rgb(45, 26, 9);
+    border: 5px solid gold;
+    max-width: 6em;
+    min-width: 4em;
+    height:3em;
+    margin:auto;
+    margin-top: .5em;
+    margin-bottom:.5em;
 }
 
 .gold{
@@ -195,24 +272,49 @@ body {
 }
 
 .trash{
-    background-color: rgb(255,255,255,0.1);
-    border-radius: 10%;
-    box-shadow: 
-    inset 0px 0px 10px 2px rgb(166, 165, 165);
-    grid-area: trash;
-    max-height: 3em;
-    max-width: 3em;
-    justify-items: center;
+    position:absolute;
+    top:45.5%;
+    left:90%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2%;
+    grid-area: t;
+    aspect-ratio: 1/1;
+    height:40px;
+    max-width:40px;
+    min-width:30px;
+    border-top: 5px double gold;
+    border-left: 5px double gold;
+    border-right: 5px double gold;
+    background-color: rgb(255, 255, 255, 0.1);
+    transition: background-color 0.5s ease-in-out; 
     & img {
-        width: 100%;
-        height:100%;
+        margin:auto;
+        width: 80%;
+        height: 80%;
     }
 }
-.trash:hover{
-   background-color: rgb(255, 0, 0, 0.2);
+.trash::after {
+    z-index: 1;
+    content: ''; /* Required for pseudo-element */
+    position: absolute; /* Position the pseudo-element */
+    top: 90%; /* Position at the bottom of the parent div */
+    left: 0;
+    right: 0;
+    width:100%;
+    height: 10px; /* Set the height of the border */
+    background-image: url(/assets/CharacterScreen/leatherTexture.jpg); 
+}
+.normal:hover {
+    background-color: rgb(255, 255, 255, 0.2);
 }
 .delete{
-    background-color: rgb(255, 0, 0, 0.2);
+    background-color: rgb(255, 0, 0, 0.1); 
+}
+.delete:hover {
+    background-color: rgb(255, 0, 0, 0.2); 
 }
 
 
@@ -236,11 +338,9 @@ body {
 
 
 .inventoryContainer {
+    position:relative;
     grid-area: i;
-    background-color: #323232;
-    border: 2px solid rgb(166, 165, 165);
-    box-shadow: 
-    inset 0px 0px 10px 5px rgb(166, 165, 165);
+    border: 5px double gold;
     border-radius: 2%;
     width:100%;
     display:grid;
@@ -303,4 +403,24 @@ body {
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #292929; 
+  }
+
+  @media screen and (max-width: 630px){
+    .Container {
+        grid-template-areas:
+            '. e e e .'
+            '. e e e .'
+            '. e e e .'
+            'r r r r r'
+            'i i i i i'
+            'i i i i i'
+            'i i i i i'
+            'i i i i i';
+        grid-template-rows: repeat(8, minmax(0, 1fr));
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: .5em;
+    }
+    .statsContainer {
+        display:none;
+    }
   }

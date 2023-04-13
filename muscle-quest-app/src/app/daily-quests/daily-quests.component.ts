@@ -19,10 +19,6 @@ export class DailyQuestsComponent {
     this.quests = [];
     this.ready_quests();
   }
-
-  goBack(): void {
-    this.location.back();
-  }
   story_service:QuestStoriesService;
   itemGen:SloaneItemGeneratorService;
 

@@ -1,8 +1,5 @@
 <div class="body">
     <div class="daily-quests">
-        <div class="back" (click)="goBack()">
-            Back
-        </div>
         <!-- three states to each quest: 0 unclaimed, 1 in progress, 2 complete, 3 reward claimed -->
         <mat-card class="daily-quest" *ngFor="let quest of quests; index as i; first as isFirst">
             <mat-card-header>

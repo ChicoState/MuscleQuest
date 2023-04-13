@@ -1,11 +1,22 @@
 <html>
     <body> 
-      <div class="Container" (click)="goBack()">   
-        <div class="back">
-          <div class="backText text" >Back</div>
-        </div>
+      <div class="Container" >   
         <div class="trash {{mode}}" (click)="changeMode()">
           <img src="assets/CharacterScreen/trashcan.png" alt="" />
+        </div>
+        <div class="back" [routerLink]="['/start']">
+          <div class="backText text" >X</div>
+        </div>
+        <div class="statsContainer">
+          <div class="name">{{itemName}}</div>
+          <ul class="stats">
+            <li>Strength: {{itemStrength}}</li>
+            <li>Dexterity: {{itemDexterity}}</li>
+            <li>Element: {{itemElement}}</li>
+            <li>Material: {{itemMaterial}}</li>
+          </ul>
+          <div class="equip" (click)="equipItem()">Equip</div>
+          <div class="compare">Compare</div>
         </div>
         <div class="equipped" id="equipped">
           <div class="equipSlot helmet" *ngIf="equipped.head" (click)="unEquip(equipped.head)">
@@ -24,10 +35,6 @@
             <img class="equipSlotImage" *ngIf="equipped.weapon" [src]="getIconImage(equipped.weapon)" />
           </div>
         </div>
-        <div class="characterContainer">
-          <img src="assets/CharacterScreen/character.png" class="character">
-        </div>
-
         <div class="resourceContainer">
           <div class="resource gold">
             <img src="assets/CharacterScreen/GoldIcon.png">
@@ -43,10 +50,15 @@
           </div>
         </div>
         <div class="inventoryContainer" id="inventory">
-          <div *ngFor="let item of getUserData().items; let i = index" (click)="mode == 'normal' ? equipItem(item) : deleteItem(item)" class="slot" [attr.id]="i">
+          <div *ngFor="let item of getUserData().items; let i = index" (click)="showStats(item)" class="slot" [attr.id]="i">
             <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
           </div>
         </div>
+        <!-- <div class="inventoryContainer" id="inventory">
+          <div *ngFor="let item of getUserData().items; let i = index" (click)="mode == 'normal' ? equipItem(item) : deleteItem(item)" class="slot" [attr.id]="i">
+            <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
+          </div>
+        </div> -->
       </div>  
     </body>
 </html>
