@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { QuestStory } from './quest-story';
 import { SloaneItemGeneratorService } from './sloane-item-generator.service';
+import { ExercisesService } from './exercises.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestStoriesService {
   itemGen: SloaneItemGeneratorService;
+  exercise: ExercisesService;
   constructor() { 
     this.itemGen = new SloaneItemGeneratorService;
+    this.exercise = new ExercisesService;
   }
 
   // Generates a random quest with a start, an end, and rewards.
@@ -16,11 +19,10 @@ export class QuestStoriesService {
   // Random short workout is also included.
   public random_quest(rank: number): QuestStory {
     let story_number = Math.floor(Math.random() * this.starts.length);
-    let exercise_number = Math.floor(Math.random() * this.workouts.length);
     let story: QuestStory = {
       start: this.starts[story_number],
       end: this.ends[story_number],
-      exercise: this.workouts[exercise_number],
+      exercise: this.exercise.generate_exercise_array(rank, 3),
       state: 0,
       rank:rank,
       reward: this.itemGen.createNewItem(rank),
@@ -158,10 +160,5 @@ export class QuestStoriesService {
     "You retrieved the stolen Staff of the Elements and defeated the evil spellcaster who sought to conquer the land. As a reward, the artifact's guardian gives you a pouch filled with treasure.",
 
     "You broke the curse on the ancient tomb and defeated the evil spellcaster, putting an end to the chaos. As a reward, the tomb's guardian gives you a pouch filled with treasure.",
-  ]
-
-  private workouts = [
-    "10 push-ups, 10 squats, 10 sit-ups",  "20 jumping jacks, 10 lunges (each leg), 10 tricep dips",  "5 burpees, 10 mountain climbers, 15-second plank",  "10 jumping squats, 10 push-ups, 10 bicycle crunches",  "20-second sprint, 10 jumping lunges (each leg), 10 leg raises",  "10 squat jumps, 10 diamond push-ups, 10 Russian twists",  "10 box jumps, 10 push-ups, 10 V-ups",  "30 jumping jacks, 10 jump squats, 10 supermans",  "10 plank jacks, 10 jumping lunges (each leg), 10 leg curls",  "20 high knees, 10 squat thrusts, 10 mountain climbers",
-    "10 jumping jacks, 10 push-ups, 10 crunches",  "10 burpees, 10 lunges (each leg), 10 reverse crunches",  "15 squat jumps, 10 push-ups, 10 leg raises",  "20-second sprint, 10 jumping jacks, 10 Russian twists",  "10 box jumps, 10 tricep dips, 10 V-ups",  "10 squat thrusts, 10 mountain climbers, 10 bicycle crunches",  "10 plank jacks, 10 jumping lunges (each leg), 10 supermans",  "10 jump squats, 10 diamond push-ups, 10 leg curls",  "20 high knees, 10 push-ups, 10 sit-ups",  "5 burpees, 10 squat jumps, 10 tricep dips"
   ]
 }
