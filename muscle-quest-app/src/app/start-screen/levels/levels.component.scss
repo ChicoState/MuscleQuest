@@ -1,82 +1,62 @@
-.container {
-    background: url(../../../assets/StartScreen/Door.jpeg) no-repeat;
-    background-size:100vw 100vh;
-    position:relative;
+.background {
+    background: url(/assets/StartScreen/Door.jpeg) no-repeat;
+    background-size: contain;
+    background-position: center center;
+    background-color: #2f343a;
+    width: 100%;
     height: 100vh;
-    width: 100vw;
-    & img {
-        height: 850px;
-        width: 100%;
-    }
-    & .backButton {
-        top: 2%;
-        left: 2%;
-        position:absolute;
-        float:left;
-    }
-    & .SloaneLevel {
-        top: 20%;
-        left: 30%;
-        width: 500px;
-        height: 250px;
-        background: url(../../../assets/StartScreen/SloaneLevel-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
+    position: fixed;
+    display: flex;
+    padding: 3rem 1rem 1rem 1rem;
+    overflow: auto;
+    overflow: overlay;
+}
 
-    & .DailyQuests {
-        position:absolute;
-        color: white;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        font-size: 30px;
-        width: 200px;
-        height: 100px;
-        top: 40%;
-        left: 10%;
-        background-color: blue;
-    }
-    & .SloaneLevel:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../../assets/StartScreen/SloaneLevel-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
-    }
-    & .OrcBoss {
-        top: 40%;
-        left: 30%;
-        width: 500px;
-        height: 250px;
-        background: url(../../../assets/StartScreen/OrcBoss-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
+.content {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 
-    & .OrcBoss:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../../assets/StartScreen/OrcBoss-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
+    @media screen and (min-width: 980px) {
+        display: grid;
+        grid-template: 
+            'title title'
+            'back-button level-select'
+            'daily-quests level-select';
+        gap: 2rem;
     }
-    & .IsaLevel {
-        top: 60%;
-        left: 30%;
-        width: 500px;
-        height: 250px;
-        background: url(../../../assets/StartScreen/IsaLevel-Logo.png) no-repeat;
-        border: 0px;
-        background-size: 100% 100%;
-        position: absolute;
-    }
+}
 
-    & .IsaLevel:hover {
-        width: 500px;
-        height: 250px;
-        background: url(../../../assets/StartScreen/isaLevel-Logo-Clicked.png) no-repeat;
-        background-size: 100% 100%;
-        position: absolute;
-    }
+.levels-title {
+    grid-area: title;
+    color: white;
+    text-align: center;
+    text-shadow: 0px 0px 20px #000000ce;
+    font-size: min(10vw, 3.5rem);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    grid-area: back-button;
+    --_color-1: rgb(255, 73, 45);
+    --_color-2: rgb(255, 160, 28);
+}
+
+.daily-quests {
+    grid-area: daily-quests;
+    --_color-1: rgb(45, 178, 255);
+    --_color-2: rgb(176, 28, 255);
+}
+
+.level-select {
+    grid-area: level-select;
+    width: 35rem;
+    max-width: calc(100% - 2rem);
+    --_color-1: rgb(255, 188, 45);
+    --_color-2: rgb(28, 111, 255);
 }
