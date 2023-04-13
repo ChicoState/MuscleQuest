@@ -13,15 +13,24 @@
                 <p>{{quest.end}}</p>
                 <mat-divider></mat-divider>
             </mat-card-content>
-            <mat-card-content *ngIf="quest.state==1">
+            <mat-card-content *ngIf="quest.state==1 || quest.state==0">
                 <h3>In order to defeat this monster you must complete:</h3>
-                <h3>{{quest.exercise}}</h3>
+                <div *ngIf="quest.state==0" >
+                    <h3 *ngFor="let exercise of quest.exercise.exercises; index as i; first as isFirst">{{quest.exercise.counts[i]}} {{exercise}}</h3>
+                </div>
+                <div *ngIf="quest.state==1" >
+                    <h3 *ngFor="let exercise_ of quest.exercise.exercises; index as j; first as isFirst">
+                        <button *ngIf="quest.exercise.current_count[j] < quest.exercise.counts[j]" color="primary" mat-mini-fab (click)="exercise(i, j, 1)" ><mat-icon>plus_one</mat-icon></button> 
+                        {{quest.exercise.current_count[j]}}/{{quest.exercise.counts[j]}} {{exercise_}}
+                        <button *ngIf="quest.exercise.current_count[j] < quest.exercise.counts[j]" color="primary" mat-mini-fab (click)="exercise(i, j, -1)" ><mat-icon>done_all</mat-icon></button>
+                    </h3>
+                </div>
                 <mat-divider></mat-divider>
             </mat-card-content>
             <mat-card-content *ngIf="quest.state==2">
                 <h3>You Earn:</h3>
                 <h3>{{quest.resources[0]}} gold, {{quest.resources[1]}} wood, and {{quest.resources[2]}} iron</h3>
-                <h3>{{quest.reward.display_name}}</h3>
+                <h3 *ngIf="quest_completeness(i) > 0.9">{{quest.reward.display_name}}</h3>
                 <mat-divider></mat-divider>
             </mat-card-content>
             <mat-card-actions>
