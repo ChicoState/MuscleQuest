@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;500;700;800;900&display=swap');
 
 html,
 body,
 * {
   box-sizing: border-box;
+  font-family: 'Inknut Antiqua', serif;
 }
 
 html,
@@ -12,7 +14,8 @@ body {
   padding: 0;
 }
 
-@font-face {
-  font-family: 'KnuckleDown';
-  src: url('./assets/Fonts/knuckle down.otf') format('truetype');
+:root {
+  --button-text: rgb(228, 226, 239);
+  --button-hover-text: rgb(233, 232, 241);
+  --button-active-text: rgb(240, 239, 247);
 }

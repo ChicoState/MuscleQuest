@@ -1,47 +1,64 @@
 <html>
-    <body>
-      <div class="inventoryContainer">
+    <body> 
+      <div class="Container" >   
+        <div class="trash {{mode}}" (click)="changeMode()">
+          <img src="assets/CharacterScreen/trashcan.png" alt="" />
+        </div>
+        <div class="back" [routerLink]="['/start']">
+          <div class="backText text" >X</div>
+        </div>
+        <div class="statsContainer">
+          <div class="name">{{itemName}}</div>
+          <ul class="stats">
+            <li>Strength: {{itemStrength}}</li>
+            <li>Dexterity: {{itemDexterity}}</li>
+            <li>Element: {{itemElement}}</li>
+            <li>Material: {{itemMaterial}}</li>
+          </ul>
+          <div class="equip" (click)="equipItem()">Equip</div>
+          <div class="compare">Compare</div>
+        </div>
         <div class="equipped" id="equipped">
-          <div class="equipSlot" id="head">
+          <div class="equipSlot helmet" *ngIf="equipped.head" (click)="unEquip(equipped.head)">
             <img class="equipSlotImage" *ngIf="equipped.head" [src]="getIconImage(equipped.head)" />
           </div>
-          <div class="equipSlot" id="chest">
+          <div class="equipSlot chestplate" *ngIf="equipped.chest" (click)="unEquip(equipped.chest)">
             <img class="equipSlotImage" *ngIf="equipped.chest" [src]="getIconImage(equipped.chest)" />
           </div>
-          <div class="equipSlot" id="hands">
+          <div class="equipSlot gloves" *ngIf="equipped.hands" (click)="unEquip(equipped.hands)">
             <img class="equipSlotImage" *ngIf="equipped.hands" [src]="getIconImage(equipped.hands)" />
           </div>
-          <div class="equipSlot" id="feet">
+          <div class="equipSlot boots" *ngIf="equipped.feet" (click)="unEquip(equipped.feet)">
             <img class="equipSlotImage" *ngIf="equipped.feet" [src]="getIconImage(equipped.feet)" />
           </div>
-          <div class="equipSlot" id="weapon">
+          <div class="equipSlot weapon" *ngIf="equipped.weapon" (click)="unEquip(equipped.weapon)">
             <img class="equipSlotImage" *ngIf="equipped.weapon" [src]="getIconImage(equipped.weapon)" />
           </div>
         </div>
-        <div class="character"></div>
-
         <div class="resourceContainer">
-          <div class="resource">
-            <img class="bg" src="assets/CharacterScreen/ResourceBar.png"/>
-            <img class="icon" src="assets/CharacterScreen/GoldIcon.png"/>
+          <div class="resource gold">
+            <img src="assets/CharacterScreen/GoldIcon.png">
             <div class="resourceText text">{{getUserData().gold}}</div>
           </div>
-          <div class="resource">
-            <img class="bg" src="assets/CharacterScreen/ResourceBar.png"/>
-            <img class="icon" src="assets/CharacterScreen/WoodIcon.png"/>
+          <div class="resource wood">
+            <img src="assets/CharacterScreen/WoodIcon.png">
             <div class="resourceText text">{{getUserData().wood}}</div>
           </div>
-          <div class="resource">
-            <img class="bg" src="assets/CharacterScreen/ResourceBar.png"/>
-            <img class="icon" src="assets/CharacterScreen/IronIcon.png"/>
+          <div class="resource iron">
+            <img src="assets/CharacterScreen/IronIcon.png">
             <div class="resourceText text">{{getUserData().iron}}</div>
           </div>
         </div>
-        <div class="inventory" id="inventory">
-          <div *ngFor="let item of getUserData().items; let i = index" (click)="equipItem(item)" class="slot" [attr.id]="i">
+        <div class="inventoryContainer" id="inventory">
+          <div *ngFor="let item of getUserData().items; let i = index" (click)="showStats(item)" class="slot" [attr.id]="i">
             <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
           </div>
         </div>
+        <!-- <div class="inventoryContainer" id="inventory">
+          <div *ngFor="let item of getUserData().items; let i = index" (click)="mode == 'normal' ? equipItem(item) : deleteItem(item)" class="slot" [attr.id]="i">
+            <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
+          </div>
+        </div> -->
       </div>  
     </body>
 </html>

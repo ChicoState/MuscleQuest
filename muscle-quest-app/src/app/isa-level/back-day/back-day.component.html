@@ -3,69 +3,73 @@
     h1 {text-align: center;}
     h2 {text-align: center;}
 </style>
-<h1>ISA'S CHALLENGE</h1>
-<h2>Ready for your challenge?!</h2>
-    <img src="https://www.theloadout.com/wp-content/sites/theloadout/2022/02/elden-ring-boss-order.jpg" alt="Level Boss"
+
+<ul>
+    <li><a href="/chest-day">Chest</a></li>
+    <li><a href="/leg-day">Leg</a></li>
+    <li><a href="/back-day">Back</a></li>
+</ul>
+
+<h1>ISA'S CHALLANGE</h1>
+<h2>Ready for your challange?!</h2>
+    <img src="https://www.denofgeek.com/wp-content/uploads/2020/04/fighting_game_bosses_jinpachi_mishima.jpg" alt="Level Boss"
     width="800"
     height="600"
     />
 <div style="text-align:center">
     <label for="file">BOSS HEALTH:</label>
-    <progress id="file" value="100" max="100"> 32% </progress>
+    <progress id="file" [value] = getHealth() max="100"> </progress>
 </div>
-<nav>
-    <a class="button"
-        routerLink="/chest-day"
-        routerLinkActive="activebutton"
-        ariaCurrentWhenActive="page">
-        Chest Day
-    </a> |
-    <a class="button"
-        routerLink="/leg-day"
-        routerLinkActive="activebutton"
-        ariaCurrentWhenActive="page">
-        Leg day
-    </a> |
-    <a class="button"
-        routerLink="/back-day"
-        routerLinkActive="activebutton"
-        ariaCurrentWhenActive="page">
-        Back day
-    </a>
-</nav>
+
 <h2>Back Day Workout!</h2>
 <p>Warm-Up</p>
+<p>EX. (5x(10-15)) = 5 sets of 10-15 reps</p>
 <div>
-    <input type="checkbox" id="workout6" name="workout6" value="5">
-    <label for="workout6">Hammer Strength Rows</label><br>
-    <input type="checkbox" id="workout7" name="workout7" value="5">
-    <label for="workout7">Hammer Strength Lat Pull Downs</label><br>
+    <input type="checkbox" id="workout6" name="workout6" value="5" [(ngModel)] = letCheckbox1>
+    <label for="workout6">Hammer Strength Rows (3x(10-15))</label><br>
+    <iframe width="240" height="200"
+    src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+    </iframe><br>
+    <input type="checkbox" id="workout7" name="workout7" value="5" [(ngModel)] = letCheckbox2>
+    <label for="workout7">Hammer Strength Lat Pull Downs (3x(10-15))</label><br>
+
 </div> 
 <p>Beginning of Workout</p>
 <div>
-    <input type="checkbox" id="workout8" name="workout8" value="5">
-    <label for="workout8">Standing Cable lat Pull downs</label><br>
-    <input type="checkbox" id="workout9" name="workout9" value="5">
-    <label for="workout9">Wide Lat Pull Downs</label><br>
-    <input type="checkbox" id="workout10" name="workout10" value="5">
-    <label for="workout10">Single Arm Cable Rows</label><br>
-    <input type="checkbox" id="workout11" name="workout11" value="5">
-    <label for="workout11">Face Pulls</label><br>
-    <input type="checkbox" id="workout12" name="workout12" value="5">
-    <label for="workout12">Preacher curls/Bicep Curls/Hammer Head Curls</label><br>
+    <input type="checkbox" id="workout8" name="workout8" value="5" [(ngModel)] = letCheckbox3>
+    <label for="workout8">Standing Cable lat Pull downs (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout9" name="workout9" value="5" [(ngModel)] = letCheckbox4>
+    <label for="workout9">Wide Lat Pull Downs (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout10" name="workout10" value="5" [(ngModel)] = letCheckbox5>
+    <label for="workout10">Single Arm Cable Rows (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout11" name="workout11" value="5" [(ngModel)] = letCheckbox6>
+    <label for="workout11">Face Pulls (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout12" name="workout12" value="5" [(ngModel)] = letCheckbox7>
+    <label for="workout12">Preacher curls/Bicept Curls/Hammer Head Curls (5x(10-15))</label><br>
+
 </div>    
 <p>End of Workout</p>
 <div>
-    <input type="checkbox" id="workout13" name="workout13" value="5">
-    <label for="workout13">Smith Machine Shrugs</label><br>
-    <input type="checkbox" id="workout14" name="workout14" value="5">
-    <label for="workout14">T-Bar Rows</label><br>
-    <input type="checkbox" id="workout15" name="workout15" value="5">
-    <label for="workout15">Hyperextended rows</label><br>
-    <input type="checkbox" id="workout16" name="workout16" value="5">
-    <label for="workout16">Rack Pulls</label><br>
-    <input type="checkbox" id="workout17" name="workout17" value="5">
-    <label for="workout17">Preacher curls/Bicep Curls/Hammer Head Curls</label><br>
-    <input type="checkbox" id="workout18" name="workout18" value="5">
-    <label for="workout18">Dumbbell Side Lats</label><br>
+    <input type="checkbox" id="workout13" name="workout13" value="5" [(ngModel)] = letCheckbox8>
+    <label for="workout13">Smith Machine Shruggs (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout14" name="workout14" value="5" [(ngModel)] = letCheckbox9>
+    <label for="workout14">T-Bar Rows (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout15" name="workout15" value="5" [(ngModel)] = letCheckbox10>
+    <label for="workout15">Hyperextended rows (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout16" name="workout16" value="5" [(ngModel)] = letCheckbox11>
+    <label for="workout16">Rack Pulls (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout17" name="workout17" value="5" [(ngModel)] = letCheckbox12>
+    <label for="workout17">Preacher curls/Bicept Curls/Hammer Head Curls (5x(10-15))</label><br>
+
+    <input type="checkbox" id="workout18" name="workout18" value="5" [(ngModel)] = letCheckbox13>
+    <label for="workout18">Dumbell Side Lats (5x(10-15))</label><br>
+
 </div>

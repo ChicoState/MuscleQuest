@@ -3,6 +3,7 @@ import { QuestStoriesService } from '../quest-stories.service';
 import { QuestStory } from '../quest-story';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { Location } from '@angular/common';
 // import { QuestStory } from '../quest-story';
 
 @Component({
@@ -12,13 +13,12 @@ import { ItemState, UserData, Material, Element } from 'src/lib/user';
 })
 export class DailyQuestsComponent {
 
-  constructor(){
+  constructor(private location: Location){
     this.story_service = new QuestStoriesService;
     this.itemGen = new SloaneItemGeneratorService;
     this.quests = [];
     this.ready_quests();
   }
-
   story_service:QuestStoriesService;
   itemGen:SloaneItemGeneratorService;
 
