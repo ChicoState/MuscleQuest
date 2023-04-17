@@ -30,7 +30,18 @@ export class CharacterScreenComponent{
   itemElement:any;
   itemMaterial:any;
 
+  closeModal(){
+    let statspage = document.getElementById('statsContainer') as HTMLElement;
+    statspage.style.display = 'none';
+    console.log("hi");
+  }
+
+  
   showStats(item:ItemState){
+    let statspage = document.getElementById('statsContainer') as HTMLElement;
+    statspage.style.display = 'grid';
+
+    
     this.currItem = item;
     this.itemName = "";
     this.itemStrength = 0;
@@ -66,7 +77,6 @@ export class CharacterScreenComponent{
       default:
         this.itemMaterial = "";
     }
-
   }
   goBack(): void {
     this.location.back();
@@ -122,4 +132,5 @@ export class CharacterScreenComponent{
     return getItemIcon(item);
   }
 }
+
 
