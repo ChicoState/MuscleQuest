@@ -1,23 +1,37 @@
 <html>
     <body> 
       <div class="Container" >   
-        <div class="trash {{mode}}" (click)="changeMode()">
-          <img src="assets/CharacterScreen/trashcan.png" alt="" />
-        </div>
         <div class="back" [routerLink]="['/start']">
           <div class="backText text" >X</div>
         </div>
         <div class="statsContainer" id="statsContainer">
-          <div class="exit" (cick)="closeModal()"></div>
-          <div class="name">{{itemName}}</div>
+          <button class="exit" (click)="closeStats()">
+            <div class="backText text">X</div>
+          </button>
+          <div class="name">{{currItem.name}}</div>
           <ul class="stats">
-            <li>Strength: {{itemStrength}}</li>
-            <li>Dexterity: {{itemDexterity}}</li>
-            <li>Element: {{itemElement}}</li>
-            <li>Material: {{itemMaterial}}</li>
+            <li>Strength: <span [style.color]="comparing ? currItem.strength_color : 'white'">{{currItem.strength}}</span></li>
+            <li>Dexterity: <span [style.color]="comparing ? currItem.dexterity_color : 'white'">{{currItem.dexterity}}</span></li>
+            <li>Element: <span class="compareText">{{currItem.element}}</span></li>
+            <li>Material: <span class="compareText">{{currItem.material}}</span></li>
           </ul>
-          <div class="equip" (click)="equipItem()">Equip</div>
-          <div class="compare">Compare</div>
+          <div class="equip" (click)="equipItem(currItem.item)">Equip</div>
+          <div class="compare" (click)="openEquipped()">Compare</div>
+          <div class="trash {{mode}}" (click)="deleteItem(currItem.item)">
+            <img src="assets/CharacterScreen/trashcan.png" alt="" />
+          </div>
+        </div>
+        <div class="equippedStatsContainer" id="equippedStatsContainer">
+          <button class="exit" (click)="closeEquipped()">
+            <div class="backText text">X</div>
+          </button>
+          <div class="name">{{currEquipped.name}}</div>
+          <ul class="stats">
+            <li>Strength: {{currEquipped.strength}}</li>
+            <li>Dexterity: {{currEquipped.dexterity}}</li>
+            <li>Element: {{currEquipped.element}}</li>
+            <li>Material: {{currEquipped.material}}</li>
+          </ul>
         </div>
         <div class="equipped" id="equipped">
           <div class="equipSlot helmet" *ngIf="equipped.head" (click)="unEquip(equipped.head)">
@@ -51,7 +65,7 @@
           </div>
         </div>
         <div class="inventoryContainer" id="inventory">
-          <div *ngFor="let item of getUserData().items; let i = index" (click)="showStats(item)" class="slot" [attr.id]="i">
+          <div *ngFor="let item of getUserData().items; let i = index" (click)="openStats(item)" class="slot" [attr.id]="i">
             <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
           </div>
         </div>

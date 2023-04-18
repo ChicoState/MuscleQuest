@@ -23,60 +23,133 @@ export class CharacterScreenComponent{
   getUserData = UserData.get; 
   mode = "normal";
   equipped = UserData.get().equipped;
-  currItem:any;
-  itemName:any;
-  itemStrength:any;
-  itemDexterity:any;
-  itemElement:any;
-  itemMaterial:any;
-
-  closeModal(){
-    let statspage = document.getElementById('statsContainer') as HTMLElement;
-    statspage.style.display = 'none';
-    console.log("hi");
+  comparing = false;
+  currItem = {
+    item: {} as ItemState,
+    name : "",
+    strength: 0,
+    strength_color: 'white',
+    dexterity: 0,
+    dexterity_color: 'white',
+    element: "",
+    material: ""
   }
-
-  
-  showStats(item:ItemState){
-    let statspage = document.getElementById('statsContainer') as HTMLElement;
-    statspage.style.display = 'grid';
-
-    
-    this.currItem = item;
-    this.itemName = "";
-    this.itemStrength = 0;
-    this.itemDexterity = 0;
-    this.itemElement = null;
-    this.itemMaterial = null;
-    item.display_name ? this.itemName = item.display_name : item_registry[item.id].name;
-    item.strength ? this.itemStrength = item.strength : 0;
-    item.dexterity ? this.itemDexterity = item.dexterity : 0;
+  currEquipped = {
+    item: {} as ItemState,
+    name : "",
+    strength: 0,
+    strength_color: 'white',
+    dexterity: 0,
+    dexterity_color: 'white',
+    element: "",
+    material: ""
+  }
+  closeStats(){
+    document.getElementById('statsContainer')?.classList.remove('active');
+  }
+  openStats(item:ItemState){
+    this.createStats(item);
+    document.getElementById('statsContainer')?.classList.add('active');
+  }
+  closeEquipped(){
+    this.comparing = false;
+    document.getElementById('equippedStatsContainer')?.classList.remove('active');
+  }
+  openEquipped(){
+    this.comparing = true;
+    document.getElementById('equippedStatsContainer')?.classList.add('active');
+  }
+  createStats(item:ItemState){
+    this.currItem.name = item_registry[item.id].name;
+    this.currItem.item = item;
+    item.display_name ? this.currItem.name = item.display_name : item_registry[item.id].name;
+    this.currItem.strength_color = 'white';
+    this.currItem.dexterity_color = 'white';
+    this.currItem.strength = item.strength;
+    this.currItem.dexterity = item.dexterity;
     switch(item.element){
       case Element.FIRE:
-        this.itemElement = "Fire";
+        this.currItem.element = "Fire";
         break;
       case Element.ICE:
-        this.itemElement = "Ice";
+        this.currItem.element = "Ice";
         break;
       case Element.LIGHTNING:
-        this.itemElement = "Lightning";
+        this.currItem.element = "Lightning";
         break;
       default:
-        this.itemElement = "";
-    }
+        this.currItem.element = "";
+        break;
+    } 
     switch(item.material){
       case Material.IRON:
-        this.itemMaterial = "Iron";
+        this.currItem.material = "Iron";
         break;
       case Material.STEEL:
-        this.itemMaterial = "Steel";
+        this.currItem.material = "Steel";
         break;
       case Material.DIAMOND:
-        this.itemMaterial = "Diamond";
+        this.currItem.material = "Diamond";
         break;
       default:
-        this.itemMaterial = "";
+        this.currItem.material = "";
+        break;
+
+    } 
+    let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
+    this.createEquippedStats(UserData.get().equipped[slot]!);
+  }
+  createEquippedStats(item:ItemState){
+    this.currEquipped.name = item_registry[item.id].name;
+    this.currEquipped.item = item;
+    item.display_name ? this.currEquipped.name = item.display_name : item_registry[item.id].name;
+    this.currEquipped.strength_color = 'white';
+    this.currEquipped.dexterity_color = 'white';
+    this.currEquipped.strength = item.strength;
+    this.currEquipped.dexterity = item.dexterity;
+    if(this.currEquipped.strength > this.currItem.strength){
+      this.currItem.strength_color = 'red';
+    }else if(this.currEquipped.strength < this.currItem.strength){
+      this.currItem.strength_color = 'green';
+    }else{
+      this.currItem.strength_color = 'white';
     }
+    if(this.currEquipped.dexterity > this.currItem.dexterity){
+      this.currItem.dexterity_color = 'red';
+    }else if(this.currEquipped.dexterity < this.currItem.dexterity){
+      this.currItem.dexterity_color = 'green';
+    }else{
+      this.currItem.dexterity_color = 'white';
+    }
+    switch(item.element){
+      case Element.FIRE:
+        this.currEquipped.element = "Fire";
+        break;
+      case Element.ICE:
+        this.currEquipped.element = "Ice";
+        break;
+      case Element.LIGHTNING:
+        this.currEquipped.element = "Lightning";
+        break;
+      default:
+        this.currEquipped.element = "";
+        break;
+    } 
+    switch(item.material){
+      case Material.IRON:
+        this.currEquipped.material = "Iron";
+        break;
+      case Material.STEEL:
+        this.currEquipped.material = "Steel";
+        break;
+      case Material.DIAMOND:
+        this.currEquipped.material = "Diamond";
+        break;
+      default:
+        this.currEquipped.material = "";
+        break;
+
+    } 
   }
   goBack(): void {
     this.location.back();
@@ -104,8 +177,13 @@ export class CharacterScreenComponent{
       return data;
     })
   }
-  equipItem(){
-    let item = this.currItem;
+  equipItem(item:ItemState){
+    if(document.getElementById('statsContainer')?.classList.contains('active')){
+      this.closeStats();
+    }
+    if(document.getElementById('equippedStatsContainer')?.classList.contains('active')){
+      this.closeEquipped();
+    }
     let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
     console.log(slot);
     let currentEquipped = UserData.get().equipped[slot];

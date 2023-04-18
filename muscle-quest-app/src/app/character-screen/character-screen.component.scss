@@ -27,9 +27,9 @@ body {
 
     display: grid;
     grid-template-areas:
-        'e e e . s s s .'
-        'e e e . s s s .'
-        'e e e . s s s .'
+        'e e e . s s es es'
+        'e e e . s s es es'
+        'e e e . s s es es'
         'r r r r r r r .'
         'i i i i i i i i'
         'i i i i i i i i'
@@ -104,7 +104,54 @@ body {
 .statsContainer {
     position:relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    display:none;
+    display:grid;
+    grid-template-areas: 
+    'n n n'
+    'stat stat stat'
+    'stat stat stat'
+    '. . .'
+    't equip compare'
+    ;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: .5fr 2fr 1fr 1fr;
+    color:white;
+    aspect-ratio: 2/1;
+    width:100%;
+    max-width: 20em;
+    height:100%;
+    max-height: 30em;
+    border: 10px double gold;
+    grid-area:s;
+    transition: scale 0.5s ease-in-out;
+    transform: scale(0);
+
+    & .exit {
+        position: absolute;
+        right:-1em;
+        top:-1em;
+        height: 2em;
+        width: 2em;
+        border-radius: 50%;
+        border: 3px solid gold;
+        color:white;
+        background-image: url(/assets/CharacterScreen/leatherTexture.jpg);
+        & .backButtonModal {
+            width:100%;
+            height:100%;
+            margin: auto;
+            text-align: center;
+        }
+    }
+}
+
+.statsContainer.active{
+    transform: scale(1);
+}
+
+.equippedStatsContainer {
+    position:relative;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    display:grid;
     grid-template-areas: 
     'n n n'
     'stat stat stat'
@@ -121,17 +168,31 @@ body {
     height:100%;
     max-height: 30em;
     border: 10px double gold;
-    grid-area:s;
-    transition: display 0.5s ease-in-out;
+    grid-area:es;
+    transition: scale 0.5s ease-in-out;
+    transform: scale(0);
 
     & .exit {
         position: absolute;
-        left: -4em;
-        width: 4em;
+        right:-1em;
+        top:-1em;
         height: 2em;
-        border: 5px solid gold;
+        width: 2em;
+        border-radius: 50%;
+        border: 3px solid gold;
+        color:white;
         background-image: url(/assets/CharacterScreen/leatherTexture.jpg);
+        & .backButtonModal {
+            width:100%;
+            height:100%;
+            margin: auto;
+            text-align: center;
+        }
     }
+}
+
+.equippedStatsContainer.active{
+    transform: scale(1);
 }
 
 .equipped {
@@ -257,21 +318,17 @@ body {
 
 .trash{
     position:absolute;
-    top:45.5%;
-    left:90%;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 2%;
+    width: 100%;
+    min-width: 3em;
+    height: 100%;
     grid-area: t;
     aspect-ratio: 1/1;
-    height:40px;
-    max-width:40px;
-    min-width:30px;
-    border-top: 5px double gold;
-    border-left: 5px double gold;
-    border-right: 5px double gold;
+    border: 5px double gold;
     background-color: rgb(255, 255, 255, 0.1);
     transition: background-color 0.5s ease-in-out; 
     & img {
@@ -279,17 +336,6 @@ body {
         width: 80%;
         height: 80%;
     }
-}
-.trash::after {
-    z-index: 1;
-    content: ''; /* Required for pseudo-element */
-    position: absolute; /* Position the pseudo-element */
-    top: 90%; /* Position at the bottom of the parent div */
-    left: 0;
-    right: 0;
-    width:100%;
-    height: 10px; /* Set the height of the border */
-    background-image: url(/assets/CharacterScreen/leatherTexture.jpg); 
 }
 .normal:hover {
     background-color: rgb(255, 255, 255, 0.2);
@@ -389,7 +435,7 @@ body {
     background: #292929; 
   }
 
-  @media screen and (max-width: 630px){
+  @media screen and (max-width: 426px){
     .Container {
         grid-template-areas:
             '. e e e .'
@@ -406,41 +452,5 @@ body {
     }
     .statsContainer {
         display:none;
-    }
-    .trash{
-        position:absolute;
-        top:31.4%;
-        left:75.5%;
-        z-index: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 2%;
-        grid-area: t;
-        aspect-ratio: 1/1;
-        height:40px;
-        max-width:40px;
-        min-width:30px;
-        border-top: 5px double gold;
-        border-bottom: 5px double gold;
-        border-right: 5px double gold;
-        border-left:none;
-        background-color: rgb(255, 255, 255, 0.1);
-        transition: background-color 0.5s ease-in-out; 
-        & img {
-            margin:auto;
-            width: 80%;
-            height: 80%;
-        }
-    }
-    .trash::after {
-        z-index: 1;
-        content: ''; /* Required for pseudo-element */
-        position: absolute; /* Position the pseudo-element */
-        top:0;
-        left:-3px;
-        width:10px;
-        height: 100%; /* Set the height of the border */
-        background-image: url(/assets/CharacterScreen/leatherTexture.jpg); 
     }
   }
