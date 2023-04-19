@@ -35,4 +35,8 @@ export class FirebaseDemoComponent {
   removeFirstItem() {
     this.userService.removeItem(this.itemGeneratorService.createNewItem(0));
   }
+
+  getUserData() {
+    this.userService.getCurrentUserData;
+  }
 }

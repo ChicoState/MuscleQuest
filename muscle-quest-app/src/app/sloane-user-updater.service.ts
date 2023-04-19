@@ -60,6 +60,11 @@ export class SloaneUserUpdateService implements OnInit {
     );
   }
 
+  getCurrentUserData() {
+    console.log('The following user data was retrieved: ', this.userData);
+    return this.userData;
+  }
+
   giveItem(newItem: ItemState) {
     const userRef = this.afs.collection('users').doc(this.userData?.userId);
     this.userData?.items.push(newItem);
@@ -81,7 +86,7 @@ export class SloaneUserUpdateService implements OnInit {
   removeItem(item: ItemState) {
     if (this.userData) {
       let itemToRemove: ItemState;
-      itemToRemove = this.userData.items[0];
+      itemToRemove = item;
       let userItems = this.userData.items;
       let filteredUserItems = userItems.filter(
         (item) =>
@@ -92,6 +97,7 @@ export class SloaneUserUpdateService implements OnInit {
       );
       this.userData.items = filteredUserItems;
       const userRef = this.afs.collection('users').doc(this.userData?.userId);
+      console.log(item, " will be removed from user's inventory");
       return userRef.set(this.userData, { merge: true });
     } else {
       console.log('User data was not successfully retrieved.');
