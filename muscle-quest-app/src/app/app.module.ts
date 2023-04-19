@@ -82,7 +82,12 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
     MatDialogModule,
     MatIconModule,
     MatDividerModule,
+    // SVG icons
+    HttpClientModule,
     AngularSvgIconModule.forRoot(),
+    AngularSvgIconPreloaderModule.forRoot({
+      configUrl: './assets/icon/icons.json',
+    }),
 
     //Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -91,12 +96,6 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
   providers: [
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     SloaneUserUpdateService,
-    // SVG icons
-    HttpClientModule,
-    AngularSvgIconModule.forRoot(),
-    AngularSvgIconPreloaderModule.forRoot({
-      configUrl: './assets/icon/icons.json',
-    }),
   ],
   bootstrap: [AppComponent],
 })
