@@ -3,6 +3,7 @@ import { QuestStoriesService } from '../quest-stories.service';
 import { QuestStory } from '../quest-story';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { Location } from '@angular/common';
 // import { QuestStory } from '../quest-story';
 
 @Component({
@@ -12,13 +13,12 @@ import { ItemState, UserData, Material, Element } from 'src/lib/user';
 })
 export class DailyQuestsComponent {
 
-  constructor(){
+  constructor(private location: Location){
     this.story_service = new QuestStoriesService;
     this.itemGen = new SloaneItemGeneratorService;
     this.quests = [];
     this.ready_quests();
   }
-
   story_service:QuestStoriesService;
   itemGen:SloaneItemGeneratorService;
 
@@ -31,6 +31,17 @@ export class DailyQuestsComponent {
     }
 
     // Save the quests with what day they were generated.
+    let info = {quests: this.quests, date: new Date().getDate()};
+    localStorage.setItem("daily-quests", JSON.stringify(info));
+  }
+
+  public exercise(quest_index:number, exercise_index:number, count:number) {
+    if (count == -1) {
+      this.quests[quest_index].exercise.current_count[exercise_index] = this.quests[quest_index].exercise.counts[exercise_index];
+    } else {
+      this.quests[quest_index].exercise.current_count[exercise_index] += count;
+    }
+    // Might be an issue if you do this right at midnight or without closing your browser inbetween the days
     let info = {quests: this.quests, date: new Date().getDate()};
     localStorage.setItem("daily-quests", JSON.stringify(info));
   }
@@ -92,21 +103,41 @@ export class DailyQuestsComponent {
     }
   }
 
+  // returns a number 0-1 of the average completion of the exercises in this quest
+  public quest_completeness(index: number): number {
+    let total = 0;
+    for (let i = 0; i < this.quests[index].exercise.counts.length; i++) {
+      total += this.quests[index].exercise.current_count[i]/this.quests[index].exercise.counts[i];
+    }
+    total /= this.quests[index].exercise.counts.length;
+
+    return total;
+  }
+
   // Add the reward for quest at index to the player object
   public claim_reward(index:number) {
+    let percentage_complete: number = this.quest_completeness(index);
     this.itemGen.giveSpecificResources(
       this.quests[index].resources[0],
       this.quests[index].resources[1],
-      this.quests[index].resources[2])
-    this.itemGen.giveItem(this.quests[index].reward);
+      this.quests[index].resources[2]);
+    if (percentage_complete > .9)
+      this.itemGen.giveItem(this.quests[index].reward);
     // Update the state of the quest to complete
     this.update_state(index, 3);
   } 
+  
+  private adjust_reward(index:number) {
+    let percentage_complete = this.quest_completeness(index);
+    for (let i = 0; i < 3; i++) 
+      this.quests[index].resources[i] = Math.floor(this.quests[index].resources[i]*percentage_complete)
+  }
 
   public quests:Array<QuestStory>;
 
   // Updates the state of a quest and saves it back into local storage
   public update_state(index:number, state:number) {
+    if (state == 2) this.adjust_reward(index); // If claimed complete then adjust reward based on number of things completed
     this.quests[index].state = state;
     // Might be an issue if you do this right at midnight or without closing your browser inbetween the days
     let info = {quests: this.quests, date: new Date().getDate()};

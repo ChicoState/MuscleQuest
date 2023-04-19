@@ -40,6 +40,11 @@ import { UserAuthenticationComponent } from './user-authentication/user-authenti
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 import { SloaneUserUpdateService } from './sloane-user-updater.service';
+// SVG icons
+import { HttpClientModule } from '@angular/common/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { AngularSvgIconPreloaderModule } from 'angular-svg-icon-preloader';
+import { DecoratedButtonComponent } from './decorated-button/decorated-button.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +65,7 @@ import { SloaneUserUpdateService } from './sloane-user-updater.service';
     SloaneRewardDisplayComponent,
     FirebaseDemoComponent,
     UserAuthenticationComponent,
+    DecoratedButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +90,12 @@ import { SloaneUserUpdateService } from './sloane-user-updater.service';
   providers: [
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     SloaneUserUpdateService,
+    // SVG icons
+    HttpClientModule,
+    AngularSvgIconModule.forRoot(),
+    AngularSvgIconPreloaderModule.forRoot({
+			configUrl: './assets/icon/icons.json',
+		}),
   ],
   bootstrap: [AppComponent],
 })

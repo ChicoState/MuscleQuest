@@ -1,142 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@keyframes slideFromLeft{
-    from {
-        transform: translateX(-500px);
-    }
-
-    to {
-        transform: translateX(0px);
-        opacity: 1;
-    }
-}
-
-@keyframes hoverZoom {
-    from{
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.1, 1.1);
-    }
-}
-
-.Levels {
-    top: 140px;
-    left: 760px;
-    width: 500px;
-    height: 250px;
-    opacity:0;
-    border: 0px;
-    animation: slideFromLeft 0.5s ease-out both;
-    background: url(../../assets/StartScreen/Levels-Logo.png) no-repeat;
-    background-size: 100% 100%;
-    position:absolute;
-
-}
-.Levels:hover{
-    background: url(../../assets/StartScreen/Levels-Logo-Clicked.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.Character {
-    opacity:0;
-    animation: slideFromLeft 0.5s 0.05s ease-out forwards;
-    top: 260px;
-    left: 800px;
-    width: 500px;
-    height: 250px;
-    background: url(../../assets/StartScreen/Character-Logo.png) no-repeat;
-    border: 0px;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.Character:hover {
-    width: 500px;
-    height: 250px;
-    background: url(../../assets/StartScreen/Character-Logo-Clicked.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.Shop {
-    opacity:0;
-    animation: slideFromLeft 0.5s 0.1s ease-out forwards;
-    top: 380px;
-    left: 840px;
-    width: 500px;
-    height: 250px;
-    background: url(../../assets/StartScreen/Shop-Logo.png) no-repeat;
-    border: 0px;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.Shop:hover {
-    width: 500px;
-    height: 250px;
-    background: url(../../assets/StartScreen/Shop-Logo-Clicked.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.Settings {
-    opacity:0;
-    animation: slideFromLeft 0.5s .15s ease-out forwards;
-    top: 500px;
-    left: 880px;
-    width: 500px;
-    height: 250px;
-    background: url(../../assets/StartScreen/Settings-Logo.png) no-repeat;
-    border: 0px;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.Settings:hover {
-    width: 500px;
-    height: 250px;
-    background: url(../../assets/StartScreen/Settings-Logo-Clicked.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-}
-.grow{
-}
-.grow:hover{
-    animation: hoverZoom .2s ease-in-out forwards;
-}
-
-.GymBackground {
-    position:relative;
+.background {
+    background: url(/assets/StartScreen/GymBackground.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
     height: 100vh;
-    width: 100vw;
-    background: url(../../assets/StartScreen/GymBackground.jpeg) no-repeat;
-    background-size:100vw 100vh;
-    & .guy {
-        position:absolute;
-        top: 150px;
-        left: 200px;
-        height: 600px;
-        width: 250px;
+    position: fixed;
+    object-fit: cover;
+    display: flex;
+    padding: 3rem 1rem 1rem 1rem;
+    overflow: auto;
+    overflow: overlay;
+}
+
+.content {
+    display: grid;
+    grid-template:
+        'title title'
+        'character buttons';
+    grid-template-columns: min-content auto;
+    gap: 2rem;
+    align-items: center;
+    margin: auto;
+
+    @media screen and (max-width: 600px) {
+        grid-template:
+            'title title'
+            'buttons buttons';
+
+            > .character {
+                display: none;
+            }
     }
+}
+
+.content > .title {
+    grid-area: title;
+    text-align: center;
+    color: white;
+    text-shadow: 
+        5px 5px rgba(0, 0, 0, 0.707), 
+        0px 0px 28px #00000099;
+
+    span {
+        font-size: min(10vw, 4rem);
+        font-weight: 800;
+    }
+
+    .title__muscle {
+        color: white;
+    }
+
+    .title__quest {
+        color: rgb(255, 160, 28);
+    }
+}
+
+.content > .character {
+    grid-area: character;
+    width: 10rem;
+    filter: drop-shadow(2px 2px 10px rgb(0 0 0 / 0.35));
+}
+
+.content > .buttons {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    --_indent-amount: min(6vw, 2rem);
+    --_color-1: rgb(255, 73, 45);
+    --_color-2: rgb(255, 160, 28);
+
+    @media screen and (min-width: 600px) {
+        > :nth-child(1) {
+            margin-left: calc(0 * var(--_indent-amount));
+            margin-right: calc(3 * var(--_indent-amount));
+        }
+        > :nth-child(2) {
+            margin-left: calc(1 * var(--_indent-amount));
+            margin-right: calc(2 * var(--_indent-amount));
+        }
     
-   
-
-}
-
-.fancyText{
-    & .text-muscle {
-        left: 440px;
-        top: 140px;
-        position:absolute;
-        width: 350px;
-        height: 100px;
-       
-    }
-
-    & .text-quest {
-        position:absolute;
-        left: 450px;
-        top: 230px;
-        width: 350px;
-        height: 100px;
+        > :nth-child(3) {
+            margin-left: calc(2 * var(--_indent-amount));
+            margin-right: calc(1 * var(--_indent-amount));
+        }
+    
+        > :nth-child(4) {
+            margin-left: calc(3 * var(--_indent-amount));
+            margin-right: calc(0 * var(--_indent-amount));
+        }
     }
 }
-
-
