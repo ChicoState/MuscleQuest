@@ -65,6 +65,11 @@ export class SloaneUserUpdateService implements OnInit {
     return this.userData;
   }
 
+  updateUserData(user: DataObject) {
+    const userRef = this.afs.collection('users').doc(this.userData?.userId);
+    return userRef.set(user, { merge: true });
+  }
+
   giveItem(newItem: ItemState) {
     const userRef = this.afs.collection('users').doc(this.userData?.userId);
     this.userData?.items.push(newItem);

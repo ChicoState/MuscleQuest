@@ -37,6 +37,12 @@ export class FirebaseDemoComponent {
   }
 
   getUserData() {
-    this.userService.getCurrentUserData;
+    this.userData = this.userService.getCurrentUserData();
+    console.log(this.userData);
+  }
+
+  saveData(user?: DataObject) {
+    this.userData.equipped = [this.itemGeneratorService.createNewItem(0)];
+    this.userService.updateUserData(this.userData);
   }
 }
