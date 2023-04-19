@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, AfterViewInit, HostListener} from '@angular/core';
 import { item_registry } from 'src/lib/registry'
 import { UserData } from 'src/lib/user';
 import { getItemName, getItemIcon } from 'src/lib/registry'
@@ -16,8 +16,9 @@ import { Element, Material } from 'src/lib/user';
   templateUrl: './character-screen.component.html',
   styleUrls: ['./character-screen.component.scss']
 })
-export class CharacterScreenComponent{
+export class CharacterScreenComponent implements AfterViewInit{
   constructor(private location: Location) {}
+
 
   getIconImage = getItemIcon;
   getUserData = UserData.get; 
@@ -43,21 +44,6 @@ export class CharacterScreenComponent{
     dexterity_color: 'white',
     element: "",
     material: ""
-  }
-  closeStats(){
-    document.getElementById('statsContainer')?.classList.remove('active');
-  }
-  openStats(item:ItemState){
-    this.createStats(item);
-    document.getElementById('statsContainer')?.classList.add('active');
-  }
-  closeEquipped(){
-    this.comparing = false;
-    document.getElementById('equippedStatsContainer')?.classList.remove('active');
-  }
-  openEquipped(){
-    this.comparing = true;
-    document.getElementById('equippedStatsContainer')?.classList.add('active');
   }
   createStats(item:ItemState){
     this.currItem.name = item_registry[item.id].name;
@@ -100,57 +86,61 @@ export class CharacterScreenComponent{
     this.createEquippedStats(UserData.get().equipped[slot]!);
   }
   createEquippedStats(item:ItemState){
-    this.currEquipped.name = item_registry[item.id].name;
-    this.currEquipped.item = item;
-    item.display_name ? this.currEquipped.name = item.display_name : item_registry[item.id].name;
-    this.currEquipped.strength_color = 'white';
-    this.currEquipped.dexterity_color = 'white';
-    this.currEquipped.strength = item.strength;
-    this.currEquipped.dexterity = item.dexterity;
-    if(this.currEquipped.strength > this.currItem.strength){
-      this.currItem.strength_color = 'red';
-    }else if(this.currEquipped.strength < this.currItem.strength){
-      this.currItem.strength_color = 'green';
-    }else{
-      this.currItem.strength_color = 'white';
+    if(item){
+      this.currEquipped.name = item_registry[item.id].name;
+      this.currEquipped.item = item;
+      item.display_name ? this.currEquipped.name = item.display_name : item_registry[item.id].name;
+      this.currEquipped.strength_color = 'white';
+      this.currEquipped.dexterity_color = 'white';
+      this.currEquipped.strength = item.strength;
+      this.currEquipped.dexterity = item.dexterity;
+      if(this.currEquipped.strength > this.currItem.strength){
+        this.currItem.strength_color = 'red';
+      }else if(this.currEquipped.strength < this.currItem.strength){
+        this.currItem.strength_color = 'green';
+      }else{
+        this.currItem.strength_color = 'white';
+      }
+      if(this.currEquipped.dexterity > this.currItem.dexterity){
+        this.currItem.dexterity_color = 'red';
+      }else if(this.currEquipped.dexterity < this.currItem.dexterity){
+        this.currItem.dexterity_color = 'green';
+      }else{
+        this.currItem.dexterity_color = 'white';
+      }
+      switch(item.element){
+        case Element.FIRE:
+          this.currEquipped.element = "Fire";
+          break;
+        case Element.ICE:
+          this.currEquipped.element = "Ice";
+          break;
+        case Element.LIGHTNING:
+          this.currEquipped.element = "Lightning";
+          break;
+        default:
+          this.currEquipped.element = "";
+          break;
+      } 
+      switch(item.material){
+        case Material.IRON:
+          this.currEquipped.material = "Iron";
+          break;
+        case Material.STEEL:
+          this.currEquipped.material = "Steel";
+          break;
+        case Material.DIAMOND:
+          this.currEquipped.material = "Diamond";
+          break;
+        default:
+          this.currEquipped.material = "";
+          break;
+  
+      } 
     }
-    if(this.currEquipped.dexterity > this.currItem.dexterity){
-      this.currItem.dexterity_color = 'red';
-    }else if(this.currEquipped.dexterity < this.currItem.dexterity){
-      this.currItem.dexterity_color = 'green';
-    }else{
-      this.currItem.dexterity_color = 'white';
-    }
-    switch(item.element){
-      case Element.FIRE:
-        this.currEquipped.element = "Fire";
-        break;
-      case Element.ICE:
-        this.currEquipped.element = "Ice";
-        break;
-      case Element.LIGHTNING:
-        this.currEquipped.element = "Lightning";
-        break;
-      default:
-        this.currEquipped.element = "";
-        break;
-    } 
-    switch(item.material){
-      case Material.IRON:
-        this.currEquipped.material = "Iron";
-        break;
-      case Material.STEEL:
-        this.currEquipped.material = "Steel";
-        break;
-      case Material.DIAMOND:
-        this.currEquipped.material = "Diamond";
-        break;
-      default:
-        this.currEquipped.material = "";
-        break;
-
-    } 
+   
   }
+
   goBack(): void {
     this.location.back();
   }
@@ -178,12 +168,6 @@ export class CharacterScreenComponent{
     })
   }
   equipItem(item:ItemState){
-    if(document.getElementById('statsContainer')?.classList.contains('active')){
-      this.closeStats();
-    }
-    if(document.getElementById('equippedStatsContainer')?.classList.contains('active')){
-      this.closeEquipped();
-    }
     let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
     console.log(slot);
     let currentEquipped = UserData.get().equipped[slot];
@@ -209,6 +193,31 @@ export class CharacterScreenComponent{
     let item = UserData.get().items[i];
     return getItemIcon(item);
   }
+  ngAfterViewInit(){
+    // Attach a 'mousemove' event handler to elements with class '.slot'
+    var slotElements = document.querySelectorAll('.slot');
+    slotElements.forEach(function(slotElement) {
+      slotElement.addEventListener('mousemove', function(event) {
+        // Get cursor's coordinates
+        let mEvent = event as MouseEvent;
+        var cursorX = mEvent.clientX;
+        var cursorY = mEvent.clientY;
+        // Set modal's position to cursor's coordinates
+        var modal = document.getElementById('compareContainer') as HTMLElement;
+        modal.style.display = 'grid';
+        modal.style.left = (cursorX-100) + 'px';
+        modal.style.top = (cursorY-240) + 'px';
+      });
+  
+      slotElement.addEventListener('mouseout', function() {
+        // Hide modal when cursor is no longer hovering over div
+        document.getElementById('compareContainer')!.style.display = 'none';
+      });
+    });
+  }
+  
+
 }
+
 
 

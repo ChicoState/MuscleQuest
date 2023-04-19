@@ -2,36 +2,30 @@
     <body> 
       <div class="Container" >   
         <div class="back" [routerLink]="['/start']">
-          <div class="backText text" >X</div>
+          <div class="text" >&times;</div>
         </div>
-        <div class="statsContainer" id="statsContainer">
-          <button class="exit" (click)="closeStats()">
-            <div class="backText text">X</div>
-          </button>
-          <div class="name">{{currItem.name}}</div>
-          <ul class="stats">
-            <li>Strength: <span [style.color]="comparing ? currItem.strength_color : 'white'">{{currItem.strength}}</span></li>
-            <li>Dexterity: <span [style.color]="comparing ? currItem.dexterity_color : 'white'">{{currItem.dexterity}}</span></li>
-            <li>Element: <span class="compareText">{{currItem.element}}</span></li>
-            <li>Material: <span class="compareText">{{currItem.material}}</span></li>
-          </ul>
-          <div class="equip" (click)="equipItem(currItem.item)">Equip</div>
-          <div class="compare" (click)="openEquipped()">Compare</div>
-          <div class="trash {{mode}}" (click)="deleteItem(currItem.item)">
-            <img src="assets/CharacterScreen/trashcan.png" alt="" />
+        <div class="trash {{mode}}" (click)="changeMode()">
+          <img src="assets/CharacterScreen/trashcan.png" alt="" />
+        </div>
+        <div class="compareContainer" id="compareContainer">
+          <div class="statsContainer" id="statsContainer">
+            <div class="name">{{currItem.name}}</div>
+            <ul class="stats">
+              <li>Strength: <span [style.color]="currItem.strength_color">{{currItem.strength}}</span></li>
+              <li>Dexterity: <span [style.color]="currItem.dexterity_color">{{currItem.dexterity}}</span></li>
+              <li>Element: <span class="compareText">{{currItem.element}}</span></li>
+              <li>Material: <span class="compareText">{{currItem.material}}</span></li>
+            </ul> 
           </div>
-        </div>
-        <div class="equippedStatsContainer" id="equippedStatsContainer">
-          <button class="exit" (click)="closeEquipped()">
-            <div class="backText text">X</div>
-          </button>
-          <div class="name">{{currEquipped.name}}</div>
-          <ul class="stats">
-            <li>Strength: {{currEquipped.strength}}</li>
-            <li>Dexterity: {{currEquipped.dexterity}}</li>
-            <li>Element: {{currEquipped.element}}</li>
-            <li>Material: {{currEquipped.material}}</li>
-          </ul>
+          <div class="equippedStatsContainer" id="equippedStatsContainer">
+            <div class="name">{{currEquipped.name}}</div>
+            <ul class="stats">
+              <li>Strength: {{currEquipped.strength}}</li>
+              <li>Dexterity: {{currEquipped.dexterity}}</li>
+              <li>Element: {{currEquipped.element}}</li>
+              <li>Material: {{currEquipped.material}}</li>
+            </ul>
+          </div>
         </div>
         <div class="equipped" id="equipped">
           <div class="equipSlot helmet" *ngIf="equipped.head" (click)="unEquip(equipped.head)">
@@ -52,20 +46,17 @@
         </div>
         <div class="resourceContainer">
           <div class="resource gold">
-            <img src="assets/CharacterScreen/GoldIcon.png">
-            <div class="resourceText text">{{getUserData().gold}}</div>
+            <div class="text">{{getUserData().gold}}</div>
           </div>
           <div class="resource wood">
-            <img src="assets/CharacterScreen/WoodIcon.png">
-            <div class="resourceText text">{{getUserData().wood}}</div>
+            <div class="text">{{getUserData().wood}}</div>
           </div>
           <div class="resource iron">
-            <img src="assets/CharacterScreen/IronIcon.png">
-            <div class="resourceText text">{{getUserData().iron}}</div>
+            <div class="text">{{getUserData().iron}}</div>
           </div>
         </div>
         <div class="inventoryContainer" id="inventory">
-          <div *ngFor="let item of getUserData().items; let i = index" (click)="openStats(item)" class="slot" [attr.id]="i">
+          <div *ngFor="let item of getUserData().items; let i = index" (click)="mode == 'normal' ? equipItem(item) : deleteItem(item)" (mouseover)="createStats(item)"  class="slot" [attr.id]="i">
             <img class="slotImage" [attr.id]="i" [src]="getIcon(i)"/>
           </div>
         </div>
