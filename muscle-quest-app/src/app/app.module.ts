@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,12 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { OrcBossInfoComponent } from './orc-boss-info/orc-boss-info.component';
 import { ShopComponent } from './shop/shop.component';
 import { DailyQuestsComponent } from './daily-quests/daily-quests.component';
-import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
 import { IsaLevelComponent } from './isa-level/isa-level.component';
 import { BackDayComponent } from './isa-level/back-day/back-day.component';
 import { ChestDayComponent } from './isa-level/chest-day/chest-day.component';
 import { LegDayComponent } from './isa-level/leg-day/leg-day.component';
 import { CharacterScreenComponent } from './character-screen/character-screen.component';
+import { SloaneRewardDisplayComponent } from './sloane-reward-display/sloane-reward-display.component';
 
 // Material Components
 import { MatCardModule } from '@angular/material/card';
@@ -30,6 +31,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 
+// Firebase
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { FirebaseDemoComponent } from './firebase-demo/firebase-demo.component';
+import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
+import { SloaneUserUpdateService } from './sloane-user-updater.service';
 // SVG icons
 import { HttpClientModule } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -53,14 +63,16 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
     DailyQuestsComponent,
     CharacterScreenComponent,
     SloaneRewardDisplayComponent,
-    DecoratedButtonComponent
+    FirebaseDemoComponent,
+    UserAuthenticationComponent,
+    DecoratedButtonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    
+
     // Material Components
     MatCardModule,
     MatProgressBarModule,
@@ -70,15 +82,21 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
     MatDialogModule,
     MatIconModule,
     MatDividerModule,
-
     // SVG icons
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     AngularSvgIconPreloaderModule.forRoot({
-			configUrl: './assets/icon/icons.json',
-		}),
+      configUrl: './assets/icon/icons.json',
+    }),
+
+    //Firebase
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    SloaneUserUpdateService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
