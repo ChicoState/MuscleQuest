@@ -22,9 +22,9 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "@ngtools/webpack": "^1.2.4",
-    "firebaseui-angular": "^6.1.3",
     "angular-svg-icon": "^15.0.0",
     "angular-svg-icon-preloader": "^5.0.0",
+    "firebaseui-angular": "^6.1.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

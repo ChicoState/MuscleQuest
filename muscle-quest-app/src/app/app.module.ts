@@ -65,7 +65,7 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
     SloaneRewardDisplayComponent,
     FirebaseDemoComponent,
     UserAuthenticationComponent,
-    DecoratedButtonComponent
+    DecoratedButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +82,7 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
     MatDialogModule,
     MatIconModule,
     MatDividerModule,
+    AngularSvgIconModule.forRoot(),
 
     //Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -94,8 +95,8 @@ import { DecoratedButtonComponent } from './decorated-button/decorated-button.co
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     AngularSvgIconPreloaderModule.forRoot({
-			configUrl: './assets/icon/icons.json',
-		}),
+      configUrl: './assets/icon/icons.json',
+    }),
   ],
   bootstrap: [AppComponent],
 })
