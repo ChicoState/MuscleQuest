@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ItemState, UserData, ShopData, Material, Element } from 'src/lib/user';
+import { SloaneUserUpdateService } from './sloane-user-updater.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SloaneItemGeneratorService {
-  constructor() {}
+  constructor(private userService: SloaneUserUpdateService) {}
 
   /**
    * To generate an item, the only required argument is rank: (0 = low, 1 = medium, 2 = high, 3 = ultimate)
@@ -96,37 +97,29 @@ export class SloaneItemGeneratorService {
 
   // Allows a randomly generated loot bundle to be easily given to user
   giveLootBundle(bundle: number[]) {
-    return UserData.mutate((data) => {
-      data.gold += bundle[0];
-      data.wood += bundle[1];
-      data.iron += bundle[2];
-      return data;
-    });
+    this.userService.giveLootBundle(bundle);
   }
 
-  // Borrowed from McKeever's shop and inventory component code
+  // Previous implementation of this function updated local storage.
+  // This implementation prevents older code from needing to be refactored
   giveItem(item: ItemState) {
-    UserData.mutate((data) => {
-      data.items.push(item);
-      return data;
-    });
+    this.userService.giveItem(item);
   }
 
   // Provide specific resources as such:
   // giveSpecificResources(wood: 100);
   giveSpecificResources(gold?: number, wood?: number, iron?: number) {
-    return UserData.mutate((data) => {
-      if (gold !== undefined) {
-        data.gold += gold;
-      }
-      if (wood !== undefined) {
-        data.wood += wood;
-      }
-      if (iron !== undefined) {
-        data.iron += iron;
-      }
-      return data;
-    });
+    let bundle: number[] = [0, 0, 0];
+    if (gold !== undefined) {
+      bundle[0] = gold;
+    }
+    if (wood !== undefined) {
+      bundle[1] = wood;
+    }
+    if (iron !== undefined) {
+      bundle[2] = iron;
+    }
+    this.userService.giveLootBundle(bundle);
   }
 }
 
