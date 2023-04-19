@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "muscle-quest-1406d"
+  },
+  "targets": {
+    "muscle-quest-1406d": {
+      "hosting": {
+        "muscle-quest-app": [
+          "muscle-quest-1406d"
+        ]
+      }
+    }
+  }
+}

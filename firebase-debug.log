@@ -1,0 +1,34 @@
+[debug] [2023-04-03T20:43:18.151Z] ----------------------------------------------------------------------
+[debug] [2023-04-03T20:43:18.152Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init hosting
+[debug] [2023-04-03T20:43:18.153Z] CLI Version:   11.20.0
+[debug] [2023-04-03T20:43:18.153Z] Platform:      linux
+[debug] [2023-04-03T20:43:18.153Z] Node Version:  v19.6.0
+[debug] [2023-04-03T20:43:18.153Z] Time:          Mon Apr 03 2023 13:43:18 GMT-0700 (Pacific Daylight Time)
+[debug] [2023-04-03T20:43:18.153Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-03T20:43:18.158Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-03T20:43:18.159Z] > authorizing via signed-in user (sloanetribble@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/sloane/chico-spring23/swe430/MuscleQuest
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-04-03T20:43:20.569Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-04-03T20:43:21.016Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2023-04-03T20:43:21.016Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project muscle-quest (muscle-quest) 
+[info] 
+=== Hosting Setup
