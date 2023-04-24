@@ -1,80 +1,254 @@
+<html>
+<body>
 <style>
-  h1 {
-    text-align: center;
-  }
-  h2 {
-    text-align: center;
-  }
-  img {
-    text-align: center;
-  }
-  label {
-    text-align: center;
-  }
+  h1 {text-align: center;}
+  h2 {text-align: center;}
+  body {
+        background: rgb(0, 174, 255);
+    }
+    h3 {
+        position: absolute;
+        top: 85%;
+        left: 40%;
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to right, #f32170,
+                #ff6b08, #cf23cf, #eedd44);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+  img {text-align: center;}
+  label {text-align: center;}
 </style>
 
-<h1>ISA'S CHALLENGE</h1>
-<h2>Ready for your challenge?!</h2>
-<img
-  src="https://i.ytimg.com/vi/SdIVEG7UeBg/maxresdefault.jpg"
-  alt="Chest Day Boss"
-  width="1000"
-  height="600"
-/>
-<div style="text-align: center">
-  <label for="file">BOSS HEALTH:</label>
-  <progress id="file" value="100" max="100">32%</progress>
+  <ul>
+      <li><a href="/chest-day">Chest</a></li>
+      <li><a href="/leg-day">Leg</a></li>
+      <li><a href="/back-day">Back</a></li>
+  </ul>
+
+  <h1>ISA'S CHALLANGE</h1>
+  <h2>Ready for your challange?!</h2>
+  <h2>Chest Day Workout!</h2>
+
+  <div style="text-align:center">
+      <div>
+      <img src="https://i.ytimg.com/vi/SdIVEG7UeBg/maxresdefault.jpg" alt="Chest Day Boss"
+      />
+      </div>
+      <label for="file">BOSS HEALTH:</label>
+      <progress id="file" [value]=getHealth() max="100"></progress>
+  </div>
+  <button class="collapsible" #collapsibleButton [ngClass]="{'active': showContent}" (click)="toggleContent()">Show: Tips for new players</button>
+<div class="content" [ngClass]="{'show': showContent, 'hide': !showContent}">
+  <p>When starting out start at a lower weight. Underestimate your strenght. 
+    If you can comfortably do a full set from 10-15 reps. Increase weight by 5 pounts until you can't do a full set.
+    Once you cant do a full set of 10-15. Lower the weight by 5 pounds and make that your working weight. 
+    Once you feel like you are ready or want to challange yourself add either a 2.5lb or a 5lb weight to your exercise.
+    Remember to work out safely, so make sure to warm up first before on moving to your working weight. 
+    EX. (5x(10-15)) = 5 sets of 10-15 reps
+  </p>
 </div>
 
-<nav>
-  <a
-    class="button"
-    routerLink="/chest-day"
-    routerLinkActive="activebutton"
-    ariaCurrentWhenActive="page"
-  >
-    Chest Day
-  </a>
-  |
-  <a
-    class="button"
-    routerLink="/leg-day"
-    routerLinkActive="activebutton"
-    ariaCurrentWhenActive="page"
-  >
-    Leg day
-  </a>
-  |
-  <a
-    class="button"
-    routerLink="/back-day"
-    routerLinkActive="activebutton"
-    ariaCurrentWhenActive="page"
-  >
-    Back day
-  </a>
-</nav>
-<h2>Chest Day Workout!</h2>
-<p>Beginning of Workout</p>
-<div>
-  <input type="checkbox" id="workout19" name="workout19" value="5" />
-  <label for="workout19">Dumbbell Side Lats</label><br />
-  <input type="checkbox" id="workout20" name="workout10" value="5" />
-  <label for="workout20">Dumbbell Chest flies</label><br />
-  <input type="checkbox" id="workout21" name="workout21" value="5" />
-  <label for="workout21">Flat Bench Press</label><br />
-  <input type="checkbox" id="workout22" name="workout22" value="5" />
-  <label for="workout22">Military Press</label><br />
+<div style="text-align:center">
+  <h2>Beginning of Workout</h2>
 </div>
-<p>End of Workout</p>
+
 <div>
-  <input type="checkbox" id="workout23" name="workout23" value="5" />
-  <label for="workout23">Dumbbell Incline</label><br />
-  <input type="checkbox" id="workout24" name="workout24" value="5" />
-  <label for="workout24">Side Lats</label><br />
-  <input type="checkbox" id="workout25" name="workout25" value="5" />
-  <label for="workout25">Tricep Pushdowns</label><br />
-  <input type="checkbox" id="workout26" name="workout26" value="5" />
-  <label for="workout26">Preacher curls/Bicep Curls/Hammer Head Curls</label
-  ><br />
+  <div>
+    <input type="checkbox" id="workout19" name="workout19" value="5" [(ngModel)] = letCheckbox1>
+    <label for="workout19" style="color:black;font-size:18px;">Dumbell Side Lats (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesa; else hideRulesa">
+      <button (click)="toggleRulesa()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesa>
+      <div style="text-align:center">
+        <button (click)="toggleRulesa()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout20" name="workout10" value="5" [(ngModel)] = letCheckbox2>
+    <label for="workout20" style="color:black;font-size:18px;">Dumbell Chest flies (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesb; else hideRulesb">
+      <button (click)="toggleRulesb()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesb>
+      <div style="text-align:center">
+        <button (click)="toggleRulesb()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout21" name="workout21" value="5" [(ngModel)] = letCheckbox3>
+    <label for="workout21" style="color:black;font-size:18px;">Flat Bench Press (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesc; else hideRulesc">
+      <button (click)="toggleRulesc()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesc>
+      <div style="text-align:center">
+        <button (click)="toggleRulesc()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout22" name="workout22" value="5" [(ngModel)] = letCheckbox4>
+    <label for="workout22" style="color:black;font-size:18px;">Military Press (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesh; else hideRulesh">
+      <button (click)="toggleRulesh()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesh>
+      <div style="text-align:center">
+        <button (click)="toggleRulesh()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+</div>    
+<div style="text-align:center">
+  <h2>End of Workout</h2>
 </div>
+<div>
+  <div>
+    <input type="checkbox" id="workout23" name="workout23" value="5" [(ngModel)] = letCheckbox5>
+    <label for="workout23" style="color:black;font-size:18px;">Dumbell Incline (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesd; else hideRulesd">
+      <button (click)="toggleRulesd()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesd>
+      <div style="text-align:center">
+        <button (click)="toggleRulesd()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout24" name="workout24" value="5" [(ngModel)] = letCheckbox6>
+    <label for="workout24" style="color:black;font-size:18px;">Side Lats (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulese; else hideRulese">
+      <button (click)="toggleRulese()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulese>
+      <div style="text-align:center">
+        <button (click)="toggleRulese()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout25" name="workout25" value="5" [(ngModel)] = letCheckbox7>
+    <label for="workout25" style="color:black;font-size:18px;">Tricept Pushdowns (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesf; else hideRulesf">
+      <button (click)="toggleRulesf()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesf>
+      <div style="text-align:center">
+        <button (click)="toggleRulesf()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout26" name="workout26" value="5" [(ngModel)] = letCheckbox8>
+    <label for="workout26" style="color:black;font-size:18px;">Preacher curls/Bicept Curls/Hammer Head Curls (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesg; else hideRulesg">
+      <button (click)="toggleRulesg()">Show how to Video</button>
+    </div>
+  </div>
+
+  <div>
+    <ng-template #hideRulesg>
+      <div style="text-align:center">
+        <button (click)="toggleRulesg()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<div>
+  <button style="text-align:left" class="button button2" onclick="alert('Congradulations User for defeating the Chest day boss!')"
+>Submit!
+</button>
+</div>
+</body>
+</html>
