@@ -35,4 +35,14 @@ export class FirebaseDemoComponent {
   removeFirstItem() {
     this.userService.removeItem(this.itemGeneratorService.createNewItem(0));
   }
+
+  getUserData() {
+    this.userData = this.userService.getCurrentUserData();
+    console.log(this.userData);
+  }
+
+  saveData(user?: DataObject) {
+    this.userData.equipped = [this.itemGeneratorService.createNewItem(0)];
+    this.userService.updateUserData(this.userData);
+  }
 }
