@@ -44,6 +44,8 @@ export type ItemState = {
     Type definition of the user data object that is stored for the user.
 */
 export type DataObject = {
+  // daily-quests
+  dailyQuests?: string;
   // Every user needs a corresponding id in order for their data to be stored.
   userId?: string;
   // a list of item states that the user has in their inventory.
