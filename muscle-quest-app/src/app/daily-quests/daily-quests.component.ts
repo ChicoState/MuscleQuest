@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { QuestStoriesService } from '../quest-stories.service';
 import { QuestStory } from '../quest-story';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
-import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { ItemState, UserData, Material, Element, DataObject} from 'src/lib/user';
 import { Location } from '@angular/common';
+import { SloaneUserUpdateService } from '../sloane-user-updater.service';
 // import { QuestStory } from '../quest-story';
+// import { DataObject } from 'src/lib/user';
 
 @Component({
   selector: 'app-daily-quests',
@@ -12,12 +14,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./daily-quests.component.scss'],
 })
 export class DailyQuestsComponent {
-  constructor(private location: Location) {
+  constructor(private location: Location,
+              private userService: SloaneUserUpdateService) {
     this.story_service = new QuestStoriesService();
     this.itemGen = new SloaneItemGeneratorService();
     this.quests = [];
-    this.ready_quests();
+    this.userData = null;
+    this.userService.getCurrentUser().subscribe((user) => {
+      this.userData = user;
+      if (user != null) {
+        this.ready_quests();
+      }
+    });
   }
+  userData: DataObject | null;
   story_service: QuestStoriesService;
   itemGen: SloaneItemGeneratorService;
 
@@ -31,7 +41,11 @@ export class DailyQuestsComponent {
 
     // Save the quests with what day they were generated.
     let info = { quests: this.quests, date: new Date().getDate() };
-    localStorage.setItem('daily-quests', JSON.stringify(info));
+    if (this.userData != null) {
+      this.userData.dailyQuests = JSON.stringify(info);
+      this.userService.updateUserData(this.userData);
+    }
+    // localStorage.setItem('daily-quests', JSON.stringify(info));
   }
 
   public exercise(quest_index: number, exercise_index: number, count: number) {
@@ -43,13 +57,17 @@ export class DailyQuestsComponent {
     }
     // Might be an issue if you do this right at midnight or without closing your browser inbetween the days
     let info = { quests: this.quests, date: new Date().getDate() };
-    localStorage.setItem('daily-quests', JSON.stringify(info));
+    if (this.userData != null) {
+      this.userData.dailyQuests = JSON.stringify(info);
+      this.userService.updateUserData(this.userData);
+    }
+    // localStorage.setItem('daily-quests', JSON.stringify(info));
   }
 
   // Either generate or load quests
   public ready_quests() {
     // Get the json from the localStorage
-    let json = localStorage.getItem('daily-quests');
+    let json = this.userData?.dailyQuests;
     if (json) {
       // If it exists parse it
       let info = JSON.parse(json);
@@ -146,6 +164,10 @@ export class DailyQuestsComponent {
     this.quests[index].state = state;
     // Might be an issue if you do this right at midnight or without closing your browser inbetween the days
     let info = { quests: this.quests, date: new Date().getDate() };
-    localStorage.setItem('daily-quests', JSON.stringify(info));
+    // localStorage.setItem('daily-quests', JSON.stringify(info));
+    if (this.userData != null) {
+      this.userData.dailyQuests = JSON.stringify(info);
+      this.userService.updateUserData(this.userData);
+    }
   }
 }
