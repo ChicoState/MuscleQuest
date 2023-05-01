@@ -1,7 +1,16 @@
-<!doctype html>
-<div class="container">
-    <button class="SloaneLevel" id="SloaneLevel" [routerLink]="['/sloane-lvl-one']"></button><br>
-    <button class="OrcBoss" id="OrcBoss" [routerLink]="['/orc-boss']"></button><br>
-    <button class="IsaLevel" id="IsaLevel" [routerLink]="['/back-day']"></button><br>
-    <button routerLink="/start" class="backButton">Go Back</button>
+<div class="background">
+    <div class="content">
+        <span class="levels-title">Select a Level</span>
+        <div class="back-button">
+            <app-decorated-button [href]="'/start'" title="Back"></app-decorated-button>
+        </div>
+        <div class="daily-quests">
+            <app-decorated-button [href]="'/daily-quests'" title="Daily Quests"></app-decorated-button>
+        </div>
+        <div class="level-select">
+            <app-decorated-button [href]="'/sloane-lvl-one'" title="The Revenge of Time"></app-decorated-button>
+            <app-decorated-button [href]="'/orc-boss'" title="Orc Boss Fight"></app-decorated-button>
+            <app-decorated-button [href]="'/back-day'" title="Back Day"></app-decorated-button>
+        </div>
+    </div>
 </div>

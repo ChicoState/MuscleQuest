@@ -1,12 +1,10 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, inject } from '@angular/core';
 import { Location } from '@angular/common';
-import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { ItemState, UserData } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 
 /**
  * Features to add: :
- *     - Add an explanation for how bonus points work somewhere
- * Add different music options based on workout chosen
  * Add random time trial mode: announce a new exercise after an interval for a certain time
  * */
 
