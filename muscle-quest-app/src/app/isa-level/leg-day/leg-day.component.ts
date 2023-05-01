@@ -8,7 +8,8 @@ import { ItemState, UserData, Material, Element } from 'src/lib/user';
 @Component({
   selector: 'app-leg-day',
   templateUrl: './leg-day.component.html',
-  styleUrls: ['./leg-day.component.css']
+  styleUrls: ['./leg-day.component.css'],
+  template: `<div id="output"></div>`, 
 })
 export class LegDayComponent {
   letCheckbox1: boolean = false;
@@ -32,19 +33,29 @@ export class LegDayComponent {
   equipmentBonus: number = 1;
   elementBonus: number = 1;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
-
-  constructor (
-    private rewards: SloaneItemGeneratorService
-  )
-  {}
+  output = '';
+  
+  constructor(private rewards: SloaneItemGeneratorService) {}
+  
   generateItem(): void {
     const rank = 1;
     const newBundle = this.rewards.createLootBundle(rank);
     this.item = this.rewards.createNewItem(rank);
-    console.log(newBundle);
-    console.log(this.item);
+  
+    this.output = `Congradulations for defeating the Leg Day Boss!!\n
+    Here is your your New Bundle:\n 
+    Gold:${newBundle[0]},\n
+    Wood:${newBundle[1]},\n
+    Iron:${newBundle[2]} \n 
+    New Item: ${JSON.stringify(this.item)}`;
   }
-
+  
+  showItem(): void {
+    this.generateItem();
+    window.alert(this.output);
+  }
+  
+  
   getHealth(): number {
     this.numTrueCheckboxes = 0;
     for (let i = 1; i <= 5; i++) {
@@ -77,6 +88,7 @@ export class LegDayComponent {
   toggleContent(): void {
     this.showContent = !this.showContent;
   }
+
   @ViewChild('collapsibleButton') collapsibleButton!: ElementRef;
 
   ngAfterViewInit(): void {

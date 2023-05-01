@@ -1,7 +1,8 @@
 import { CheckboxControlValueAccessor } from '@angular/forms';
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { SloaneItemGeneratorService } from '../../sloane-item-generator.service';
 import { ItemState, UserData, Material, Element } from 'src/lib/user';
+
 
 @Component({
   selector: 'app-back-day',
@@ -63,28 +64,28 @@ export class BackDayComponent
     this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
   }
   toggleRulesf() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesf ? (this.showRulesf = false) : (this.showRulesf = true);
   }
   toggleRulesg() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesg ? (this.showRulesg = false) : (this.showRulesg = true);
   }
   toggleRulesh() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesh ? (this.showRulesh = false) : (this.showRulesh = true);
   }
   toggleRulesi() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesi ? (this.showRulesi = false) : (this.showRulesi = true);
   }
   toggleRulesj() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesj ? (this.showRulesj = false) : (this.showRulesj = true);
   }
   toggleRulesk() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesk ? (this.showRulesk = false) : (this.showRulesk = true);
   }
   toggleRulesl() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesl ? (this.showRulesl = false) : (this.showRulesl = true);
   }
   toggleRulesm() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesm ? (this.showRulesm = false) : (this.showRulesm = true);
   }
   toggleContent(): void {
     this.showContent = !this.showContent;
@@ -102,4 +103,6 @@ export class BackDayComponent
     const deduction = 7.7 * this.numTrueCheckboxes;
     return this.total_Health - deduction;
   }
+
+  
 }

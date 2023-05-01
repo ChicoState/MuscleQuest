@@ -18,11 +18,21 @@
         -webkit-background-clip: text;
     }
 </style>
-
+<script>
+  function generateItem() {
+    const rank = 1;
+    const newBundle = this.rewards.createLootBundle(rank);
+    this.item = this.rewards.createNewItem(rank);
+    console.log(newBundle);
+    console.log(this.item);
+    document.getElementById("loot-bundle").innerHTML = newBundle.join(", ");
+  }
+</script>
 <ul>
   <li><a href="/chest-day">Chest</a></li>
   <li><a href="/leg-day">Leg</a></li>
   <li><a href="/back-day">Back</a></li>
+  <li><a href="/start">Home</a> </li>
 </ul>
 <div style="text-align:center">
 <h1>ISA'S CHALLENGE</h1>
@@ -57,7 +67,7 @@
 
   <div>
     <input type="checkbox" id="workout1" name="workout1" value="5" [(ngModel)] = letCheckbox1>
-    <label for="workout1" style="color:black;font-size:18px;">Sumo Dead Lifts (5x(10-15))</label><br>
+    <label for="workout1" style="color:black;font-size:18px;">Sumo Dead Lifts (5x(4-6))</label><br>
   </div>
 
   <div style="text-align:center">
@@ -82,7 +92,7 @@
 
   <div>
     <input type="checkbox" id="workout2" name="workout2" value="5" [(ngModel)] = letCheckbox2>
-    <label for="workout2" style="color:black;font-size:18px;">Conventional Dead Lifts (5x(10-15))</label><br>
+    <label for="workout2" style="color:black;font-size:18px;">Conventional Dead Lifts (5x(4-6))</label><br>
   </div>
   <div style="text-align:center">
     <div class="instructions2" *ngIf="showRulesb; else hideRulesb">
@@ -103,7 +113,7 @@
   </div>
   <div>
     <input type="checkbox" id="workout3" name="workout3" value="5" [(ngModel)] = letCheckbox3>
-    <label for="workout3" style="color:black;font-size:18px;">Conventional Squats/Smith Machine Squats (5x(10-15))</label><br>
+    <label for="workout3" style="color:black;font-size:18px;">Conventional Squats/Smith Machine Squats (5x(4-6))</label><br>
   </div>
   <div style="text-align:center">
     <div class="instructions3" *ngIf="showRulesc; else hideRulesc">
@@ -130,11 +140,11 @@
 <div>
   <div>
     <input type="checkbox" id="workout4" name="workout4" value="5" [(ngModel)] = letCheckbox4>
-    <label for="workout4" style="color:black;font-size:18px;">Globlet Squats (5x(10-15))</label><br>
+    <label for="workout4" style="color:black;font-size:18px;">Globlet Squats (5x(4-6))</label><br>
   </div>
   <div style="text-align:center">
     <div class="instructions4" *ngIf="showRulesd; else hideRulesd">
-      <button (click)="toggleRulese()">Show how to Video</button>
+      <button (click)="toggleRulesd()">Show how to Video</button>
     </div>
   </div>
   <div>
@@ -171,14 +181,14 @@
     </ng-template>
   </div>
 </div>
+
 <div>
-<button style="text-align:left" class="button button2" onclick="alert('Congradulations User for defeating the Leg day boss!')"
->Submit!
-</button>
+  <button style="text-align:left" class="button button2" (click)="showItem()">Submit!</button>
 </div>
-<div id="generated-data">
-  <button id="generate-button" class="button button2" style="text-align:right">Generate Item</button>
-</div>
+
+
+
+
 
 .
 </body>

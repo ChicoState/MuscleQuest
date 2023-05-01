@@ -51,13 +51,13 @@ export class ChestDayComponent {
     this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
   }
   toggleRulesf() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesf ? (this.showRulesf = false) : (this.showRulesf = true);
   }
   toggleRulesg() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesg ? (this.showRulesg = false) : (this.showRulesg = true);
   }
   toggleRulesh() {
-    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+    this.showRulesh ? (this.showRulesh = false) : (this.showRulesh = true);
   }
   toggleContent(): void {
     this.showContent = !this.showContent;
