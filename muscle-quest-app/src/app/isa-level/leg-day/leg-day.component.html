@@ -1,43 +1,195 @@
-
+<html>
+<body>
+  <head>
+  </head>
 <style>
-  h1 {text-align: center;}
-  h2 {text-align: center;}
+  body {
+        background: rgb(0, 174, 255);
+    }
+    h3 {
+        position: absolute;
+        top: 85%;
+        left: 40%;
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to right, #f32170,
+                #ff6b08, #cf23cf, #eedd44);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
 </style>
-
-
+<script>
+  function generateItem() {
+    const rank = 1;
+    const newBundle = this.rewards.createLootBundle(rank);
+    this.item = this.rewards.createNewItem(rank);
+    console.log(newBundle);
+    console.log(this.item);
+    document.getElementById("loot-bundle").innerHTML = newBundle.join(", ");
+  }
+</script>
 <ul>
   <li><a href="/chest-day">Chest</a></li>
   <li><a href="/leg-day">Leg</a></li>
   <li><a href="/back-day">Back</a></li>
+  <li><a href="/start">Home</a> </li>
 </ul>
+<div style="text-align:center">
+<h1>ISA'S CHALLENGE</h1>
+<h2>Ready for your challange?!</h2>
+<h2>Leg Day Workout!</h2>
+</div>
 
-  <h1>ISA'S CHALLANGE</h1>
-  <h2>Ready for your challange?!</h2>
-  <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d8dc3eda-fc1a-4cbb-b8a9-d7c36f8d1499/d7ky1hd-b5416807-f04c-42bb-b60c-185807b0dc1f.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Q4ZGMzZWRhLWZjMWEtNGNiYi1iOGE5LWQ3YzM2ZjhkMTQ5OVwvZDdreTFoZC1iNTQxNjgwNy1mMDRjLTQyYmItYjYwYy0xODU4MDdiMGRjMWYuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.OdrVU15cmNBP2Er0X3-AM3g3_93rsnZLItGRMbKqR9g" alt="Level Boss"
-  width="800"
-  height="600"
-  />
-  <div style="text-align:center">
-      <label for="file">BOSS HEALTH:</label>
-      <progress id="file" [value]=getHealth() max="100"> 32% </progress>
+<div style="text-align:center">
+    <div>
+    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d8dc3eda-fc1a-4cbb-b8a9-d7c36f8d1499/d7ky1hd-b5416807-f04c-42bb-b60c-185807b0dc1f.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Q4ZGMzZWRhLWZjMWEtNGNiYi1iOGE5LWQ3YzM2ZjhkMTQ5OVwvZDdreTFoZC1iNTQxNjgwNy1mMDRjLTQyYmItYjYwYy0xODU4MDdiMGRjMWYuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.OdrVU15cmNBP2Er0X3-AM3g3_93rsnZLItGRMbKqR9g" alt="Leg Level Boss"
+    />
+    </div>
+    <label for="file">BOSS HEALTH:</label>
+    <progress id="file" [value]=getHealth() max="100"></progress>
+</div>
+
+<button class="collapsible" #collapsibleButton [ngClass]="{'active': showContent}" (click)="toggleContent()">Show: Tips for new players</button>
+<div class="content" [ngClass]="{'show': showContent, 'hide': !showContent}">
+  <p>When starting out start at a lower weight. Underestimate your strenght. 
+    If you can comfortably do a full set from 10-15 reps. Increase weight by 5 pounts until you can't do a full set.
+    Once you cant do a full set of 10-15. Lower the weight by 5 pounds and make that your working weight. 
+    Once you feel like you are ready or want to challange yourself add either a 2.5lb or a 5lb weight to your exercise.
+    Remember to work out safely, so make sure to warm up first before on moving to your working weight. 
+    EX. (5x(10-15)) = 5 sets of 10-15 reps
+  </p>
+</div>
+
+<div style="text-align:center">
+<h2>Beginning of Workout</h2>
+</div>
+<div>
+
+  <div>
+    <input type="checkbox" id="workout1" name="workout1" value="5" [(ngModel)] = letCheckbox1>
+    <label for="workout1" style="color:black;font-size:18px;">Sumo Dead Lifts (5x(4-6))</label><br>
   </div>
 
+  <div style="text-align:center">
+    <div class="instructions1" *ngIf="showRulesa; else hideRulesa">
+      <button (click)="toggleRulesa()">Show how to Video</button>
+    </div>
+  </div>
 
-<h2>Leg Day Workout!</h2>
-<p>EX. (5x(10-15)) = 5 sets of 10-15 reps</p>
-<p>Beginning of Workout</p>
-<div>
-  <input type="checkbox" id="workout1" name="workout1" value="5" [(ngModel)] = letCheckbox1>
-  <label for="workout1">Sumo Dead Lifts (5x(10-15))</label><br>
-  <input type="checkbox" id="workout2" name="workout2" value="5" [(ngModel)] = letCheckbox2>
-  <label for="workout2">Conventional Dead Lifts (5x(10-15))</label><br>
-  <input type="checkbox" id="workout3" name="workout3" value="5" [(ngModel)] = letCheckbox3>
-  <label for="workout3">Conventional Squats/Smith Machine Squats (5x(10-15))</label><br>
-</div>    
-<p>End of Workout</p>
-<div>
-  <input type="checkbox" id="workout4" name="workout4" value="5" [(ngModel)] = letCheckbox4>
-  <label for="workout4">Globin Squats (5x(10-15))</label><br>
-  <input type="checkbox" id="workout5" name="workout5" value="5" [(ngModel)] = letCheckbox5>
-  <label for="workout5">Angled Leg Press (5x(10-15))</label><br>
+  <div>
+    <ng-template #hideRulesa>
+      <div style="text-align:center">
+        <button (click)="toggleRulesa()">Hide Video</button>
+          <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/PjnheK1Nz3w"></iframe>
+              <iframe width="240" height="200" src="https://www.youtube.com/embed/De9OUZz5W_I"></iframe>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div>
+    <input type="checkbox" id="workout2" name="workout2" value="5" [(ngModel)] = letCheckbox2>
+    <label for="workout2" style="color:black;font-size:18px;">Conventional Dead Lifts (5x(4-6))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions2" *ngIf="showRulesb; else hideRulesb">
+      <button (click)="toggleRulesb()">Show how to Video</button>
+    </div>
+  </div>
+  <div>
+    <ng-template #hideRulesb>
+      <div style="text-align:center">
+        <button (click)="toggleRulesb()">Hide Video</button>
+        <div style="text-align:center">
+          <iframe width="240" height="200"
+            src="https://www.youtube.com/embed/pWybO8rWuLI">
+          </iframe><br>  
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout3" name="workout3" value="5" [(ngModel)] = letCheckbox3>
+    <label for="workout3" style="color:black;font-size:18px;">Conventional Squats/Smith Machine Squats (5x(4-6))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions3" *ngIf="showRulesc; else hideRulesc">
+      <button (click)="toggleRulesc()">Show how to Video</button>
+    </div>
+  </div>
+  <div>
+    <ng-template #hideRulesc>
+      <div style="text-align:center">
+        <button (click)="toggleRulesc()">Hide Video</button>
+        <div style="display: flex; justify-content: center;">
+          <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10rem; max-width: 480px;">
+            <iframe width="240" height="200" src="https://www.youtube.com/embed/AHnX-aimA4E"></iframe>
+            <iframe width="240" height="200" src="https://www.youtube.com/embed/Dy28eq2PjcM"></iframe>
+            </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>   
+<div style="text-align:center">
+<h2>End of Workout</h2>
 </div>
+<div>
+  <div>
+    <input type="checkbox" id="workout4" name="workout4" value="5" [(ngModel)] = letCheckbox4>
+    <label for="workout4" style="color:black;font-size:18px;">Globlet Squats (5x(4-6))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions4" *ngIf="showRulesd; else hideRulesd">
+      <button (click)="toggleRulesd()">Show how to Video</button>
+    </div>
+  </div>
+  <div>
+    <ng-template #hideRulesd>
+      <div style="text-align:center">
+        <button (click)="toggleRulesd()">Hide Video</button>
+        <div style="text-align:center">
+          <iframe width="240" height="200"
+            src="https://www.youtube.com/embed/3gpXflqRiEc">
+          </iframe><br>  
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout5" name="workout5" value="5" [(ngModel)] = letCheckbox5>
+    <label for="workout5" style="color:black;font-size:18px;">Angled Leg Press (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions5" *ngIf="showRulese; else hideRulese">
+      <button (click)="toggleRulese()">Show how to Video</button>
+    </div>
+  </div>
+  <div>
+    <ng-template #hideRulese>
+      <div style="text-align:center">
+        <button (click)="toggleRulese()">Hide Video</button>
+        <div style="text-align:center">
+          <iframe width="240" height="200"
+            src="https://www.youtube.com/embed/Aq5uxXrXq7c">
+          </iframe><br>  
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<div>
+  <button style="text-align:left" class="button button2" (click)="showItem()">Submit!</button>
+</div>
+
+
+
+
+
+.
+</body>
+</html>
