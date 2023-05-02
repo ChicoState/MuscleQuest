@@ -33,7 +33,7 @@ export class FirebaseDemoComponent {
   }
 
   removeFirstItem() {
-    this.userService.removeItem(this.itemGeneratorService.createNewItem(0));
+    this.userService.removeItem(this.userData.equipped[0]);
   }
 
   getUserData() {
