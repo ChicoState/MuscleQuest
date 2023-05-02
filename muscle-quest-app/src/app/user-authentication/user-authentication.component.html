@@ -1,12 +1,16 @@
-<p>user-authentication works!</p>
-<div *ngIf="auth.user | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
-  <li>
-    <a routerLink="">Home</a>
-  </li>
-</div>
-<ng-template #showLogin>
-  <p>Please login.</p>
-  <button (click)="login()">Login with Google</button>
-</ng-template>
+<html>
+  
+  <div *ngIf="auth.user | async as user; else showLogin" class="name">
+    <p class="text title">Muscle<br>Quest</p>
+    <h1 class="text n">Hello {{ user.displayName }}!</h1>
+    <button (click)="logout()" class="loginButton">Logout</button>
+    <button routerLink="" class="homeButton">Home</button>
+  </div>
+  <ng-template #showLogin>
+    <div class="log">
+      <p class="text please">Please login.</p>
+      <button (click)="login()" class="logButton">Login with Google</button>
+    </div>
+  </ng-template>
+</html>
+
