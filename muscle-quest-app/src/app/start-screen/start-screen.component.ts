@@ -13,7 +13,7 @@ export class StartScreenComponent implements OnInit {
   playThemeSong() {
     const lastPlayedDate = localStorage.getItem('lastPlayedDate');
     const today = new Date().toLocaleDateString();
-    if (lastPlayedDate == today) {
+    if (lastPlayedDate != today) {
       // Play the sound
       const audio = new Audio('../../assets/sloane/sounds/muscle-quest.wav');
       audio.play();
