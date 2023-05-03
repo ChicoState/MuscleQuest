@@ -1,3 +1,4 @@
+
 .button {
   box-shadow: inset 0 1px 0 0 #ffffff;
   background: #ffffff linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
@@ -27,6 +28,10 @@
   border: 3px solid green;
   padding: 10px;
 }
+label {
+  width: 1000px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -44,10 +49,89 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 } 
+
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: rgb(0, 0, 0);
 }
 .active {
   background-color: #ffffff;
-}  
+} 
+.intro-container,
+.instructions {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  padding: 0.8rem;
+}
+.button {
+  border: none;
+  color: rgb(199, 48, 48);
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #8205ff;
+}
+
+.button2:hover {
+  background-color: #692aa8;
+  color: rgb(108, 65, 130);
+}
+
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+/* Blue */
+.info {
+  color: rgb(255, 30, 210);
+}
+.info:hover {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+
+/*new code*/
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.active, .collapsible:hover {
+  background-color: #555;
+}
+.content {
+  padding: 0 18px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  transition: max-height 0.2s ease-out;
+  max-height: 0;
+}
+.show {
+  max-height: 500px;
+}
+.hide {
+  max-height: 0;
+}

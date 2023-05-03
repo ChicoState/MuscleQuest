@@ -1,11 +1,11 @@
-import { Component} from '@angular/core';
-import { item_registry } from 'src/lib/registry'
-import { UserData } from 'src/lib/user';
-import { getItemName, getItemIcon } from 'src/lib/registry'
-import { ItemState } from 'src/lib/user';
-import { EquipmentSlot } from 'src/lib/registry';
+import { Component, AfterViewInit, HostListener, OnInit} from '@angular/core';
+import { item_registry, EquipmentSlot } from 'src/lib/registry'
+import { DEFAULT_USER_DATA, DataObject, ItemState } from 'src/lib/user';
 import { Location } from '@angular/common';
 import { Element, Material } from 'src/lib/user';
+import { SloaneUserUpdateService } from '../sloane-user-updater.service';
+import { isTemplateMiddle } from 'typescript';
+import { NONE_TYPE } from '@angular/compiler';
 
 
 
@@ -16,69 +16,122 @@ import { Element, Material } from 'src/lib/user';
   templateUrl: './character-screen.component.html',
   styleUrls: ['./character-screen.component.scss']
 })
-export class CharacterScreenComponent{
-  constructor(private location: Location) {}
-
-  getIconImage = getItemIcon;
-  getUserData = UserData.get; 
+export class CharacterScreenComponent implements AfterViewInit, OnInit{
+  playerStats = {
+    strength: 0,
+    dexterity: 0,
+    fireAffinity: 0,
+    iceAffinity: 0,
+    lightningAffinity:0
+  }
+  equippedColor: any = null;
+  hoveredColor: any = null;
+  hoveredItem: any = null;
+  UserData:any;
   mode = "normal";
-  equipped = UserData.get().equipped;
-  currItem:any;
-  itemName:any;
-  itemStrength:any;
-  itemDexterity:any;
-  itemElement:any;
-  itemMaterial:any;
-
-  showStats(item:ItemState){
-    this.currItem = item;
-    this.itemName = "";
-    this.itemStrength = 0;
-    this.itemDexterity = 0;
-    this.itemElement = null;
-    this.itemMaterial = null;
-    item.display_name ? this.itemName = item.display_name : item_registry[item.id].name;
-    item.strength ? this.itemStrength = item.strength : 0;
-    item.dexterity ? this.itemDexterity = item.dexterity : 0;
-    switch(item.element){
-      case Element.FIRE:
-        this.itemElement = "Fire";
-        break;
-      case Element.ICE:
-        this.itemElement = "Ice";
-        break;
-      case Element.LIGHTNING:
-        this.itemElement = "Lightning";
-        break;
-      default:
-        this.itemElement = "";
-    }
-    switch(item.material){
-      case Material.IRON:
-        this.itemMaterial = "Iron";
-        break;
-      case Material.STEEL:
-        this.itemMaterial = "Steel";
-        break;
-      case Material.DIAMOND:
-        this.itemMaterial = "Diamond";
-        break;
-      default:
-        this.itemMaterial = "";
-    }
-
+  comparing = false;
+  equipped:any;
+  currItem = {
+    item: {} as ItemState,
+    name : "",
+    strength: 0,
+    strength_color: 'white',
+    dexterity: 0,
+    dexterity_color: 'white',
+    element: "",
+    material: ""
   }
-  goBack(): void {
-    this.location.back();
+  currEquipped = {
+    item: {} as ItemState,
+    name : "",
+    strength: 0,
+    strength_color: 'white',
+    dexterity: 0,
+    dexterity_color: 'white',
+    element: "",
+    material: ""
   }
-  unEquip(item:ItemState){
-    let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
-    let blank:ItemState;
-    UserData.mutate(data => {
-      data.items.push(item);
-      data.equipped[slot] = blank;
-      return data;
-    })
+  constructor(private location: Location, private userService: SloaneUserUpdateService) {
+    this.userService.getCurrentUser().subscribe((user) => {
+      this.UserData = user;
+    });
+  }
+  ngOnInit(): void {
+  }
+  ngAfterViewInit(){
+    // Attach a 'mousemove' event handler to elements with class '.slot'
+    setInterval(function(){
+      var slotElements = document.querySelectorAll('.slot');
+      slotElements.forEach(function(slotElement) {
+        slotElement.addEventListener('mousemove', function(event) {
+          // Get cursor's coordinates
+          let mEvent = event as MouseEvent;
+          var cursorX = mEvent.clientX;
+          var cursorY = mEvent.clientY;
+          // Set modal's position to cursor's coordinates
+          var modal = document.getElementById('compareContainer') as HTMLElement;
+          modal.style.display = 'grid';
+          modal.style.left = (cursorX-100) + 'px';
+          modal.style.top = (cursorY-240) + 'px';
+        });
+    
+        slotElement.addEventListener('mouseout', function() {
+          // Hide modal when cursor is no longer hovering over div
+          document.getElementById('compareContainer')!.style.display = 'none';
+        });
+      });
+    }, 100)
+  }
+
+  equip(item:ItemState | undefined){
+    this.getPlayerStats();
+    if(item != undefined){
+      if(this.UserData){
+        if(this.UserData.equipped[item_registry[item.id].equipment_slot!]){
+          let tempItem = this.UserData.equipped[item_registry[item.id].equipment_slot!] as ItemState;
+          this.UserData.items.push(tempItem);
+        }
+        this.UserData.equipped[item_registry[item.id].equipment_slot!] = null;
+        this.userService.updateUserData(this.UserData);
+        this.UserData.equipped[item_registry[item.id].equipment_slot!] = item;
+        this.UserData.items = this.UserData.items.filter((x:ItemState) => x != item)
+        this.userService.updateUserData(this.UserData);
+        this.UserData = this.userService.getCurrentUserData();
+        document.getElementById('compareContainer')!.style.display = 'none';
+      }
+    }
+  }
+  unEquip(item:ItemState | undefined){
+    this.getPlayerStats();
+    if(this.UserData){
+      if(item != undefined){
+        this.UserData.equipped[item_registry[item.id].equipment_slot!] = null;
+        this.UserData.items.push(item);
+      }
+      
+    }
+    this.userService.updateUserData(this.UserData!);
+    this.UserData = this.userService.getCurrentUserData();
+    
+  }
+  getIcon(i:number){
+    if(this.UserData)
+     return this.UserData.items[i].display_icon ? this.UserData.items[i].display_icon : item_registry[this.UserData.items[i].id].icon;
+    return "/assets/CharacterScreen/default-icon.png";
+  }
+  getEquippedIcon(item:ItemState | undefined){
+    if(item != undefined){
+      if(this.UserData){
+        if(this.UserData.equipped){
+          if(item.display_icon){
+            return item.display_icon;
+          }else{
+            return item_registry[item.id].icon;
+          }
+        }
+      }
+    }
+    return "/assets/CharacterScreen/default-icon.png";
   }
   changeMode(){
     if(this.mode == "normal"){
@@ -86,40 +139,244 @@ export class CharacterScreenComponent{
     }else if(this.mode == "delete"){
       this.mode = "normal";
     }
+  }
+  updateStats(item:ItemState | undefined){
+    this.getPlayerStats();
+    this.hoveredItem = item;
+    if(item != undefined){
+      if(this.UserData){
+        let tempE = this.UserData.equipped[item_registry[item.id].equipment_slot!];
+        this.currItem.name = "";
+        this.currEquipped.name = "";
+        item.display_name  ? this.currItem.name = item.display_name : this.currItem.name = item_registry[item.id].name;
+        item.display_name  ? this.currItem.name = item.display_name : this.currItem.name = item_registry[item.id].name;
+        if(tempE){
+          tempE.display_name  ? this.currEquipped.name = tempE.display_name : this.currEquipped.name = item_registry[tempE.id].name;
+          tempE.display_name  ? this.currEquipped.name = tempE.display_name : this.currEquipped.name = item_registry[tempE.id].name;
+        }
+        
+        this.currItem.strength = 0;
+        this.currEquipped.strength = 0
+        this.currItem.strength = item.strength;
+        if(tempE)
+        this.currEquipped.strength = tempE.strength;
     
-  }
-  deleteItem(item:ItemState){
-    UserData.mutate(data => {
-      data.items = data.items.filter((x) => x != item);
-      return data;
-    })
-  }
-  equipItem(){
-    let item = this.currItem;
-    let slot = item_registry[item.id].equipment_slot as EquipmentSlot;
-    console.log(slot);
-    let currentEquipped = UserData.get().equipped[slot];
-    if (!currentEquipped) {
-      UserData.mutate(data => {
-        data.equipped[slot] = item;
-        data.items = data.items.filter((x) => x != item);
-        return data;
-      })
-    }else{
-      UserData.mutate(data => {
-        let currEquip = data.equipped[slot] as ItemState;
-        data.equipped[slot] = item;
-        data.items = data.items.filter((x) => x != item);
-        data.items.push(currEquip);
-        return data;
-      })
+        this.currItem.dexterity = 0;
+        this.currEquipped.dexterity = 0
+        this.currItem.dexterity = item.dexterity;
+        if(tempE)
+        this.currEquipped.dexterity = tempE.dexterity;
+    
+        this.currItem.strength_color = "white";
+        this.currEquipped.strength_color = "white";
+        this.currItem.dexterity_color = "white";
+        this.currEquipped.dexterity_color = "white";
+    
+        this.currEquipped.element = "";
+        this.currItem.element = "";
+    
+        this.currEquipped.material = "";
+        this.currItem.material = "";
+    
+        switch(item.element){
+          case Element.FIRE:
+            this.equippedColor = 'red';
+            this.currItem.element = "Fire";
+            break;
+          case Element.ICE:
+            this.equippedColor = 'blue';
+            this.currItem.element = "Ice";
+            break;
+          case Element.LIGHTNING:
+            this.equippedColor = 'yellow';
+            this.currItem.element = "Lightning";
+            break;
+          default:
+            this.equippedColor = '#eb5d25';
+        }
+        if(tempE)
+        switch(tempE.element){
+          case Element.FIRE:
+            
+            this.currEquipped.element = "Fire";
+            break;
+          case Element.ICE:
+            
+            this.currEquipped.element = "Ice";
+            break;
+          case Element.LIGHTNING:
+            
+            this.currEquipped.element = "Lightning";
+            break;
+        }
+        switch(item.material){
+          case Material.IRON:
+            this.currItem.material = "Iron";
+            break;
+          case Material.STEEL:
+            this.currItem.material = "Steel";
+            break;
+          case Material.DIAMOND:
+            this.currItem.material = "Diamond";
+            break;
+        }
+        if(tempE)
+        switch(tempE.material){
+          case Material.IRON:
+            this.currEquipped.material = "Iron";
+            break;
+          case Material.STEEL:
+            this.currEquipped.material = "Steel";
+            break;
+          case Material.DIAMOND:
+            this.currEquipped.material = "Diamond";
+            break;
+        }
+      }
     }
-    console.log(currentEquipped);
     
   }
-  getIcon(i:number):string{
-    let item = UserData.get().items[i];
-    return getItemIcon(item);
+  deleteItem(item:ItemState | undefined){
+    if(item != undefined){
+      if(this.UserData){
+        this.UserData.items = this.UserData.items.filter((x:ItemState) => x != item)
+        this.userService.updateUserData(this.UserData);
+        this.UserData = this.userService.getCurrentUserData();
+      }
+    }
+  }
+  createItem(){
+    let item = {} as ItemState;
+    item.dexterity = 4;
+    item.strength = 10;
+    item.display_icon = "/assets/CharacterScreen/reg_sword_1.png";
+    item.display_name = "Refined Iron Sword";
+    item.id = 'sword';
+    item.material = Material.IRON;
+    this.UserData.items.push(item);
+    this.userService.updateUserData(this.UserData);
+    this.UserData = this.userService.getCurrentUserData();
+  }
+  getBoxShadow(item:ItemState | undefined){
+    if(this.hoveredItem == item){
+      if(item != undefined && item != null){
+        switch(item.element){
+          case Element.FIRE:
+            this.hoveredColor = 'red';
+            return `0px 0px 8px 1px red`;
+          case Element.ICE:
+            return `0px 0px 8px 1px blue`;
+          case Element.LIGHTNING:
+            return `0px 0px 8px 1px yellow`;
+          default:
+            return `0px 0px 8px 1px white`;
+        }
+      }
+    }else{
+      return null;
+    }
+    return null;
+  }
+  getCompareBorder(){
+    switch(this.equippedColor){
+      case 'red':
+        return '3px solid red';
+      case 'blue':
+        return '3px solid blue';
+      case 'yellow':
+        return '3px solid yellow';
+
+    }
+    return '3px solid #eb5d25';
+  }
+  onMouseLeave(){
+    this.hoveredItem = null;
+  }
+  getPlayerStats(){
+    this.playerStats.strength = 0;
+    this.playerStats.dexterity = 0;
+    this.playerStats.fireAffinity = 0;
+    this.playerStats.iceAffinity = 0;
+    this.playerStats.lightningAffinity = 0;
+    
+    if(this.UserData.equipped.head){
+      this.playerStats.strength += this.UserData.equipped.head.strength;
+      this.playerStats.dexterity += this.UserData.equipped.head.dexterity;
+      switch(this.UserData.equipped.head.element){
+        case Element.FIRE:
+          this.playerStats.fireAffinity++;
+          break;
+        case Element.ICE:
+          this.playerStats.iceAffinity++;
+          break;
+        case Element.LIGHTNING:
+          this.playerStats.lightningAffinity++;
+          break;
+      }
+    }
+    if(this.UserData.equipped.feet){
+      this.playerStats.strength += this.UserData.equipped.feet.strength;
+      this.playerStats.dexterity += this.UserData.equipped.feet.dexterity;
+      switch(this.UserData.equipped.feet.element){
+        case Element.FIRE:
+          this.playerStats.fireAffinity++;
+          break;
+        case Element.ICE:
+          this.playerStats.iceAffinity++;
+          break;
+        case Element.LIGHTNING:
+          this.playerStats.lightningAffinity++;
+          break;
+      }
+    }
+    if(this.UserData.equipped.chest){
+      this.playerStats.strength += this.UserData.equipped.chest.strength;
+      this.playerStats.dexterity += this.UserData.equipped.chest.dexterity;
+      switch(this.UserData.equipped.chest.element){
+        case Element.FIRE:
+          this.playerStats.fireAffinity++;
+          break;
+        case Element.ICE:
+          this.playerStats.iceAffinity++;
+          break;
+        case Element.LIGHTNING:
+          this.playerStats.lightningAffinity++;
+          break;
+      }
+    }
+    if(this.UserData.equipped.hands){
+      this.playerStats.strength += this.UserData.equipped.hands.strength;
+      this.playerStats.dexterity += this.UserData.equipped.hands.dexterity;
+      switch(this.UserData.equipped.hands.element){
+        case Element.FIRE:
+          this.playerStats.fireAffinity++;
+          break;
+        case Element.ICE:
+          this.playerStats.iceAffinity++;
+          break;
+        case Element.LIGHTNING:
+          this.playerStats.lightningAffinity++;
+          break;
+      }
+    }
+    if(this.UserData.equipped.weapon){
+      this.playerStats.strength += this.UserData.equipped.weapon.strength;
+      this.playerStats.dexterity += this.UserData.equipped.weapon.dexterity;
+      switch(this.UserData.equipped.weapon.element){
+        case Element.FIRE:
+          this.playerStats.fireAffinity++;
+          break;
+        case Element.ICE:
+          this.playerStats.iceAffinity++;
+          break;
+        case Element.LIGHTNING:
+          this.playerStats.lightningAffinity++;
+          break;
+      }
+    }
+    
   }
 }
+
+
 

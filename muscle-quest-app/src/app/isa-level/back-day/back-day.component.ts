@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { CheckboxControlValueAccessor } from '@angular/forms';
+import { Component, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { SloaneItemGeneratorService } from '../../sloane-item-generator.service';
+import { ItemState, UserData, Material, Element } from 'src/lib/user';
+
 
 @Component({
   selector: 'app-back-day',
@@ -25,6 +29,68 @@ export class BackDayComponent
   numTrueCheckboxes: number = 0;
   prevCheckbox: Record<string, boolean> = {};
 
+  showExample: boolean = false;
+  showRulesa: boolean = true;
+  showRulesb: boolean = true;
+  showRulesc: boolean = true;
+  showRulesd: boolean = true;
+  showRulese: boolean = true;
+  showRulesf: boolean = true;
+  showRulesg: boolean = true;
+  showRulesh: boolean = true;
+  showRulesi: boolean = true;
+  showRulesj: boolean = true;
+  showRulesk: boolean = true;
+  showRulesl: boolean = true;
+  showRulesm: boolean = true;
+  showContent: boolean = false;
+
+  toggleExample() {
+    this.showExample ? (this.showExample = false) : (this.showExample = true);
+  }
+  toggleRulesa() {
+    this.showRulesa ? (this.showRulesa = false) : (this.showRulesa = true);
+  }
+  toggleRulesb() {
+    this.showRulesb ? (this.showRulesb = false) : (this.showRulesb = true);
+  }
+  toggleRulesc() {
+    this.showRulesc ? (this.showRulesc = false) : (this.showRulesc = true);
+  }
+  toggleRulesd() {
+    this.showRulesd ? (this.showRulesd = false) : (this.showRulesd = true);
+  }
+  toggleRulese() {
+    this.showRulese ? (this.showRulese = false) : (this.showRulese = true);
+  }
+  toggleRulesf() {
+    this.showRulesf ? (this.showRulesf = false) : (this.showRulesf = true);
+  }
+  toggleRulesg() {
+    this.showRulesg ? (this.showRulesg = false) : (this.showRulesg = true);
+  }
+  toggleRulesh() {
+    this.showRulesh ? (this.showRulesh = false) : (this.showRulesh = true);
+  }
+  toggleRulesi() {
+    this.showRulesi ? (this.showRulesi = false) : (this.showRulesi = true);
+  }
+  toggleRulesj() {
+    this.showRulesj ? (this.showRulesj = false) : (this.showRulesj = true);
+  }
+  toggleRulesk() {
+    this.showRulesk ? (this.showRulesk = false) : (this.showRulesk = true);
+  }
+  toggleRulesl() {
+    this.showRulesl ? (this.showRulesl = false) : (this.showRulesl = true);
+  }
+  toggleRulesm() {
+    this.showRulesm ? (this.showRulesm = false) : (this.showRulesm = true);
+  }
+  toggleContent(): void {
+    this.showContent = !this.showContent;
+  }
+
 
   getHealth(): number {
     this.numTrueCheckboxes = 0;
@@ -37,4 +103,6 @@ export class BackDayComponent
     const deduction = 7.7 * this.numTrueCheckboxes;
     return this.total_Health - deduction;
   }
+
+  
 }
