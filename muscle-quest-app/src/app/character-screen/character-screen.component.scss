@@ -8,6 +8,16 @@ body {
     height: 100%;
 }
 
+.text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    z-index: 4;
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .Container {
     position: relative;
     left: 50%;
@@ -18,76 +28,272 @@ body {
     height: 90vh;
 
     padding: 1em;
-    border-radius: 2%;
-    background-image: url(/assets/CharacterScreen/leatherTexture.jpg);
-    border: 10px rgb(57, 44, 25);
-    border-style:double;
-    // box-shadow: 
-    // inset 0px 0px 10px 5px rgb(166, 165, 165);
+    border-radius: 0px 20px 20px 20px;
+    background-color: #222222;
 
     display: grid;
     grid-template-areas:
-        'e e e . s s s .'
-        'e e e . s s s .'
-        'e e e . s s s .'
-        'r r r r r r r .'
-        'i i i i i i i i'
-        'i i i i i i i i'
-        'i i i i i i i i'
-        'i i i i i i i i';
-    grid-template-rows: repeat(8, minmax(0, 1fr));
+        'e e e r r r r .'
+        'e e e cs cs cs . .'
+        'e e e cs cs cs . .'
+        'i i i i i i i t'
+        'i i i i i i i .'
+        ;
+    grid-template-rows: repeat(3, minmax(40px, 0.5fr)) repeat(2, 1fr);
     grid-template-columns: repeat(8, 1fr);
     grid-gap: .5em;
-}
+    & .back{
+        position: absolute;
+        left: 2px;
+        top: 2px;
+    
+        height:30px;
+        max-width:60px;
+        min-width:40px;
+        border-radius: 2px 2px 20px 2px;
+        background-color: #6e6e6e;
+        color:black;
+        transition: background-color 0.2s ease-in-out;
+        
+    
+        font-size: 2em;
+        & .text {
+            position: relative;
+            left: -2.5px;
+            user-select:none;
+        }
+       
+    }
+    & .back:hover {
+        background-color: #da282a;
+        color:white;
+        pointer-events: visible;
+    }
+    & .trash{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px 10px 10px 10px;
+        aspect-ratio: 1/1;
+        width: 100%;
+        max-width: 3em;
+        height: 100%;
+        max-height: 3em;
+        grid-area: t;
+        background-color: #71d39d;
+        transition: background-color 0.5s ease-in-out; 
+        & img {
+            margin:auto;
+            width: 80%;
+            height: 80%;
+        }
+    }
+    & .normal:hover {
+        background-color: #da282a;
+    }
+    & .delete{
+        background-color: #da282a; 
+    }
+    & .equipped {
+        position: relative;
+        display:grid;
+        grid-template-areas: 
+        '. helmet . '
+        'gloves chestplate weapon'
+        ' . boots . ';
+        grid-template-columns: repeat(3 ,minmax(1em, 1fr));
+        grid-template-rows: repeat(3, minmax(1em, 1fr));
+        grid-gap: 0.5em;
+        grid-area: e;
+        & .helmet {
+            justify-self: center;
+            grid-area: helmet;
+        }
+        
+        & .chestplate {
+            justify-self: center;
+            grid-area: chestplate;
+        }
+        
+        & .gloves{
+            right:-10px;
+            justify-self: right;
+            grid-area: gloves;
+        }
+        
+        & .boots {
+            justify-self: center;
+            grid-area: boots;
+        }
+        
+        & .weapon{
+            grid-area: weapon;
+        }
+    
+        & .equipSlot {
+            display:flex;
+            aspect-ratio: 1/1;
+            height: 100%;
+            max-height: 6em;
+            width: 100%;
+            max-width: 6em;
+            margin: auto;
+            background-color: #32d642;
+            border-radius: 5px;
+            & img {
+                display: flex;
+                height: 100%;
+                width: 100%;
+                margin: auto;
+            }
+        }
+        & .equipSlot:hover{
+            box-shadow: 
+                0px 0px 15px 1px #88e592;
+        }
+        
+    }
+    & .resourceContainer {
+        display: grid;
+        grid-template-areas: 
+            'gold iron wood';
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-area: r;
+        overflow: auto;
+        justify-items: left;
+        padding: .5em;
+        & .gold{
+            grid-area: gold;
+        }
+    
+        & .gold::before {
+            position: absolute;
+            z-index: 3;
+            content:"";
+            // background-color: #2e85ee;
+            background-color: gold;
+            left:8px;
+            top:8px;
+            border-radius: 5px 10px 10px 10px;
+            height: 2em;
+            width: 2em;
+        }
+        
+        & .iron {
+            grid-area: iron;
+        }
+        & .iron::before {
+            position: absolute;
+            z-index: 3;
+            content:"";
+            // background-color: #2e85ee;
+            background-color: silver;
+            left:8px;
+            top:8px;
+            border-radius: 5px 10px 10px 10px;
+            height: 2em;
+            width: 2em;
+        }
+        
+        & .wood {
+            grid-area: wood;
+        }
+        & .wood::before {
+            position: absolute;
+            z-index: 3;
+            content:"";
+            // background-color: #2e85ee;
+            background-color: rgb(72, 48, 25);
+            left:8px;
+            top:8px;
+            border-radius: 5px 10px 10px 10px;
+            height: 2em;
+            width: 2em;
+        }
+        & .resource {
+            position: relative;
+            display: grid;
+            grid-template-areas: 
+              'icon text';
+            grid-template-columns: 1fr 2fr ;
+            grid-template-rows: 1fr;
+            width:100%;
+            max-width: 10em;
+            height:100%;
+            max-height: 3em;
+            background-color: #2e85ee;
+            border-radius: 2px 5px 5px 5px;
+            color: white;
+            & .text {
+                grid-area:text;
+                display: flex;
+                justify-content:space-around;
+                align-items: center;
+            }
+            & img {
+                z-index: 3;
+                display: flex;
+                grid-area: icon;
+                max-height: 3em;
+                max-width: 3em;
+                margin: auto;
+            }
+        
+        }
+    }
+    & .inventoryContainer {
+        position:relative;
+        grid-area: i;
+        width:100%;
+        display:grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        grid-auto-rows: 60px;
+        padding:.5em;
+        grid-gap: 1em;
+        justify-items:center;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        & .slot {
+            position: relative;
+            display:flex;
+            aspect-ratio: 1/1;
+            min-width: 2em;
+            min-height: 2em;
+            max-height: 4.5em;
+            max-width: 4.5em;
+            background-color: #8e54ee;
+            border-radius: 5px;
+            
+            & img{
+                display: flex;
+                max-height: 3em;
+                max-width: 3em;
+                margin: auto;
+            }
+        }
+        & .slot:hover {
+            box-shadow: 
+            0px 0px 8px 1px #b796ed;
+        }
+    }
+    .characterStats{
+        position:relative;
+        width: 100%;
+        max-width: 20em;
+        height: 100%;
+        max-height:60em;
+        grid-area: cs;
 
-.text {
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
-.back{
-    aspect-ratio: 1/1;
-    position: absolute;
-    left: -1.7em;
-    top: -1.7em;
-    height:40px;
-    max-width:40px;
-    min-width:30px;
-    color:rgb(255, 255, 255);
-    border-radius: 50%;
-    background-image: url(/assets/CharacterScreen/leatherTexture.jpg);
-    border: 6px rgb(57, 44, 25);
-    border-style:double;
-}
-
-.backText{
-    font-family:'Courier New', Courier, monospace;
-    width:100%;
-    height:100%;
-    font-size: 1.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        border-radius: 5px 10px 10px 10px;
+        background-color: #f23e97;
+    }
 }
 
 .name {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     grid-area:n;
-}
-.equip {
-    width: 3em;
-    height: 1.5em;
-    background-color: blue;
-    font-size: 20px;
-    grid-area:equip;
-}
-
-.compare {
-    width: 4em;
-    height: 1.5em;
-    background-color: yellow;
-    font-size: 20px;
-    grid-area:compare;
 }
 
 .stats {
@@ -96,331 +302,118 @@ body {
     margin: 0;
     padding: 0;
     & li {
-        font-size: 18px;
-        line-height: 1.2em;
+        font-size: 15px;
+        line-height: 2em;
     }
 }
-  
+
+.compareContainer{
+    position: absolute;
+    display:none;
+    grid-template-areas: 
+    's eq'
+    ;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
 .statsContainer {
+    z-index: 2;
+    position:relative;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     display:grid;
     grid-template-areas: 
     'n n n'
     'stat stat stat'
-    'stat stat stat'
-    '. equip compare'
     ;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: .5fr 1fr 1fr;
-    aspect-ratio: 2/1;
-    width:100%;
-    max-width: 20em;
-    height:100%;
-    max-height: 10em;
-    border: 2px solid rgb(166, 165, 165);
-    box-shadow: 
-        inset 0px 0px 10px 5px rgb(166, 165, 165);
-    grid-area:s;
-}
-
-.equipped {
-    display:grid;
-    grid-template-areas: 
-    '. helmet . '
-    'gloves chestplate weapon'
-    ' . boots . ';
-    grid-template-columns: repeat(3, minmax(1em, 1fr));
-    grid-template-rows: repeat(3, minmax(1em, 1fr));
-    grid-area: e;
-    justify-items:center;
-    border: 5px gold;
-    border-style:double;
-    border-radius: 2%;
-}
-
-
-
-
-
-.equipSlot {
-    display:flex;
-    aspect-ratio: 1/1;
-    min-height: 50%;
-    min-width: 50%;
-    max-height: 100%;
-    max-width: 100%;
-    margin: .3em;
-    background-color: rgb(255,255,255,0.1);
-    border-radius: 2%;
-    border: 3px solid gold;
-    & img {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        margin: auto;
-    }
-}
-
-.equipSlot:hover{
-    background-color: rgb(255, 255, 255, 0.2);
-}
-
-.helmet {
-    grid-area: helmet;
-}
-
-.chestplate {
-    grid-area: chestplate;
-}
-
-.gloves{
-    grid-area: gloves;
-}
-
-.boots {
-    grid-area: boots;
-}
-
-.weapon{
-    grid-area: weapon;
-}
-
-.resourceContainer {
-    display: grid;
-    grid-template-areas: 
-        'gold iron wood';
-    grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-area: r;
-    overflow: auto;
-    justify-items: left;
-    padding: .5em;
-}
-
-.resource {
-    position: relative;
-    display: grid;
-    grid-template-areas: 
-      'icon text';
-    grid-template-columns: 1fr 1fr ;
-    grid-template-rows: 1fr;
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgb(166, 165, 165);
-    border-radius: 2%;
-    color: white;
-    
-    & .resourceText {
-        z-index: 3;
-        font-size: 1.5em;
-        display: flex;
-        grid-area: text;
-        margin: auto;
-        margin-left: 0;
-    }
-    & img {
-        z-index: 3;
-        display: flex;
-        grid-area: icon;
-        max-height: 3em;
-        max-width: 3em;
-        margin: auto;
-    }
-
-}
-
-.resource::after{
-    content: "";
-    z-index: 2;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 1;
-    top:0;
-    left:11%;
-    right:0;
-    background-color: rgb(45, 26, 9);
-    border: 5px solid gold;
-    width:4em;
-    height:4em;
-}
-.resource::before{
-    content: "";
-    position: absolute;
-    z-index: 1;
-    left:0;
-    right:0;
-    background-color: rgb(45, 26, 9);
-    border: 5px solid gold;
-    max-width: 6em;
-    min-width: 4em;
-    height:3em;
-    margin:auto;
-    margin-top: .5em;
-    margin-bottom:.5em;
-}
-
-.gold{
-    grid-area: gold;
-}
-
-.iron {
-    grid-area: iron;
-}
-
-.wood {
-    grid-area: wood;
-}
-
-.trash{
-    position:absolute;
-    top:45.5%;
-    left:90%;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2%;
-    grid-area: t;
-    aspect-ratio: 1/1;
-    height:40px;
-    max-width:40px;
-    min-width:30px;
-    border-top: 5px double gold;
-    border-left: 5px double gold;
-    border-right: 5px double gold;
-    background-color: rgb(255, 255, 255, 0.1);
-    transition: background-color 0.5s ease-in-out; 
-    & img {
-        margin:auto;
-        width: 80%;
-        height: 80%;
-    }
-}
-.trash::after {
-    z-index: 1;
-    content: ''; /* Required for pseudo-element */
-    position: absolute; /* Position the pseudo-element */
-    top: 90%; /* Position at the bottom of the parent div */
-    left: 0;
-    right: 0;
-    width:100%;
-    height: 10px; /* Set the height of the border */
-    background-image: url(/assets/CharacterScreen/leatherTexture.jpg); 
-}
-.normal:hover {
-    background-color: rgb(255, 255, 255, 0.2);
-}
-.delete{
-    background-color: rgb(255, 0, 0, 0.1); 
-}
-.delete:hover {
-    background-color: rgb(255, 0, 0, 0.2); 
-}
-
-
-
-.characterContainer {
-    height: 100%;
+    grid-template-rows: .5fr 2fr;
+    color:white;
+    aspect-ratio: 2/1;
     min-width: 10em;
-    max-width: 14em;
-    grid-area: c;
-    border: 2px solid rgb(166, 165, 165);
-    box-shadow: 
-        inset 0px 0px 10px 5px rgb(166, 165, 165);
-    & img {
-        display: flex;
-        grid-area: icon;
-        height: 100%;
-        width: 100%;
-    }
+    max-width: 20em;
+    min-width:10em;
+    max-height: 30em;
+    border: 3px solid #eb5d25;
+    background-color: #222222;
+    grid-area:s;
+    transition: scale 0.5s ease-in-out;
 }
-
-
-
-.inventoryContainer {
+.equippedStatsContainer {
+    z-index: 3;
     position:relative;
-    grid-area: i;
-    border: 5px double gold;
-    border-radius: 2%;
-    width:100%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    grid-auto-rows: minmax(60px, 1fr);
-    padding:.5em;
-    grid-gap: 1em;
-    justify-items:center;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.slot {
-    display:flex;
-    aspect-ratio: 1/1;
-    min-width: 2em;
-    min-height: 2em;
-    max-height: 4.5em;
-    max-width: 4.5em;
-    background: 
-    linear-gradient(to right, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 0,
-    linear-gradient(to right, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 100%,
-    linear-gradient(to left, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 0,
-    linear-gradient(to left, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 100%,
-    linear-gradient(to bottom, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 0,
-    linear-gradient(to bottom, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 0,
-    linear-gradient(to top, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 0 100%,
-    linear-gradient(to top, rgb(0, 0, 0, 0.5) 4px, transparent 4px) 100% 100%;
-
-    background-repeat: no-repeat;
-    background-size: 10px 10px;
-    
-    & img{
-        display: flex;
-        max-height: 3em;
-        max-width: 3em;
-        margin: auto;
-    }
-}
-
-
-.slot:hover {
-    background-color: rgb(255, 255, 255, 0.2);
+    grid-template-areas: 
+    'n n n'
+    'stat stat stat'
+    ;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: .5fr 2fr;
+    color:white;
+    aspect-ratio: 2/1;
+    min-width: 10em;
+    max-width: 20em;
+    min-width:10em;
+    max-height: 30em;
+    border: 3px solid #eb5d25;
+    background-color: #222222;
+    grid-area:eq;
+    transition: scale 0.5s ease-in-out;
 }
 
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
   
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: transparent; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #000000; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #292929; 
-  }
+/* Define the background color of the scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 5px; /* Set the border radius to create a rounded shape */
+}
 
-  @media screen and (max-width: 630px){
+/* Define the background color of the scrollbar when hovered */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #895ea5;
+}
+
+/* Define the background color of the scrollbar track */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Define the background color of the scrollbar track when hovered */
+::-webkit-scrollbar-track:hover {
+    background-color: transparent;
+}
+
+@media screen and (max-width: 680px){
     .Container {
         grid-template-areas:
-            '. e e e .'
-            '. e e e .'
-            '. e e e .'
-            'r r r r r'
-            'i i i i i'
-            'i i i i i'
-            'i i i i i'
-            'i i i i i';
-        grid-template-rows: repeat(8, minmax(0, 1fr));
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: .5em;
+        '. . e e e e . .'
+        '. . e e e e . .'
+        '. r r r r r r .'
+        'i i i i i i i t'
+        'i i i i i i i .'
+        ;
     }
-    .statsContainer {
+    .characterStats{
         display:none;
     }
-  }
+}
+
+@media screen and (max-width: 321px){
+    .Container {
+        grid-template-areas:
+        '. e e e e e e .'
+        '. e e e e e e .'
+        'r r r r r r r r'
+        'i i i i i i i t'
+        'i i i i i i i .'
+        ;
+    }
+    .characterStats{
+        display:none;
+    }
+}

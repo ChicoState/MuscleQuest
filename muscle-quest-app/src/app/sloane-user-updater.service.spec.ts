@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SloaneUserUpdaterService } from './sloane-user-updater.service';
+import { SloaneUserUpdateService } from './sloane-user-updater.service';
 
 describe('SloaneUserUpdaterService', () => {
-  let service: SloaneUserUpdaterService;
+  let service: SloaneUserUpdateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SloaneUserUpdaterService);
+    service = TestBed.inject(SloaneUserUpdateService);
   });
 
   it('should be created', () => {

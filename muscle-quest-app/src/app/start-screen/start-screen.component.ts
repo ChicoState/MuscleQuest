@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./start-screen.component.scss']
 })
 
-export class StartScreenComponent {
+export class StartScreenComponent{
   
 }
