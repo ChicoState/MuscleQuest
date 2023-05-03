@@ -10,6 +10,7 @@ import { DataObject, ItemState } from 'src/lib/user';
 })
 export class FirebaseDemoComponent {
   userData: any;
+  allUserData: any;
   constructor(
     private itemGeneratorService: SloaneItemGeneratorService,
     private userService: SloaneUserUpdateService
@@ -41,7 +42,12 @@ export class FirebaseDemoComponent {
     console.log(this.userData);
   }
 
-  saveData(user?: DataObject) {
+  getAllUserData() {
+    this.allUserData = this.userService.getAllUserData();
+    console.log(this.allUserData);
+  }
+
+  saveData() {
     this.userData.equipped = [this.itemGeneratorService.createNewItem(0)];
     this.userService.updateUserData(this.userData);
   }

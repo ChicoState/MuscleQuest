@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import { SloaneUserUpdateService } from '../sloane-user-updater.service';
-import { UserData } from 'src/lib/user';
+import { DataObject } from 'src/lib/user';
 
 @Component({
   selector: 'app-sloane-reward-display',
@@ -26,7 +26,6 @@ export class SloaneRewardDisplayComponent {
     this.calculateFinalScore();
     this.proprietaryLootBundler(this.finalScore);
     this.userService.giveLootBundle(this.lootBundle);
-    console.log(UserData.get().gold);
   }
 
   calculateFinalScore() {
