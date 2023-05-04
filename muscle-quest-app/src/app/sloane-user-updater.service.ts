@@ -20,11 +20,16 @@ export class SloaneUserUpdateService implements OnInit {
   userDoc!: AngularFirestoreDocument<DataObject>; // add ! to indicate that it will be initialized in ngOnInit
   uid = '';
   userData: DataObject | null = DEFAULT_USER_DATA;
+  allUserData: DataObject[] | null = [];
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     this.userCollection = afs.collection<DataObject>('users');
     this.getCurrentUser().subscribe((user) => {
       this.userData = user;
+    });
+
+    this.getAllUsers().subscribe((users) => {
+      this.allUserData = users;
     });
   }
 
@@ -60,9 +65,20 @@ export class SloaneUserUpdateService implements OnInit {
     );
   }
 
+  getAllUsers(): Observable<DataObject[] | null> {
+    return this.afs.collection('users').valueChanges() as Observable<
+      DataObject[]
+    >;
+  }
+
   getCurrentUserData() {
     console.log('The following user data was retrieved: ', this.userData);
     return this.userData;
+  }
+
+  getAllUserData() {
+    console.log('The following data was retrieved: ', this.allUserData);
+    return this.allUserData;
   }
 
   updateUserData(user: DataObject) {
