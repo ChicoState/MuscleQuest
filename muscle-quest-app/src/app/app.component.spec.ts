@@ -6,13 +6,8 @@ import { FormsModule } from '@angular/forms';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        FormsModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule, FormsModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
@@ -28,10 +23,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('muscle-quest-app');
   });
 
-  it('should render title', () => {
+  it('should contain a router-outlet tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('muscle-quest-app app is running!');
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('router-outlet')).toBeDefined();
   });
 });

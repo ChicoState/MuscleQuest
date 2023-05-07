@@ -40,7 +40,7 @@ describe('SloaneLvlOneComponent', () => {
 
   it('should generate a new item when the generateItem() method is called', () => {
     // Set up the mock return value for the createNewItem() method
-    const mockItem = { id: 'abc123', strength: 10, dexterity: 5 };
+    const mockItem = { id: 'test', strength: 10, dexterity: 5 };
     mockItemGeneratorService.createNewItem.and.returnValue(mockItem);
 
     // Call the generateItem() method and check that it sets the component's item property correctly
