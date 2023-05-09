@@ -1,0 +1,17 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "rules": {
+    "component-selector": {
+      "options": ["app", "ng"],
+      "type": "element"
+    },
+    "directive-selector": {
+      "options": ["app", "ng", "mat"],
+      "type": "attribute"
+    },
+    "no-unused-variable": true,
+    "no-console": true,
+    "quotemark": [true, "single"]
+  }
+}
