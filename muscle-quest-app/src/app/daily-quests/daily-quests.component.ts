@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { QuestStoriesService } from '../quest-stories.service';
 import { QuestStory } from '../quest-story';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
-import { ItemState, UserData, Material, Element, DataObject} from 'src/lib/user';
+import { UserData, DataObject } from 'src/lib/user';
 import { Location } from '@angular/common';
 import { SloaneUserUpdateService } from '../sloane-user-updater.service';
 // import { QuestStory } from '../quest-story';
@@ -14,8 +14,10 @@ import { SloaneUserUpdateService } from '../sloane-user-updater.service';
   styleUrls: ['./daily-quests.component.scss'],
 })
 export class DailyQuestsComponent {
-  constructor(private location: Location,
-              private userService: SloaneUserUpdateService) {
+  constructor(
+    private location: Location,
+    private userService: SloaneUserUpdateService
+  ) {
     this.story_service = new QuestStoriesService();
     this.itemGen = new SloaneItemGeneratorService();
     this.quests = [];

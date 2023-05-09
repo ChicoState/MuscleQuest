@@ -1,13 +1,6 @@
-import { CheckboxControlValueAccessor } from '@angular/forms';
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  Renderer2,
-} from '@angular/core';
-import { SloaneItemGeneratorService } from '../../sloane-item-generator.service';
-import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { Component } from '@angular/core';
+// import { SloaneItemGeneratorService } from '../../sloane-item-generator.service';
+// import { ItemState, UserData, Material, Element } from 'src/lib/user';
 
 @Component({
   selector: 'app-back-day',

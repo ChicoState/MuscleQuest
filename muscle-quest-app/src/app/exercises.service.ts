@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { Exercise, ExerciseInfo } from './exercise';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExercisesService {
-
-  constructor() { }
-
   private right_rank(rank: number) {
-    return function(element: ExerciseInfo) {
-      return (element.difficulty >= rank && element.difficulty < (rank+1)*2); 
-    }
+    return function (element: ExerciseInfo) {
+      return element.difficulty >= rank && element.difficulty < (rank + 1) * 2;
+    };
   }
 
   private generate_single_exercise(rank: number): ExerciseInfo {
-    const possible_exercises: ExerciseInfo[] = this.exercises.filter(this.right_rank(rank));
-    const exercise_number = Math.floor(Math.random() * possible_exercises.length);
+    const possible_exercises: ExerciseInfo[] = this.exercises.filter(
+      this.right_rank(rank)
+    );
+    const exercise_number = Math.floor(
+      Math.random() * possible_exercises.length
+    );
     return this.exercises[exercise_number];
   }
 
@@ -30,173 +31,174 @@ export class ExercisesService {
       // Add a bit of randomness to the reps
       const modifier: number = Math.floor(Math.random() * 4) - 1;
       exercises.push(exercise.name);
-      counts.push(exercise.standard_reps+modifier);
+      counts.push(exercise.standard_reps + modifier);
       current_count.push(0);
     }
 
-    const result : Exercise = {
+    const result: Exercise = {
       exercises: exercises,
       counts: counts,
       current_count: current_count,
-    }
+    };
     return result;
   }
 
   private exercises: ExerciseInfo[] = [
     {
-      name: "Push-ups",
+      name: 'Push-ups',
       difficulty: 2,
       standard_reps: 12,
-      muscle_group: "Chest, triceps, shoulders"
+      muscle_group: 'Chest, triceps, shoulders',
     },
     {
-      name: "Squats",
+      name: 'Squats',
       difficulty: 4,
       standard_reps: 10,
-      muscle_group: "Quadriceps, hamstrings, glutes"
+      muscle_group: 'Quadriceps, hamstrings, glutes',
     },
     {
-      name: "Lunges",
+      name: 'Lunges',
       difficulty: 3,
       standard_reps: 12,
-      muscle_group: "Quadriceps, hamstrings, glutes"
+      muscle_group: 'Quadriceps, hamstrings, glutes',
     },
     {
-      name: "Deadlifts",
+      name: 'Deadlifts',
       difficulty: 7,
       standard_reps: 5,
-      muscle_group: "Back, glutes, hamstrings"
+      muscle_group: 'Back, glutes, hamstrings',
     },
     {
-      name: "Bicep Curls",
+      name: 'Bicep Curls',
       difficulty: 1,
       standard_reps: 15,
-      muscle_group: "Biceps"
+      muscle_group: 'Biceps',
     },
     {
-      name: "Burpees",
+      name: 'Burpees',
       difficulty: 5,
       standard_reps: 10,
-      muscle_group: "Full-body"
+      muscle_group: 'Full-body',
     },
     {
-      name: "Plank",
+      name: 'Plank',
       difficulty: 2,
       standard_reps: 30,
-      muscle_group: "Core"
-    }, {
-      name: "Pull-ups",
+      muscle_group: 'Core',
+    },
+    {
+      name: 'Pull-ups',
       difficulty: 8,
       standard_reps: 5,
-      muscle_group: "Back, biceps"
+      muscle_group: 'Back, biceps',
     },
     {
-      name: "Dumbbell bench press",
+      name: 'Dumbbell bench press',
       difficulty: 5,
       standard_reps: 10,
-      muscle_group: "Chest, triceps, shoulders"
+      muscle_group: 'Chest, triceps, shoulders',
     },
     {
-      name: "Dumbbell shoulder press",
+      name: 'Dumbbell shoulder press',
       difficulty: 4,
       standard_reps: 12,
-      muscle_group: "Shoulders"
+      muscle_group: 'Shoulders',
     },
     {
-      name: "Dumbbell bicep curls",
+      name: 'Dumbbell bicep curls',
       difficulty: 2,
       standard_reps: 15,
-      muscle_group: "Biceps"
+      muscle_group: 'Biceps',
     },
     {
-      name: "Tricep dips",
+      name: 'Tricep dips',
       difficulty: 3,
       standard_reps: 12,
-      muscle_group: "Triceps"
+      muscle_group: 'Triceps',
     },
     {
-      name: "Plank with leg lifts",
+      name: 'Plank with leg lifts',
       difficulty: 4,
       standard_reps: 12,
-      muscle_group: "Core, glutes"
+      muscle_group: 'Core, glutes',
     },
     {
-      name: "Russian twists",
+      name: 'Russian twists',
       difficulty: 2,
       standard_reps: 20,
-      muscle_group: "Core"
+      muscle_group: 'Core',
     },
     {
-      name: "Jumping jacks",
+      name: 'Jumping jacks',
       difficulty: 1,
       standard_reps: 20,
-      muscle_group: "Full-body"
+      muscle_group: 'Full-body',
     },
     {
-      name: "High knees",
+      name: 'High knees',
       difficulty: 2,
       standard_reps: 20,
-      muscle_group: "Legs, core"
+      muscle_group: 'Legs, core',
     },
     {
-      name: "Mountain climbers",
+      name: 'Mountain climbers',
       difficulty: 3,
       standard_reps: 12,
-      muscle_group: "Full-body"
+      muscle_group: 'Full-body',
     },
     {
-      name: "Dead hang",
+      name: 'Dead hang',
       difficulty: 1,
       standard_reps: 30,
-      muscle_group: "Forearms, grip strength"
+      muscle_group: 'Forearms, grip strength',
     },
     {
-      name: "Hammer curls",
+      name: 'Hammer curls',
       difficulty: 3,
       standard_reps: 12,
-      muscle_group: "Biceps"
+      muscle_group: 'Biceps',
     },
     {
-      name: "Bent over rows",
+      name: 'Bent over rows',
       difficulty: 6,
       standard_reps: 8,
-      muscle_group: "Back, biceps"
+      muscle_group: 'Back, biceps',
     },
     {
-      name: "Leg press",
+      name: 'Leg press',
       difficulty: 4,
       standard_reps: 12,
-      muscle_group: "Quadriceps, hamstrings, glutes"
+      muscle_group: 'Quadriceps, hamstrings, glutes',
     },
     {
-      name: "Calf raises",
+      name: 'Calf raises',
       difficulty: 2,
       standard_reps: 20,
-      muscle_group: "Calves"
+      muscle_group: 'Calves',
     },
     {
-      name: "Sit-ups",
+      name: 'Sit-ups',
       difficulty: 2,
       standard_reps: 15,
-      muscle_group: "Core"
+      muscle_group: 'Core',
     },
     {
-      name: "Reverse crunches",
+      name: 'Reverse crunches',
       difficulty: 3,
       standard_reps: 12,
-      muscle_group: "Lower abs"
+      muscle_group: 'Lower abs',
     },
     {
-      name: "Hanging leg raises",
+      name: 'Hanging leg raises',
       difficulty: 6,
       standard_reps: 8,
-      muscle_group: "Core, hip flexors"
+      muscle_group: 'Core, hip flexors',
     },
     {
-      name: "Burpee with push-up",
+      name: 'Burpee with push-up',
       difficulty: 7,
       standard_reps: 8,
-      muscle_group: "Full-body"
+      muscle_group: 'Full-body',
     },
   ];
 }
