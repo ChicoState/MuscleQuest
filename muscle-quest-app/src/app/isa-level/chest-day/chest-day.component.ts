@@ -1,15 +1,11 @@
-import { CheckboxControlValueAccessor } from '@angular/forms';
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { SloaneItemGeneratorService } from '../../sloane-item-generator.service';
-import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chest-day',
   templateUrl: './chest-day.component.html',
-  styleUrls: ['./chest-day.component.css']
+  styleUrls: ['./chest-day.component.css'],
 })
 export class ChestDayComponent {
-
   letCheckbox1 = false;
   letCheckbox2 = false;
   letCheckbox3 = false;

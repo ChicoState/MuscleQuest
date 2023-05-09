@@ -6,13 +6,13 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-orc-boss',
   templateUrl: './orc-boss.component.html',
-  styleUrls: ['./orc-boss.component.scss']
+  styleUrls: ['./orc-boss.component.scss'],
 })
 export class OrcBossComponent {
   constructor(private location: Location, public dialog: MatDialog) {}
 
   title = 'Orc Boss Fight';
-  max_hp=500;
+  max_hp = 500;
 
   // Getters and Setters for workout stats
   public get pushups(): number {
@@ -44,7 +44,7 @@ export class OrcBossComponent {
   public set situps(amount: number) {
     localStorage.setItem('orc-boss-situps', String(amount));
   }
-  
+
   public get squats(): number {
     const localPushups = localStorage.getItem('orc-boss-squats');
     if (localPushups) {
@@ -75,20 +75,24 @@ export class OrcBossComponent {
     localStorage.setItem('orc-boss-miles_run', String(amount));
   }
 
-
   // HP Information
   getHPProgress(): number {
-    const hp=this.getHP();
-    return (hp/this.max_hp)*100;
-
+    const hp = this.getHP();
+    return (hp / this.max_hp) * 100;
   }
 
   getHP(): number {
-    return this.max_hp-5*this.pushups-50*this.miles_run-2*this.situps-this.squats;
+    return (
+      this.max_hp -
+      5 * this.pushups -
+      50 * this.miles_run -
+      2 * this.situps -
+      this.squats
+    );
   }
 
   getHPString(): string {
-    return String('HP : ' + this.getHP() + '/' + this.max_hp)
+    return String('HP : ' + this.getHP() + '/' + this.max_hp);
   }
 
   // Orc Name generation
@@ -103,7 +107,7 @@ export class OrcBossComponent {
       const name_end = Math.floor(Math.random() * 4);
       const name_title = Math.floor(Math.random() * 4);
       let name = '';
-      
+
       // switch based off the various options
       switch (name_start) {
         case 0:
@@ -168,16 +172,16 @@ export class OrcBossComponent {
 
   // Plus one to a workout buttons
   plus_one_pushup(): void {
-    this.pushups+=1;
+    this.pushups += 1;
   }
   plus_one_mile_run(): void {
-    this.miles_run+=1;
+    this.miles_run += 1;
   }
   plus_one_squat(): void {
-    this.squats+=1;
+    this.squats += 1;
   }
   plus_one_situp(): void {
-    this.situps+=1;
+    this.situps += 1;
   }
 
   // Show stats from orc-boss-info
@@ -187,10 +191,10 @@ export class OrcBossComponent {
 
   // Generate new boss
   newBoss(): void {
-    this.squats=0;
-    this.miles_run=0;
-    this.situps=0;
-    this.pushups=0;
+    this.squats = 0;
+    this.miles_run = 0;
+    this.situps = 0;
+    this.pushups = 0;
     localStorage.removeItem('orc-boss-name');
     this.getOrcName();
   }

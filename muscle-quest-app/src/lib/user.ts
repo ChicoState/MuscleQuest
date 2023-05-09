@@ -111,7 +111,7 @@ const USER_DATA_SAVE_KEY = 'mq:user_data';
 
     Import this object in order to get or modify user data.
 */
-export let UserData = {
+export const UserData = {
   /*
         Loads user data from local storage. If missing, it will save the default user data.
     */
@@ -122,7 +122,7 @@ export let UserData = {
         JSON.stringify(DEFAULT_USER_DATA)
       );
     }
-    let x: string | null = localStorage.getItem(USER_DATA_SAVE_KEY);
+    const x: string | null = localStorage.getItem(USER_DATA_SAVE_KEY);
     user_data = JSON.parse(x || JSON.stringify(DEFAULT_USER_DATA));
   },
 

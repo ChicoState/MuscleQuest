@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ItemState, UserData } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
@@ -34,7 +34,7 @@ export class SloaneLvlOneComponent {
   timeSelected: number = this.timeOptions[0];
   count = this.timeSelected;
   audioPlayed = false;
-  timer: any;
+  timer = 0;
   score = 0;
   rewardAvailable = false;
   music = new Audio();

@@ -5,8 +5,6 @@ import { ItemState, UserData, ShopData, Material, Element } from 'src/lib/user';
   providedIn: 'root',
 })
 export class SloaneItemGeneratorService {
-  constructor() {}
-
   /**
    * To generate an item, the only required argument is rank: (0 = low, 1 = medium, 2 = high, 3 = ultimate)
    * Other item values will be generated based on the rank provided
@@ -84,7 +82,7 @@ export class SloaneItemGeneratorService {
   }
 
   // Returns an array containing a randomly generated assortment of gold, wood and iron
-  createLootBundle(rank: number): Array<any> {
+  createLootBundle(rank: number): Array<number> {
     let multiplier = 1;
     if (rank > 0) multiplier = rank * (rank + 1);
 

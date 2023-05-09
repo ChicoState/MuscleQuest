@@ -7,11 +7,10 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { onAuthStateChanged, getAuth, User } from '@angular/fire/auth';
-import { Observable, throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { DataObject, Material, Element } from 'src/lib/user';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DataObject } from 'src/lib/user';
 import { DEFAULT_USER_DATA } from 'src/lib/user';
-import { ItemState } from 'src/lib/user';
 
 @Component({
   selector: 'app-user-authentication',
