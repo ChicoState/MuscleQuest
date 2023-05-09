@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ItemState, UserData } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
-
+import { SloaneUserUpdateService } from '../sloane-user-updater.service';
 /**
  * Features to add: :
  * Add random time trial mode: announce a new exercise after an interval for a certain time
@@ -44,7 +44,6 @@ export class SloaneLvlOneComponent {
   equipmentBonus: number = 1;
   elementBonus: number = 1;
   elementChoice: number;
-  userEquipment = UserData.get().equipped;
   elements: { [key: number]: string } = {
     0: 'url(../assets/sloane/images/fire-background.jpg)',
     1: 'url(../assets/sloane/images/ice-background.jpg)',
@@ -52,7 +51,8 @@ export class SloaneLvlOneComponent {
   };
   constructor(
     private location: Location,
-    private itemService: SloaneItemGeneratorService
+    private itemService: SloaneItemGeneratorService,
+    private userService: SloaneUserUpdateService
   ) {
     this.audio = new ElementRef<HTMLAudioElement>(new Audio());
     this.elementChoice = rng(Object.keys(this.elements).length);
@@ -60,19 +60,6 @@ export class SloaneLvlOneComponent {
 
   ngOnInit() {
     this.chooseBackground(this.elementChoice);
-    console.log(UserData.get().items);
-    console.log(this.userEquipment);
-
-    // FOR TESTING ONLY: Equip some items to user from their inventory
-
-    this.itemService.giveItem(this.itemService.createNewItem(3));
-    this.itemService.giveItem(this.itemService.createNewItem(3));
-
-    UserData.mutate((data) => {
-      data.equipped.feet = data.items[13];
-      data.equipped.chest = data.items[14];
-      return data;
-    });
 
     this.setBonus();
   }
@@ -82,17 +69,20 @@ export class SloaneLvlOneComponent {
   // Set a static bonus which will be applied whenever the user earns any loot
   setBonus() {
     type EquippedKey = 'head' | 'chest' | 'hands' | 'feet' | 'weapon';
-    let user = UserData.get();
+    let user = this.userService.getCurrentUserData();
     let dex = 0;
-    console.log(user.equipped);
     const currentElement = this.elementChoice;
     let itemsWithMatchingElement = 0;
-    for (const key of Object.keys(user.equipped) as EquippedKey[]) {
-      const itemState = user.equipped[key];
-      if (itemState) {
-        dex += itemState.dexterity;
-        if (itemState.element == currentElement) {
-          itemsWithMatchingElement++;
+
+    if (user) {
+      console.log(user.equipped);
+      for (const key of Object.keys(user.equipped) as EquippedKey[]) {
+        const itemState = user.equipped[key];
+        if (itemState) {
+          dex += itemState.dexterity;
+          if (itemState.element == currentElement) {
+            itemsWithMatchingElement++;
+          }
         }
       }
     }
