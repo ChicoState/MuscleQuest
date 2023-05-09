@@ -12,26 +12,26 @@ import { ItemState, UserData, Material, Element } from 'src/lib/user';
   template: `<div id="output"></div>`, 
 })
 export class LegDayComponent {
-  letCheckbox1: boolean = false;
-  letCheckbox2: boolean = false;
-  letCheckbox3: boolean = false;
-  letCheckbox4: boolean = false;
-  letCheckbox5: boolean = false;
-  showExample: boolean = false;
-  showRulesa: boolean = true;
-  showRulesb: boolean = true;
-  showRulesc: boolean = true;
-  showRulesd: boolean = true;
-  showRulese: boolean = true;
-  total_Health: number = 100;
-  negative_Health: number = 0;
-  numTrueCheckboxes: number = 0;
-  showContent: boolean = false;
+  letCheckbox1 = false;
+  letCheckbox2 = false;
+  letCheckbox3 = false;
+  letCheckbox4 = false;
+  letCheckbox5 = false;
+  showExample = false;
+  showRulesa = true;
+  showRulesb = true;
+  showRulesc = true;
+  showRulesd = true;
+  showRulese = true;
+  total_Health = 100;
+  negative_Health = 0;
+  numTrueCheckboxes = 0;
+  showContent = false;
   generatedData: any;
 
-  elementChoice: number = 1;
-  equipmentBonus: number = 1;
-  elementBonus: number = 1;
+  elementChoice = 1;
+  equipmentBonus = 1;
+  elementBonus = 1;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
   output = '';
   

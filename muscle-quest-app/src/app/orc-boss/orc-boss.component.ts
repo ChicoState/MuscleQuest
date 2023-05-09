@@ -16,7 +16,7 @@ export class OrcBossComponent {
 
   // Getters and Setters for workout stats
   public get pushups(): number {
-    let localPushups = localStorage.getItem('orc-boss-pushups');
+    const localPushups = localStorage.getItem('orc-boss-pushups');
     if (localPushups) {
       // Unary operator to parse the string
       return +localPushups;
@@ -31,7 +31,7 @@ export class OrcBossComponent {
   }
 
   public get situps(): number {
-    let localPushups = localStorage.getItem('orc-boss-situps');
+    const localPushups = localStorage.getItem('orc-boss-situps');
     if (localPushups) {
       // Unary operator to parse the string
       return +localPushups;
@@ -46,7 +46,7 @@ export class OrcBossComponent {
   }
   
   public get squats(): number {
-    let localPushups = localStorage.getItem('orc-boss-squats');
+    const localPushups = localStorage.getItem('orc-boss-squats');
     if (localPushups) {
       // Unary operator to parse the string
       return +localPushups;
@@ -61,7 +61,7 @@ export class OrcBossComponent {
   }
 
   public get miles_run(): number {
-    let localPushups = localStorage.getItem('orc-boss-miles_run');
+    const localPushups = localStorage.getItem('orc-boss-miles_run');
     if (localPushups) {
       // Unary operator to parse the string
       return +localPushups;
@@ -78,7 +78,7 @@ export class OrcBossComponent {
 
   // HP Information
   getHPProgress(): number {
-    let hp=this.getHP();
+    const hp=this.getHP();
     return (hp/this.max_hp)*100;
 
   }
@@ -93,15 +93,15 @@ export class OrcBossComponent {
 
   // Orc Name generation
   getOrcName(): string {
-    let boss_name = localStorage.getItem('orc-boss-name');
+    const boss_name = localStorage.getItem('orc-boss-name');
     if (boss_name) {
       return boss_name;
     } else {
       // Generate a random name for the boss
-      let name_start = Math.floor(Math.random() * 4);
-      let name_middle = Math.floor(Math.random() * 4);
-      let name_end = Math.floor(Math.random() * 4);
-      let name_title = Math.floor(Math.random() * 4);
+      const name_start = Math.floor(Math.random() * 4);
+      const name_middle = Math.floor(Math.random() * 4);
+      const name_end = Math.floor(Math.random() * 4);
+      const name_title = Math.floor(Math.random() * 4);
       let name = '';
       
       // switch based off the various options

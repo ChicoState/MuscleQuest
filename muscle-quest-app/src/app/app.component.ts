@@ -1,6 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +7,4 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'muscle-quest-app';
-
-  constructor() {}
 }

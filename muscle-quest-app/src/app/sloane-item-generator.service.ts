@@ -136,7 +136,7 @@ export class SloaneItemGeneratorService {
 function statTotal(rank: number) {
   const totals = [2, 4, 7, 12];
   const total = totals[rank];
-  let str = rng(4);
+  const str = rng(4);
   const dex = total - str;
   return [str, dex];
 }
@@ -270,14 +270,14 @@ function nameGenerator(
     ],
   };
 
-  let possibleAdjectives = adjectives[rank];
+  const possibleAdjectives = adjectives[rank];
   const adjIndex = rng(possibleAdjectives.length);
   const adjective = possibleAdjectives[adjIndex];
 
   let materialString = Material[material].toString();
   materialString = fixCapitalization(materialString);
 
-  let itemId = fixCapitalization(id);
+  const itemId = fixCapitalization(id);
 
   let name = `${adjective} ${materialString} ${itemId}`;
 
@@ -292,7 +292,7 @@ function nameGenerator(
 }
 
 function fixCapitalization(word: string) {
-  let string = word.toLowerCase();
+  const string = word.toLowerCase();
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 

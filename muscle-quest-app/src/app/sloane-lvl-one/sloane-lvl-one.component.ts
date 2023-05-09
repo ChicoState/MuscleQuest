@@ -15,7 +15,7 @@ import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 })
 export class SloaneLvlOneComponent {
   // Background image determines the level's current element
-  backgroundImageUrl: string = '';
+  backgroundImageUrl = '';
   title = 'The Revenge of Time';
   showRules = true;
   showExample = false;
@@ -35,14 +35,14 @@ export class SloaneLvlOneComponent {
   count = this.timeSelected;
   audioPlayed = false;
   timer: any;
-  score: number = 0;
-  rewardAvailable: boolean = false;
+  score = 0;
+  rewardAvailable = false;
   music = new Audio();
   timerGoing = false;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
   // Equipment and element multipliers will apply a bonus to any loot earned
-  equipmentBonus: number = 1;
-  elementBonus: number = 1;
+  equipmentBonus = 1;
+  elementBonus = 1;
   elementChoice: number;
   userEquipment = UserData.get().equipped;
   elements: { [key: number]: string } = {
@@ -82,7 +82,7 @@ export class SloaneLvlOneComponent {
   // Set a static bonus which will be applied whenever the user earns any loot
   setBonus() {
     type EquippedKey = 'head' | 'chest' | 'hands' | 'feet' | 'weapon';
-    let user = UserData.get();
+    const user = UserData.get();
     let dex = 0;
     console.log(user.equipped);
     const currentElement = this.elementChoice;
@@ -99,11 +99,11 @@ export class SloaneLvlOneComponent {
     console.log('Total dex: ', dex);
     console.log('Matching items: ', itemsWithMatchingElement);
     this.elementBonus += itemsWithMatchingElement * 0.05;
-    let fixedElementBonus = parseFloat(this.elementBonus.toFixed(3));
+    const fixedElementBonus = parseFloat(this.elementBonus.toFixed(3));
     this.elementBonus = fixedElementBonus;
 
     this.equipmentBonus += dex * 0.1;
-    let fixedEquipmentBonus = parseFloat(this.equipmentBonus.toFixed(3));
+    const fixedEquipmentBonus = parseFloat(this.equipmentBonus.toFixed(3));
     this.equipmentBonus = fixedEquipmentBonus;
   }
 
@@ -165,7 +165,7 @@ export class SloaneLvlOneComponent {
           this.stopTimer();
           this.audioPlayed = false;
 
-          let whistle = new Audio();
+          const whistle = new Audio();
           whistle.src = '../../assets/sloane/sounds/whistle.wav';
           whistle.load();
           whistle.play();

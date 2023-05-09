@@ -108,8 +108,8 @@ export class SloaneUserUpdateService implements OnInit {
     if (this.userData) {
       let itemToRemove: ItemState;
       itemToRemove = item;
-      let userItems = this.userData.items;
-      let filteredUserItems = userItems.filter(
+      const userItems = this.userData.items;
+      const filteredUserItems = userItems.filter(
         (item) =>
           item.display_name !== itemToRemove.display_name ||
           item.dexterity !== itemToRemove.dexterity ||

@@ -49,7 +49,7 @@ export class UserAuthenticationComponent implements OnInit {
             console.log(
               'This is a new user. Generating a new object for this user.'
             );
-            let newUser: DataObject = DEFAULT_USER_DATA;
+            const newUser: DataObject = DEFAULT_USER_DATA;
             newUser.userId = user.uid; // set the userId of the new user object
             this.saveUser(newUser);
           }
@@ -61,7 +61,10 @@ export class UserAuthenticationComponent implements OnInit {
   }
 
   checkIfUserExists(userId: string): Observable<boolean> {
-    let observable = this.afs.collection('users').doc(this.uid).valueChanges();
+    const observable = this.afs
+      .collection('users')
+      .doc(this.uid)
+      .valueChanges();
     observable.subscribe((data) => {
       console.log(data);
     });

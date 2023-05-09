@@ -61,15 +61,15 @@ export class CharacterScreenComponent implements AfterViewInit, OnInit{
   ngAfterViewInit(){
     // Attach a 'mousemove' event handler to elements with class '.slot'
     setInterval(function(){
-      var slotElements = document.querySelectorAll('.slot');
+      const slotElements = document.querySelectorAll('.slot');
       slotElements.forEach(function(slotElement) {
         slotElement.addEventListener('mousemove', function(event) {
           // Get cursor's coordinates
-          let mEvent = event as MouseEvent;
-          var cursorX = mEvent.clientX;
-          var cursorY = mEvent.clientY;
+          const mEvent = event as MouseEvent;
+          const cursorX = mEvent.clientX;
+          const cursorY = mEvent.clientY;
           // Set modal's position to cursor's coordinates
-          var modal = document.getElementById('compareContainer') as HTMLElement;
+          const modal = document.getElementById('compareContainer') as HTMLElement;
           modal.style.display = 'grid';
           modal.style.left = (cursorX-100) + 'px';
           modal.style.top = (cursorY-240) + 'px';
@@ -88,7 +88,7 @@ export class CharacterScreenComponent implements AfterViewInit, OnInit{
     if(item != undefined){
       if(this.UserData){
         if(this.UserData.equipped[item_registry[item.id].equipment_slot!]){
-          let tempItem = this.UserData.equipped[item_registry[item.id].equipment_slot!] as ItemState;
+          const tempItem = this.UserData.equipped[item_registry[item.id].equipment_slot!] as ItemState;
           this.UserData.items.push(tempItem);
         }
         this.UserData.equipped[item_registry[item.id].equipment_slot!] = null;
@@ -145,7 +145,7 @@ export class CharacterScreenComponent implements AfterViewInit, OnInit{
     this.hoveredItem = item;
     if(item != undefined){
       if(this.UserData){
-        let tempE = this.UserData.equipped[item_registry[item.id].equipment_slot!];
+        const tempE = this.UserData.equipped[item_registry[item.id].equipment_slot!];
         this.currItem.name = "";
         this.currEquipped.name = "";
         item.display_name  ? this.currItem.name = item.display_name : this.currItem.name = item_registry[item.id].name;
@@ -246,7 +246,7 @@ export class CharacterScreenComponent implements AfterViewInit, OnInit{
     }
   }
   createItem(){
-    let item = {} as ItemState;
+    const item = {} as ItemState;
     item.dexterity = 4;
     item.strength = 10;
     item.display_icon = "/assets/CharacterScreen/reg_sword_1.png";

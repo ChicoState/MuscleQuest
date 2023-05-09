@@ -15,26 +15,26 @@ export class ExercisesService {
   }
 
   private generate_single_exercise(rank: number): ExerciseInfo {
-    let possible_exercises: ExerciseInfo[] = this.exercises.filter(this.right_rank(rank));
-    let exercise_number = Math.floor(Math.random() * possible_exercises.length);
+    const possible_exercises: ExerciseInfo[] = this.exercises.filter(this.right_rank(rank));
+    const exercise_number = Math.floor(Math.random() * possible_exercises.length);
     return this.exercises[exercise_number];
   }
 
   public generate_exercise_array(rank: number, count: number): Exercise {
-    let exercises: Array<string> = [];
-    let counts: Array<number> = [];
-    let current_count: Array<number> = [];
+    const exercises: Array<string> = [];
+    const counts: Array<number> = [];
+    const current_count: Array<number> = [];
 
     for (let i = 0; i < count; i++) {
-      let exercise: ExerciseInfo = this.generate_single_exercise(rank);
+      const exercise: ExerciseInfo = this.generate_single_exercise(rank);
       // Add a bit of randomness to the reps
-      let modifier: number = Math.floor(Math.random() * 4) - 1;
+      const modifier: number = Math.floor(Math.random() * 4) - 1;
       exercises.push(exercise.name);
       counts.push(exercise.standard_reps+modifier);
       current_count.push(0);
     }
 
-    let result : Exercise = {
+    const result : Exercise = {
       exercises: exercises,
       counts: counts,
       current_count: current_count,

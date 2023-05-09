@@ -22,10 +22,10 @@ export class ShopComponent {
 
   getItems() {
     const ITEM_COUNT = 5;
-    let items_available: Array<ItemState> = [];
+    const items_available: Array<ItemState> = [];
 
     const item_ids = Object.keys(item_registry);
-    for (var i = 0; i < ITEM_COUNT; i++) {
+    for (let i = 0; i < ITEM_COUNT; i++) {
       const item_id = item_ids[Math.floor(Math.random() * item_ids.length)];
       items_available.push({
         id: item_id,
