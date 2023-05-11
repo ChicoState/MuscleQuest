@@ -5,10 +5,10 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { onAuthStateChanged, getAuth } from '@angular/fire/auth';
+import { getAuth } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
-import { map, tap, switchMap } from 'rxjs/operators';
-import { DataObject, Material, Element, DEFAULT_USER_DATA } from 'src/lib/user';
+import { switchMap } from 'rxjs/operators';
+import { DataObject, DEFAULT_USER_DATA } from 'src/lib/user';
 import { ItemState } from 'src/lib/user';
 
 @Injectable({
@@ -106,10 +106,9 @@ export class SloaneUserUpdateService implements OnInit {
   // If user has multiple identical items, they'll both be removed (not ideal).
   removeItem(item: ItemState) {
     if (this.userData) {
-      let itemToRemove: ItemState;
-      itemToRemove = item;
-      let userItems = this.userData.items;
-      let filteredUserItems = userItems.filter(
+      const itemToRemove: ItemState = item;
+      const userItems = this.userData.items;
+      const filteredUserItems = userItems.filter(
         (item) =>
           item.display_name !== itemToRemove.display_name ||
           item.dexterity !== itemToRemove.dexterity ||

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ItemState, UserData } from 'src/lib/user';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
@@ -15,7 +15,7 @@ import { SloaneUserUpdateService } from '../sloane-user-updater.service';
 })
 export class SloaneLvlOneComponent {
   // Background image determines the level's current element
-  backgroundImageUrl: string = '';
+  backgroundImageUrl = '';
   title = 'The Revenge of Time';
   showRules = true;
   showExample = false;
@@ -34,15 +34,15 @@ export class SloaneLvlOneComponent {
   timeSelected: number = this.timeOptions[0];
   count = this.timeSelected;
   audioPlayed = false;
-  timer: any;
-  score: number = 0;
-  rewardAvailable: boolean = false;
+  timer = 0;
+  score = 0;
+  rewardAvailable = false;
   music = new Audio();
   timerGoing = false;
   item: ItemState = { id: '', strength: 0, dexterity: 0 };
   // Equipment and element multipliers will apply a bonus to any loot earned
-  equipmentBonus: number = 1;
-  elementBonus: number = 1;
+  equipmentBonus = 1;
+  elementBonus = 1;
   elementChoice: number;
   elements: { [key: number]: string } = {
     0: 'url(../assets/sloane/images/fire-background.jpg)',
@@ -69,7 +69,9 @@ export class SloaneLvlOneComponent {
   // Set a static bonus which will be applied whenever the user earns any loot
   setBonus() {
     type EquippedKey = 'head' | 'chest' | 'hands' | 'feet' | 'weapon';
+
     let user = this.userService.getCurrentUserData();
+
     let dex = 0;
     const currentElement = this.elementChoice;
     let itemsWithMatchingElement = 0;
@@ -89,11 +91,11 @@ export class SloaneLvlOneComponent {
     console.log('Total dex: ', dex);
     console.log('Matching items: ', itemsWithMatchingElement);
     this.elementBonus += itemsWithMatchingElement * 0.05;
-    let fixedElementBonus = parseFloat(this.elementBonus.toFixed(3));
+    const fixedElementBonus = parseFloat(this.elementBonus.toFixed(3));
     this.elementBonus = fixedElementBonus;
 
     this.equipmentBonus += dex * 0.1;
-    let fixedEquipmentBonus = parseFloat(this.equipmentBonus.toFixed(3));
+    const fixedEquipmentBonus = parseFloat(this.equipmentBonus.toFixed(3));
     this.equipmentBonus = fixedEquipmentBonus;
   }
 
@@ -155,7 +157,7 @@ export class SloaneLvlOneComponent {
           this.stopTimer();
           this.audioPlayed = false;
 
-          let whistle = new Audio();
+          const whistle = new Audio();
           whistle.src = '../../assets/sloane/sounds/whistle.wav';
           whistle.load();
           whistle.play();

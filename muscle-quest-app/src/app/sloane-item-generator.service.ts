@@ -5,8 +5,6 @@ import { ItemState, UserData, ShopData, Material, Element } from 'src/lib/user';
   providedIn: 'root',
 })
 export class SloaneItemGeneratorService {
-  constructor() {}
-
   /**
    * To generate an item, the only required argument is rank: (0 = low, 1 = medium, 2 = high, 3 = ultimate)
    * Other item values will be generated based on the rank provided
@@ -84,7 +82,7 @@ export class SloaneItemGeneratorService {
   }
 
   // Returns an array containing a randomly generated assortment of gold, wood and iron
-  createLootBundle(rank: number): Array<any> {
+  createLootBundle(rank: number): Array<number> {
     let multiplier = 1;
     if (rank > 0) multiplier = rank * (rank + 1);
 
@@ -136,7 +134,7 @@ export class SloaneItemGeneratorService {
 function statTotal(rank: number) {
   const totals = [2, 4, 7, 12];
   const total = totals[rank];
-  let str = rng(4);
+  const str = rng(4);
   const dex = total - str;
   return [str, dex];
 }
@@ -270,14 +268,14 @@ function nameGenerator(
     ],
   };
 
-  let possibleAdjectives = adjectives[rank];
+  const possibleAdjectives = adjectives[rank];
   const adjIndex = rng(possibleAdjectives.length);
   const adjective = possibleAdjectives[adjIndex];
 
   let materialString = Material[material].toString();
   materialString = fixCapitalization(materialString);
 
-  let itemId = fixCapitalization(id);
+  const itemId = fixCapitalization(id);
 
   let name = `${adjective} ${materialString} ${itemId}`;
 
@@ -292,7 +290,7 @@ function nameGenerator(
 }
 
 function fixCapitalization(word: string) {
-  let string = word.toLowerCase();
+  const string = word.toLowerCase();
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 

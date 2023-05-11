@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import { SloaneUserUpdateService } from '../sloane-user-updater.service';
-import { DataObject, ItemState } from 'src/lib/user';
 
 @Component({
   selector: 'app-firebase-demo',
@@ -19,8 +18,6 @@ export class FirebaseDemoComponent {
       this.userData = user;
     });
   }
-
-  ngOnInit(): void {}
 
   giveRandomItem() {
     const newItem = this.itemGeneratorService.createNewItem(1);

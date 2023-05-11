@@ -18,8 +18,8 @@ export class QuestStoriesService {
   // Also contains a state which may be used as the developer desires
   // Random short workout is also included.
   public random_quest(rank: number): QuestStory {
-    let story_number = Math.floor(Math.random() * this.starts.length);
-    let story: QuestStory = {
+    const story_number = Math.floor(Math.random() * this.starts.length);
+    const story: QuestStory = {
       start: this.starts[story_number],
       end: this.ends[story_number],
       exercise: this.exercise.generate_exercise_array(rank, 3),

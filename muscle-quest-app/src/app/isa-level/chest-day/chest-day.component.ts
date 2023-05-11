@@ -1,36 +1,32 @@
-import { CheckboxControlValueAccessor } from '@angular/forms';
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { SloaneItemGeneratorService } from '../../sloane-item-generator.service';
-import { ItemState, UserData, Material, Element } from 'src/lib/user';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chest-day',
   templateUrl: './chest-day.component.html',
-  styleUrls: ['./chest-day.component.css']
+  styleUrls: ['./chest-day.component.css'],
 })
 export class ChestDayComponent {
-
-  letCheckbox1: boolean = false;
-  letCheckbox2: boolean = false;
-  letCheckbox3: boolean = false;
-  letCheckbox4: boolean = false;
-  letCheckbox5: boolean = false;
-  letCheckbox6: boolean = false;
-  letCheckbox7: boolean = false;
-  letCheckbox8: boolean = false;
-  total_Health: number = 100;
-  negative_Health: number = 0;
-  numTrueCheckboxes: number = 0;
-  showExample: boolean = false;
-  showRulesa: boolean = true;
-  showRulesb: boolean = true;
-  showRulesc: boolean = true;
-  showRulesd: boolean = true;
-  showRulese: boolean = true;
-  showRulesf: boolean = true;
-  showRulesg: boolean = true;
-  showRulesh: boolean = true;
-  showContent: boolean = false;
+  letCheckbox1 = false;
+  letCheckbox2 = false;
+  letCheckbox3 = false;
+  letCheckbox4 = false;
+  letCheckbox5 = false;
+  letCheckbox6 = false;
+  letCheckbox7 = false;
+  letCheckbox8 = false;
+  total_Health = 100;
+  negative_Health = 0;
+  numTrueCheckboxes = 0;
+  showExample = false;
+  showRulesa = true;
+  showRulesb = true;
+  showRulesc = true;
+  showRulesd = true;
+  showRulese = true;
+  showRulesf = true;
+  showRulesg = true;
+  showRulesh = true;
+  showContent = false;
 
   toggleExample() {
     this.showExample ? (this.showExample = false) : (this.showExample = true);

@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SloaneItemGeneratorService } from '../sloane-item-generator.service';
 import { SloaneUserUpdateService } from '../sloane-user-updater.service';
-import { DataObject } from 'src/lib/user';
 
 @Component({
   selector: 'app-sloane-reward-display',
@@ -9,18 +8,15 @@ import { DataObject } from 'src/lib/user';
   styleUrls: ['./sloane-reward-display.component.scss'],
 })
 export class SloaneRewardDisplayComponent {
-  @Input() score: number = 0;
-  @Input() equipmentBonus: number = 0;
-  @Input() elementBonus: number = 0;
+  @Input() score = 0;
+  @Input() equipmentBonus = 0;
+  @Input() elementBonus = 0;
   @Output() rewardAvailable = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<void>();
-  finalScore: number = 0;
+  finalScore = 0;
   lootBundle: number[] = [0, 0, 0];
 
-  constructor(
-    private itemService: SloaneItemGeneratorService,
-    private userService: SloaneUserUpdateService
-  ) {}
+  constructor(private userService: SloaneUserUpdateService) {}
 
   ngOnInit() {
     this.calculateFinalScore();
@@ -46,7 +42,7 @@ export class SloaneRewardDisplayComponent {
     const gold = rng(score);
     const wood = rng(score);
     const iron = rng(score);
-    let bundle = [gold, wood, iron];
+    const bundle = [gold, wood, iron];
     console.log(bundle);
     this.lootBundle = bundle;
   }
