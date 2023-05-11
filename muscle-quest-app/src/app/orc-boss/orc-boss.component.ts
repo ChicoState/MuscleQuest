@@ -102,10 +102,7 @@ export class OrcBossComponent {
       return boss_name;
     } else {
       // Generate a random name for the boss
-      const name_start = Math.floor(Math.random() * 4);
-      const name_middle = Math.floor(Math.random() * 4);
-      const name_end = Math.floor(Math.random() * 4);
-      const name_title = Math.floor(Math.random() * 4);
+
       let name = '';
 
       const name_starts = ['Ger', 'Bo', 'Da', 'Jor'];
@@ -116,6 +113,13 @@ export class OrcBossComponent {
         ' the Terrible',
         ' the Warrior',
       ];
+
+      const name_start = Math.floor(Math.random() * name_starts.length);
+      const name_middle = Math.floor(
+        Math.random() * name_middles_and_ends.length
+      );
+      const name_end = Math.floor(Math.random() * name_middles_and_ends.length);
+      const name_title = Math.floor(Math.random() * name_titles.length);
 
       name += name_starts[name_start];
       name += name_middles_and_ends[name_middle];
