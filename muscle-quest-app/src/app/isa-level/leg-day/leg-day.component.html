@@ -4,7 +4,7 @@
   </head>
 <style>
   body {
-        background: rgb(0, 174, 255);
+        background: rgb(29, 165, 190);
     }
     h3 {
         position: absolute;
@@ -172,6 +172,27 @@
     <ng-template #hideRulese>
       <div style="text-align:center">
         <button (click)="toggleRulese()">Hide Video</button>
+        <div style="text-align:center">
+          <iframe width="240" height="200"
+            src="https://www.youtube.com/embed/Aq5uxXrXq7c">
+          </iframe><br>  
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div>
+    <input type="checkbox" id="workout6" name="workout6" value="6" [(ngModel)] = letCheckbox6>
+    <label for="workout6" style="color:black;font-size:18px;">Leg Extentions (5x(10-15))</label><br>
+  </div>
+  <div style="text-align:center">
+    <div class="instructions6" *ngIf="showRulesf; else hideRulesf">
+      <button (click)="toggleRulesf()">Show how to Video</button>
+    </div>
+  </div>
+  <div>
+    <ng-template #hideRulesf>
+      <div style="text-align:center">
+        <button (click)="toggleRulesf()">Hide Video</button>
         <div style="text-align:center">
           <iframe width="240" height="200"
             src="https://www.youtube.com/embed/Aq5uxXrXq7c">
