@@ -4,16 +4,14 @@
     h1 {text-align: center;}
     h2 {text-align: center;}
     body {
-        background: rgb(0, 174, 255);
+        background: rgb(84, 39, 111);
     }
     h3 {
-        position: absolute;
-        top: 85%;
-        left: 40%;
-        font-size: 40px;
+        text-align: center;
+        font-size: 0px;
         font-family: Arial, Helvetica, sans-serif;
         background: linear-gradient(to right, #f32170,
-            #ff6b08, #cf23cf, #eedd44);
+            #072af0, #f00909, #ee44b5);
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
     }
@@ -342,10 +340,8 @@
     </div>
 </div>
 <div>
-    <button style="text-align:left" class="button button2" onclick="alert('Congradulations User for defeating the Leg day boss!')"
-    >Submit!
-    </button>
+    <button style="text-align:left" class="button button2" (click)="showItem()">Submit!</button>
 </div>
-
+    
 </body>
 </html>
