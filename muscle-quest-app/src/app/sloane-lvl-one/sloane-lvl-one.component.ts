@@ -70,7 +70,7 @@ export class SloaneLvlOneComponent {
   setBonus() {
     type EquippedKey = 'head' | 'chest' | 'hands' | 'feet' | 'weapon';
 
-    let user = this.userService.getCurrentUserData();
+    const user = this.userService.getCurrentUserData();
 
     let dex = 0;
     const currentElement = this.elementChoice;

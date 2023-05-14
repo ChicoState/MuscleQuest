@@ -102,69 +102,29 @@ export class OrcBossComponent {
       return boss_name;
     } else {
       // Generate a random name for the boss
-      const name_start = Math.floor(Math.random() * 4);
-      const name_middle = Math.floor(Math.random() * 4);
-      const name_end = Math.floor(Math.random() * 4);
-      const name_title = Math.floor(Math.random() * 4);
+
       let name = '';
 
-      // switch based off the various options
-      switch (name_start) {
-        case 0:
-          name += 'Ger';
-          break;
-        case 1:
-          name += 'Bo';
-          break;
-        case 2:
-          name += 'Da';
-          break;
-        case 3:
-          name += 'Jor';
-          break;
-      }
-      switch (name_middle) {
-        case 0:
-          name += 'bod';
-          break;
-        case 1:
-          name += 'nok';
-          break;
-        case 2:
-          name += 'vik';
-          break;
-        case 3:
-          name += 'jor';
-          break;
-      }
-      switch (name_end) {
-        case 0:
-          name += 'bod';
-          break;
-        case 1:
-          name += 'nok';
-          break;
-        case 2:
-          name += 'vik';
-          break;
-        case 3:
-          name += 'jor';
-          break;
-      }
-      switch (name_title) {
-        case 0:
-          name += ' the Mighty';
-          break;
-        case 1:
-          name += ' the Fearsome';
-          break;
-        case 2:
-          name += ' the Terrible';
-          break;
-        case 3:
-          name += ' the Warrior';
-          break;
-      }
+      const name_starts = ['Ger', 'Bo', 'Da', 'Jor'];
+      const name_middles_and_ends = ['bod', 'nok', 'vik', 'jor'];
+      const name_titles = [
+        ' the Mighty',
+        ' the Fearsome',
+        ' the Terrible',
+        ' the Warrior',
+      ];
+
+      const name_start = Math.floor(Math.random() * name_starts.length);
+      const name_middle = Math.floor(
+        Math.random() * name_middles_and_ends.length
+      );
+      const name_end = Math.floor(Math.random() * name_middles_and_ends.length);
+      const name_title = Math.floor(Math.random() * name_titles.length);
+
+      name += name_starts[name_start];
+      name += name_middles_and_ends[name_middle];
+      name += name_middles_and_ends[name_end];
+      name += name_titles[name_title];
       localStorage.setItem('orc-boss-name', name);
       return name;
     }
